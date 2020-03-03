@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 //                                                                            /
-// IAR C/C++ Compiler V8.10.1.40194/W32 for 8051        03/Mar/2020  14:56:14 /
+// IAR C/C++ Compiler V8.10.1.10194/W32 for 8051        04/Mar/2020  00:03:17 /
 // Copyright 2004-2011 IAR Systems AB.                                        /
 //                                                                            /
 //    Core               =  plain                                             /
@@ -21,10 +21,11 @@
 //                          ts\zstack\Samples\Diplomaproject\CC2530DB\..\..\. /
 //                          .\Tools\CC2530DB\f8wConfig.cfg" (-DZIGBEEPRO      /
 //                          -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR      /
-//                          -DDEFAULT_CHANLIST=0x00000800                     /
-//                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                      /
-//                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_M /
-//                          ASK=0x007F -DBEACON_REQUEST_DELAY=100             /
+//                          "-DDEFAULT_CHANLIST=(0xFFFF<<11)"                 /
+//                          -DZDAPP_CONFIG_PAN_ID=0x57a                       /
+//                          -DNWK_START_DELAY=0x57a                           /
+//                          -DEXTENDED_JOINING_RANDOM_MASK=0x007F             /
+//                          -DBEACON_REQUEST_DELAY=100                        /
 //                          -DBEACON_REQ_DELAY_MASK=0x00FF                    /
 //                          -DLINK_STATUS_JITTER_MASK=0x007F                  /
 //                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_P /
@@ -2889,10 +2890,10 @@ LCD_WrDat:
         MOV     A,R1
         MOV     C,0xE0 /* A   */.7
         JC      ??LCD_WrDat_1
-        CLR     0x90.3
+        CLR     0x90.5
         SJMP    ??LCD_WrDat_2
 ??LCD_WrDat_1:
-        SETB    0x90.3
+        SETB    0x90.5
 ??LCD_WrDat_2:
         SETB    0x90.4
         CLR     C
@@ -2921,10 +2922,10 @@ LCD_WrCmd:
         MOV     A,R1
         MOV     C,0xE0 /* A   */.7
         JC      ??LCD_WrCmd_1
-        CLR     0x90.3
+        CLR     0x90.5
         SJMP    ??LCD_WrCmd_2
 ??LCD_WrCmd_1:
-        SETB    0x90.3
+        SETB    0x90.5
 ??LCD_WrCmd_2:
         SETB    0x90.4
         CLR     C
@@ -3621,8 +3622,8 @@ LCD_Init:
         ; Auto size: 0
         ANL     0xf3,#0xfe
         ORL     0xfd,#0x1
-        ANL     0xf4,#0xa7
-        ORL     0xfe,#0x58
+        ANL     0xf4,#0x8f
+        ORL     0xfe,#0x70
         SETB    0x90.4
         CLR     0x90.6
         ; Setup parameters for call to function LCD_DLY_ms
@@ -6460,13 +6461,12 @@ zb_HandleOsalEvent:
 //  198     unsigned int lightvalue;
 //  199     unsigned int AvgValue;
 //  200     unsigned char value[2];
-//  201     
-//  202     for(int j=0,k=10;k<13;j++,k++)
+//  201     for(int j=0,k=10;k<13;j++,k++)
         MOV     ?V0 + 0,A
         MOV     R6,#0xa
         MOV     R7,A
-//  203     {
-//  204       LCD_P16x16Ch(24*j+32, 3, k);
+//  202     {
+//  203       LCD_P16x16Ch(24*j+32, 3, k);
 ??zb_HandleOsalEvent_2:
         ; Setup parameters for call to function LCD_P16x16Ch
         MOV     A,R6
@@ -6478,7 +6478,7 @@ zb_HandleOsalEvent:
         ADD     A,#0x20
         MOV     R1,A
         LCALL   ??LCD_P16x16Ch?relay
-//  205     }
+//  204     }
         MOV     A,?V0 + 0
         INC     A
         MOV     ?V0 + 0,A
@@ -6488,22 +6488,22 @@ zb_HandleOsalEvent:
         LCALL   ?Subroutine17 & 0xFFFF
 ??CrossCallReturnLabel_32:
         JC      ??zb_HandleOsalEvent_2
-//  206     if(IC_Test()==1)
+//  205     if(IC_Test()==1)
         ; Setup parameters for call to function IC_Test
         LCALL   ??IC_Test?relay
         MOV     A,R1
         XRL     A,#0x1
         JZ      $+5
         LJMP    ??zb_HandleOsalEvent_3 & 0xFFFF
-//  207     {   
-//  208       LCD_CLS(); 
+//  206     {   
+//  207       LCD_CLS(); 
         ; Setup parameters for call to function LCD_CLS
         LCALL   ??LCD_CLS?relay
-//  209       //16进制转ASC码 串口打印IC卡号码
-//  210       for(i=0;i<4;i++)
+//  208       //16进制转ASC码 串口打印IC卡号码
+//  209       for(i=0;i<4;i++)
         MOV     R4,#0x0
-//  211       {
-//  212         Card_Id[i*2]=asc_16[qq[i]/16];
+//  210       {
+//  211         Card_Id[i*2]=asc_16[qq[i]/16];
 ??zb_HandleOsalEvent_4:
         MOV     DPL,R4
         MOV     R2,DPL
@@ -6537,14 +6537,14 @@ zb_HandleOsalEvent:
         LCALL   ?Subroutine7 & 0xFFFF
 ??CrossCallReturnLabel_6:
         MOVX    @DPTR,A
-//  213         Card_Id[i*2+1]=asc_16[qq[i]%16];        
+//  212         Card_Id[i*2+1]=asc_16[qq[i]%16];        
         MOV     A,#0xf
         ANL     A,R5
         MOV     R2,A
         MOV     A,#0xc
         LCALL   ?XSTACK_DISP0_8
         LCALL   ?Subroutine7 & 0xFFFF
-//  214       }
+//  213       }
 ??CrossCallReturnLabel_7:
         INC     DPTR
         MOVX    @DPTR,A
@@ -6553,7 +6553,7 @@ zb_HandleOsalEvent:
         CLR     C
         SUBB    A,#0x4
         JC      ??zb_HandleOsalEvent_4
-//  215       sprintf((char *)buffer,"%c%c%c%c%c%c%c%c",Card_Id[0],Card_Id[1],Card_Id[2],Card_Id[3],Card_Id[4],Card_Id[5],Card_Id[6],Card_Id[7]); 
+//  214       sprintf((char *)buffer,"%c%c%c%c%c%c%c%c",Card_Id[0],Card_Id[1],Card_Id[2],Card_Id[3],Card_Id[4],Card_Id[5],Card_Id[6],Card_Id[7]); 
         ; Setup parameters for call to function sprintf
         MOV     A,#0xb
         LCALL   ?XSTACK_DISP0_8
@@ -6613,7 +6613,7 @@ zb_HandleOsalEvent:
         MOV     A,#0x10
         LCALL   ?DEALLOC_XSTACK8
         CFI CFA_XSP16 add(XSP16, 38)
-//  216       zb_SendDataRequest(0X0,RC522VALUE_CMD_ID,8,Card_Id,0,FALSE,AF_DEFAULT_RADIUS);
+//  215       zb_SendDataRequest(0X0,RC522VALUE_CMD_ID,8,Card_Id,0,FALSE,AF_DEFAULT_RADIUS);
         ; Setup parameters for call to function zb_SendDataRequest
         MOV     ?V0 + 0,#0x1e
         MOV     R0,#?V0 + 0
@@ -6642,9 +6642,9 @@ zb_HandleOsalEvent:
         MOV     A,#0x5
         LCALL   ?DEALLOC_XSTACK8
         CFI CFA_XSP16 add(XSP16, 38)
-//  217     }
-//  218     
-//  219     Get_ADCValue(&lightvalue);
+//  216     }
+//  217     
+//  218     Get_ADCValue(&lightvalue);
 ??zb_HandleOsalEvent_3:
         ; Setup parameters for call to function Get_ADCValue
         MOV     A,#0x2
@@ -6652,14 +6652,14 @@ zb_HandleOsalEvent:
         MOV     R2,DPL
         MOV     R3,DPH
         LCALL   ??Get_ADCValue?relay
-//  220     value[0]=lightvalue&0xff;
+//  219     value[0]=lightvalue&0xff;
         MOV     A,#0x2
         LCALL   ?XSTACK_DISP0_8
         MOVX    A,@DPTR
         MOV     DPL,?XSP + 0
         MOV     DPH,?XSP + 1
         MOVX    @DPTR,A
-//  221     value[1]=(lightvalue>>8)&0xff;
+//  220     value[1]=(lightvalue>>8)&0xff;
         MOV     A,#0x2
         LCALL   ?XSTACK_DISP0_8
         INC     DPTR
@@ -6669,9 +6669,9 @@ zb_HandleOsalEvent:
         LCALL   ?XSTACK_DISP0_8
         MOV     A,R1
         MOVX    @DPTR,A
-//  222     AvgValue = value[0] | ((unsigned int)value[1] << 8);
-//  223     
-//  224     if(AvgValue==32763)
+//  221     AvgValue = value[0] | ((unsigned int)value[1] << 8);
+//  222     
+//  223     if(AvgValue==32763)
         MOV     DPL,?XSP + 0
         MOV     DPH,?XSP + 1
         MOVX    A,@DPTR
@@ -6683,34 +6683,34 @@ zb_HandleOsalEvent:
         XRL     A,R1
 ??zb_HandleOsalEvent_5:
         JNZ     ??zb_HandleOsalEvent_6
-//  225     {
-//  226       HalLedSet(HAL_LED_1,HAL_LED_MODE_ON);
+//  224     {
+//  225       HalLedSet(HAL_LED_1,HAL_LED_MODE_ON);
         ; Setup parameters for call to function HalLedSet
         MOV     R2,#0x1
         MOV     R1,#0x1
         LCALL   ??HalLedSet?relay
-//  227       HalLedSet(HAL_LED_2,HAL_LED_MODE_ON);
+//  226       HalLedSet(HAL_LED_2,HAL_LED_MODE_ON);
         ; Setup parameters for call to function HalLedSet
         MOV     R2,#0x1
         SJMP    ??zb_HandleOsalEvent_7
-//  228     }
-//  229     else
-//  230     {
-//  231       HalLedSet(HAL_LED_1,HAL_LED_MODE_OFF);
+//  227     }
+//  228     else
+//  229     {
+//  230       HalLedSet(HAL_LED_1,HAL_LED_MODE_OFF);
 ??zb_HandleOsalEvent_6:
         ; Setup parameters for call to function HalLedSet
         MOV     R2,#0x0
         MOV     R1,#0x1
         LCALL   ??HalLedSet?relay
-//  232       HalLedSet(HAL_LED_2,HAL_LED_MODE_OFF);
+//  231       HalLedSet(HAL_LED_2,HAL_LED_MODE_OFF);
         ; Setup parameters for call to function HalLedSet
         MOV     R2,#0x0
 ??zb_HandleOsalEvent_7:
         MOV     R1,#0x2
         LCALL   ??HalLedSet?relay
-//  233     }
-//  234   }
-//  235 }
+//  232     }
+//  233   }
+//  234 }
 ??zb_HandleOsalEvent_1:
         MOV     A,#0x1c
         LJMP    ?Subroutine2 & 0xFFFF
@@ -7443,20 +7443,20 @@ zb_HandleOsalEvent:
         CFI EndBlock cfiCond104
         CFI EndBlock cfiCond105
         CFI EndBlock cfiPicker106
-//  236 
+//  235 
 
         RSEG BANKED_CODE:CODE:NOROOT(0)
-//  237 void zb_FindDeviceConfirm( uint8 searchType, 
+//  236 void zb_FindDeviceConfirm( uint8 searchType, 
 zb_FindDeviceConfirm:
         CFI Block cfiBlock107 Using cfiCommon0
         CFI Function zb_FindDeviceConfirm
         CODE
-//  238                           uint8 *searchKey, uint8 *result )
-//  239 {
+//  237                           uint8 *searchKey, uint8 *result )
+//  238 {
         ; Saved register size: 0
         ; Auto size: 0
-//  240   
-//  241 }
+//  239   
+//  240 }
         LJMP    ?BRET
         CFI EndBlock cfiBlock107
 

@@ -198,7 +198,6 @@ void zb_HandleOsalEvent( uint16 event )
     unsigned int lightvalue;
     unsigned int AvgValue;
     unsigned char value[2];
-    
     for(int j=0,k=10;k<13;j++,k++)
     {
       LCD_P16x16Ch(24*j+32, 3, k);

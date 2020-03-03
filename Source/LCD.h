@@ -8,7 +8,7 @@
 
 #define LCD_SCL P1_4 //SCLK 时钟 D0（SCLK）
 
-#define LCD_SDA P1_3 //SDA D1（MOSI） 数据
+#define LCD_SDA P1_5 //SDA D1（MOSI） 数据
 
 #define LCD_RST P1_6 //_RES hardware reset 复位 
 
@@ -256,9 +256,9 @@ void LCD_Init(void)
   
   
   
-  P1SEL &= 0xA7; //让 P1.1 P1.3 P1.6为普通IO口
+  P1SEL &= 0x8F; //让 P1.4 P1.5 P1.6为普通IO口
   
-  P1DIR |= 0x58; //把 P1.1 P1.3 1.6设置为输出
+  P1DIR |= 0x70; //把 P1.4 P1.5 1.6设置为输出
   
   
   

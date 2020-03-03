@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.1.40194/W32 for 8051         03/Mar/2020  14:56:14 #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         04/Mar/2020  00:03:17 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -20,10 +20,10 @@
 #                          s\zstack\Samples\Diplomaproject\CC2530DB\..\..\..\ #
 #                          Tools\CC2530DB\f8wConfig.cfg" (-DZIGBEEPRO         #
 #                          -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR       #
-#                          -DDEFAULT_CHANLIST=0x00000800                      #
-#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
-#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
-#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          "-DDEFAULT_CHANLIST=(0xFFFF<<11)"                  #
+#                          -DZDAPP_CONFIG_PAN_ID=0x57a                        #
+#                          -DNWK_START_DELAY=0x57a -DEXTENDED_JOINING_RANDOM_ #
+#                          MASK=0x007F -DBEACON_REQUEST_DELAY=100             #
 #                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
 #                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
 #                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
@@ -2353,10 +2353,10 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000006   E9           MOV     A,R1
    \   000007   A2E7         MOV     C,0xE0 /* A   */.7
    \   000009   4004         JC      ??LCD_WrDat_1
-   \   00000B   C293         CLR     0x90.3
+   \   00000B   C295         CLR     0x90.5
    \   00000D   8002         SJMP    ??LCD_WrDat_2
    \                     ??LCD_WrDat_1:
-   \   00000F   D293         SETB    0x90.3
+   \   00000F   D295         SETB    0x90.5
    \                     ??LCD_WrDat_2:
    \   000011   D294         SETB    0x90.4
    \   000013   C3           CLR     C
@@ -2381,10 +2381,10 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000006   E9           MOV     A,R1
    \   000007   A2E7         MOV     C,0xE0 /* A   */.7
    \   000009   4004         JC      ??LCD_WrCmd_1
-   \   00000B   C293         CLR     0x90.3
+   \   00000B   C295         CLR     0x90.5
    \   00000D   8002         SJMP    ??LCD_WrCmd_2
    \                     ??LCD_WrCmd_1:
-   \   00000F   D293         SETB    0x90.3
+   \   00000F   D295         SETB    0x90.5
    \                     ??LCD_WrCmd_2:
    \   000011   D294         SETB    0x90.4
    \   000013   C3           CLR     C
@@ -2518,8 +2518,8 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000004                ; Auto size: 0
    \   000004   53F3FE       ANL     0xf3,#0xfe
    \   000007   43FD01       ORL     0xfd,#0x1
-   \   00000A   53F4A7       ANL     0xf4,#0xa7
-   \   00000D   43FE58       ORL     0xfe,#0x58
+   \   00000A   53F48F       ANL     0xf4,#0x8f
+   \   00000D   43FE70       ORL     0xfe,#0x70
    \   000010   D294         SETB    0x90.4
    \   000012   C296         CLR     0x90.6
    \   000014                ; Setup parameters for call to function LCD_DLY_ms
@@ -3834,13 +3834,12 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
     198              unsigned int lightvalue;
     199              unsigned int AvgValue;
     200              unsigned char value[2];
-    201              
-    202              for(int j=0,k=10;k<13;j++,k++)
+    201              for(int j=0,k=10;k<13;j++,k++)
    \   00006D   F5..         MOV     ?V0 + 0,A
    \   00006F   7E0A         MOV     R6,#0xa
    \   000071   FF           MOV     R7,A
-    203              {
-    204                LCD_P16x16Ch(24*j+32, 3, k);
+    202              {
+    203                LCD_P16x16Ch(24*j+32, 3, k);
    \                     ??zb_HandleOsalEvent_2:
    \   000072                ; Setup parameters for call to function LCD_P16x16Ch
    \   000072   EE           MOV     A,R6
@@ -3852,7 +3851,7 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   00007C   2420         ADD     A,#0x20
    \   00007E   F9           MOV     R1,A
    \   00007F   12....       LCALL   ??LCD_P16x16Ch?relay
-    205              }
+    204              }
    \   000082   E5..         MOV     A,?V0 + 0
    \   000084   04           INC     A
    \   000085   F5..         MOV     ?V0 + 0,A
@@ -3862,22 +3861,22 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   00008C   12....       LCALL   ?Subroutine17 & 0xFFFF
    \                     ??CrossCallReturnLabel_32:
    \   00008F   40E1         JC      ??zb_HandleOsalEvent_2
-    206              if(IC_Test()==1)
+    205              if(IC_Test()==1)
    \   000091                ; Setup parameters for call to function IC_Test
    \   000091   12....       LCALL   ??IC_Test?relay
    \   000094   E9           MOV     A,R1
    \   000095   6401         XRL     A,#0x1
    \   000097   6003         JZ      $+5
    \   000099   02....       LJMP    ??zb_HandleOsalEvent_3 & 0xFFFF
-    207              {   
-    208                LCD_CLS(); 
+    206              {   
+    207                LCD_CLS(); 
    \   00009C                ; Setup parameters for call to function LCD_CLS
    \   00009C   12....       LCALL   ??LCD_CLS?relay
-    209                //16进制转ASC码 串口打印IC卡号码
-    210                for(i=0;i<4;i++)
+    208                //16进制转ASC码 串口打印IC卡号码
+    209                for(i=0;i<4;i++)
    \   00009F   7C00         MOV     R4,#0x0
-    211                {
-    212                  Card_Id[i*2]=asc_16[qq[i]/16];
+    210                {
+    211                  Card_Id[i*2]=asc_16[qq[i]/16];
    \                     ??zb_HandleOsalEvent_4:
    \   0000A1   8C82         MOV     DPL,R4
    \   0000A3   AA82         MOV     R2,DPL
@@ -3911,14 +3910,14 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   0000CD   12....       LCALL   ?Subroutine7 & 0xFFFF
    \                     ??CrossCallReturnLabel_6:
    \   0000D0   F0           MOVX    @DPTR,A
-    213                  Card_Id[i*2+1]=asc_16[qq[i]%16];        
+    212                  Card_Id[i*2+1]=asc_16[qq[i]%16];        
    \   0000D1   740F         MOV     A,#0xf
    \   0000D3   5D           ANL     A,R5
    \   0000D4   FA           MOV     R2,A
    \   0000D5   740C         MOV     A,#0xc
    \   0000D7   12....       LCALL   ?XSTACK_DISP0_8
    \   0000DA   12....       LCALL   ?Subroutine7 & 0xFFFF
-    214                }
+    213                }
    \                     ??CrossCallReturnLabel_7:
    \   0000DD   A3           INC     DPTR
    \   0000DE   F0           MOVX    @DPTR,A
@@ -3927,7 +3926,7 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   0000E1   C3           CLR     C
    \   0000E2   9404         SUBB    A,#0x4
    \   0000E4   40BB         JC      ??zb_HandleOsalEvent_4
-    215                sprintf((char *)buffer,"%c%c%c%c%c%c%c%c",Card_Id[0],Card_Id[1],Card_Id[2],Card_Id[3],Card_Id[4],Card_Id[5],Card_Id[6],Card_Id[7]); 
+    214                sprintf((char *)buffer,"%c%c%c%c%c%c%c%c",Card_Id[0],Card_Id[1],Card_Id[2],Card_Id[3],Card_Id[4],Card_Id[5],Card_Id[6],Card_Id[7]); 
    \   0000E6                ; Setup parameters for call to function sprintf
    \   0000E6   740B         MOV     A,#0xb
    \   0000E8   12....       LCALL   ?XSTACK_DISP0_8
@@ -3978,7 +3977,7 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   00014B   12....       LCALL   ??sprintf?relay
    \   00014E   7410         MOV     A,#0x10
    \   000150   12....       LCALL   ?DEALLOC_XSTACK8
-    216                zb_SendDataRequest(0X0,RC522VALUE_CMD_ID,8,Card_Id,0,FALSE,AF_DEFAULT_RADIUS);
+    215                zb_SendDataRequest(0X0,RC522VALUE_CMD_ID,8,Card_Id,0,FALSE,AF_DEFAULT_RADIUS);
    \   000153                ; Setup parameters for call to function zb_SendDataRequest
    \   000153   75..1E       MOV     ?V0 + 0,#0x1e
    \   000156   78..         MOV     R0,#?V0 + 0
@@ -4002,9 +4001,9 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000182   12....       LCALL   ??zb_SendDataRequest?relay
    \   000185   7405         MOV     A,#0x5
    \   000187   12....       LCALL   ?DEALLOC_XSTACK8
-    217              }
-    218              
-    219              Get_ADCValue(&lightvalue);
+    216              }
+    217              
+    218              Get_ADCValue(&lightvalue);
    \                     ??zb_HandleOsalEvent_3:
    \   00018A                ; Setup parameters for call to function Get_ADCValue
    \   00018A   7402         MOV     A,#0x2
@@ -4012,14 +4011,14 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   00018F   AA82         MOV     R2,DPL
    \   000191   AB83         MOV     R3,DPH
    \   000193   12....       LCALL   ??Get_ADCValue?relay
-    220              value[0]=lightvalue&0xff;
+    219              value[0]=lightvalue&0xff;
    \   000196   7402         MOV     A,#0x2
    \   000198   12....       LCALL   ?XSTACK_DISP0_8
    \   00019B   E0           MOVX    A,@DPTR
    \   00019C   85..82       MOV     DPL,?XSP + 0
    \   00019F   85..83       MOV     DPH,?XSP + 1
    \   0001A2   F0           MOVX    @DPTR,A
-    221              value[1]=(lightvalue>>8)&0xff;
+    220              value[1]=(lightvalue>>8)&0xff;
    \   0001A3   7402         MOV     A,#0x2
    \   0001A5   12....       LCALL   ?XSTACK_DISP0_8
    \   0001A8   A3           INC     DPTR
@@ -4029,9 +4028,9 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   0001AD   12....       LCALL   ?XSTACK_DISP0_8
    \   0001B0   E9           MOV     A,R1
    \   0001B1   F0           MOVX    @DPTR,A
-    222              AvgValue = value[0] | ((unsigned int)value[1] << 8);
-    223              
-    224              if(AvgValue==32763)
+    221              AvgValue = value[0] | ((unsigned int)value[1] << 8);
+    222              
+    223              if(AvgValue==32763)
    \   0001B2   85..82       MOV     DPL,?XSP + 0
    \   0001B5   85..83       MOV     DPH,?XSP + 1
    \   0001B8   E0           MOVX    A,@DPTR
@@ -4043,34 +4042,34 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   0001C1   69           XRL     A,R1
    \                     ??zb_HandleOsalEvent_5:
    \   0001C2   700B         JNZ     ??zb_HandleOsalEvent_6
-    225              {
-    226                HalLedSet(HAL_LED_1,HAL_LED_MODE_ON);
+    224              {
+    225                HalLedSet(HAL_LED_1,HAL_LED_MODE_ON);
    \   0001C4                ; Setup parameters for call to function HalLedSet
    \   0001C4   7A01         MOV     R2,#0x1
    \   0001C6   7901         MOV     R1,#0x1
    \   0001C8   12....       LCALL   ??HalLedSet?relay
-    227                HalLedSet(HAL_LED_2,HAL_LED_MODE_ON);
+    226                HalLedSet(HAL_LED_2,HAL_LED_MODE_ON);
    \   0001CB                ; Setup parameters for call to function HalLedSet
    \   0001CB   7A01         MOV     R2,#0x1
    \   0001CD   8009         SJMP    ??zb_HandleOsalEvent_7
-    228              }
-    229              else
-    230              {
-    231                HalLedSet(HAL_LED_1,HAL_LED_MODE_OFF);
+    227              }
+    228              else
+    229              {
+    230                HalLedSet(HAL_LED_1,HAL_LED_MODE_OFF);
    \                     ??zb_HandleOsalEvent_6:
    \   0001CF                ; Setup parameters for call to function HalLedSet
    \   0001CF   7A00         MOV     R2,#0x0
    \   0001D1   7901         MOV     R1,#0x1
    \   0001D3   12....       LCALL   ??HalLedSet?relay
-    232                HalLedSet(HAL_LED_2,HAL_LED_MODE_OFF);
+    231                HalLedSet(HAL_LED_2,HAL_LED_MODE_OFF);
    \   0001D6                ; Setup parameters for call to function HalLedSet
    \   0001D6   7A00         MOV     R2,#0x0
    \                     ??zb_HandleOsalEvent_7:
    \   0001D8   7902         MOV     R1,#0x2
    \   0001DA   12....       LCALL   ??HalLedSet?relay
-    233              }
-    234            }
-    235          }
+    232              }
+    233            }
+    234          }
    \                     ??zb_HandleOsalEvent_1:
    \   0001DD   741C         MOV     A,#0x1c
    \   0001DF   02....       LJMP    ?Subroutine2 & 0xFFFF
@@ -4094,17 +4093,17 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   00000C   8882         MOV     DPL,R0
    \   00000E   8983         MOV     DPH,R1
    \   000010   22           RET
-    236          
+    235          
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    237          void zb_FindDeviceConfirm( uint8 searchType, 
+    236          void zb_FindDeviceConfirm( uint8 searchType, 
    \                     zb_FindDeviceConfirm:
-    238                                    uint8 *searchKey, uint8 *result )
-    239          {
+    237                                    uint8 *searchKey, uint8 *result )
+    238          {
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
-    240            
-    241          }
+    239            
+    240          }
    \   000000   02....       LJMP    ?BRET
 
    \                                 In  segment XDATA_ID, align 1, keep-with-next
