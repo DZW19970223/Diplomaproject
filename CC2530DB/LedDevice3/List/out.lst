@@ -1,0 +1,503 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.1.40194/W32 for 8051         03/Mar/2020  13:24:30 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects #
+#                          \zstack\Samples\Diplomaproject\Source\out.c        #
+#    Command line       =  -f "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Proj #
+#                          ects\zstack\Samples\Diplomaproject\CC2530DB\..\..\ #
+#                          ..\Tools\CC2530DB\f8wEndev.cfg" (-DCPU32MHZ        #
+#                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3         #
+#                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f          #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\..\..\..\ #
+#                          Tools\CC2530DB\f8wConfig.cfg" (-DZIGBEEPRO         #
+#                          -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR       #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=1000        #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 "C:\Texas                   #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\Source\out.c" -D             #
+#                          NWK_AUTO_POLL -D ZTOOL_P1 -D                       #
+#                          RFD_RCVC_ALWAYS_ON=TRUE -D xMT_TASK -D             #
+#                          xMT_SYS_FUNC -D MT_ZDO_FUNC -D                     #
+#                          xLCD_SUPPORTED=DEBUG -D xPOWER_SAVING -lC          #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\LedDevice #
+#                          3\List\" -lA "C:\Texas Instruments\ZStack-CC2530-2 #
+#                          .5.1a\Projects\zstack\Samples\Diplomaproject\CC253 #
+#                          0DB\LedDevice3\List\" --diag_suppress Pe001,Pa010  #
+#                          -o "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Proj #
+#                          ects\zstack\Samples\Diplomaproject\CC2530DB\LedDev #
+#                          ice3\Obj\" -e --no_code_motion --debug             #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I "C:\Texas                  #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\" -I "C:\Texas      #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\Source\" -I      #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\..\..\..\ #
+#                          ZMain\TI2530DB\" -I "C:\Texas                      #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\hal\include\" -I "C:\Texas                  #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\hal\target\CC2530EB\" -I "C:\Texas          #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\include\" -I "C:\Texas                  #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\high_level\" -I "C:\Texas               #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\low_level\srf04\" -I "C:\Texas          #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\low_level\srf04\single_chip\" -I        #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\..\..\..\ #
+#                          ..\..\Components\mt\" -I "C:\Texas                 #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\osal\include\" -I "C:\Texas                 #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\services\saddr\" -I "C:\Texas               #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\services\sdata\" -I "C:\Texas               #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\af\" -I "C:\Texas                     #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\nwk\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\sapi\" -I "C:\Texas                   #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\sec\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\sys\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\zdo\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\zmac\" -I "C:\Texas                         #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\zmac\f8w\" -Ohz                             #
+#    List file          =  C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects #
+#                          \zstack\Samples\Diplomaproject\CC2530DB\LedDevice3 #
+#                          \List\out.lst                                      #
+#    Object file        =  C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects #
+#                          \zstack\Samples\Diplomaproject\CC2530DB\LedDevice3 #
+#                          \Obj\out.r51                                       #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject\Source\out.c
+      1          #include "ioCC2530.h"
+
+   \                                 In  segment SFR_AN, at 0x80
+   \   union <unnamed> volatile __sfr _A_P0
+   \                     _A_P0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x90
+   \   union <unnamed> volatile __sfr _A_P1
+   \                     _A_P1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfd
+   \   unsigned char volatile __sfr P0DIR
+   \                     P0DIR:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfe
+   \   unsigned char volatile __sfr P1DIR
+   \                     P1DIR:
+   \   000000                DS 1
+      2          #include "out.h"
+      3          
+      4          #define  IN1  P1_2
+      5          #define  IN2  P1_3
+      6          #define  BEE  P0_1      
+      7          #define  JDQ  P0_6     
+      8          #define  JDQ1  P0_7
+      9          #define  JDQ2  P0_0
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+     10          int BZ,LZ;
+   \                     BZ:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+   \                     LZ:
+   \   000000                DS 2
+   \   000002                REQUIRE __INIT_XDATA_Z
+     11          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     12          void Initout(void)
+   \                     Initout:
+     13          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     14            P1DIR|=0x0c;
+   \   000004   43FE0C       ORL     0xfe,#0xc
+     15            P0DIR|=0xc2;
+   \   000007   43FDC2       ORL     0xfd,#0xc2
+     16            IN1=0;
+   \   00000A   C292         CLR     0x90.2
+     17            IN2=0;
+   \   00000C   C293         CLR     0x90.3
+     18            BEE=0;        
+   \   00000E   C281         CLR     0x80.1
+     19            JDQ=0;
+   \   000010   C286         CLR     0x80.6
+     20            JDQ1=0;   
+   \   000012   C287         CLR     0x80.7
+     21            BZ=0;
+   \   000014   90....       MOV     DPTR,#BZ
+   \   000017   E4           CLR     A
+   \   000018   F0           MOVX    @DPTR,A
+   \   000019   A3           INC     DPTR
+   \   00001A   F0           MOVX    @DPTR,A
+     22            LZ=0;
+   \   00001B   90....       MOV     DPTR,#LZ
+   \   00001E   F0           MOVX    @DPTR,A
+   \   00001F   A3           INC     DPTR
+   \   000020   F0           MOVX    @DPTR,A
+     23          }
+   \   000021   D083         POP     DPH
+   \   000023   D082         POP     DPL
+   \   000025   02....       LJMP    ?BRET
+   \   000028                REQUIRE P1DIR
+   \   000028                REQUIRE P0DIR
+   \   000028                REQUIRE _A_P1
+   \   000028                REQUIRE _A_P0
+     24          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     25          void InitJDQ2()
+   \                     InitJDQ2:
+     26          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     27            P0DIR|=0x01;
+   \   000000   43FD01       ORL     0xfd,#0x1
+     28            JDQ2=0;
+   \   000003                REQUIRE ?Subroutine0
+   \   000003                REQUIRE P0DIR
+   \   000003                REQUIRE _A_P0
+   \   000003                ; // Fall through to label ?Subroutine0
+     29          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   C280         CLR     0x80.0
+   \   000002   02....       LJMP    ?BRET
+     30          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     31          void L298NStart()
+   \                     L298NStart:
+     32          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     33            IN1=1;
+   \   000000   D292         SETB    0x90.2
+     34            IN2=0;
+   \   000002                REQUIRE ?Subroutine1
+   \   000002                REQUIRE _A_P1
+   \   000002                ; // Fall through to label ?Subroutine1
+     35          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine1:
+   \   000000   C293         CLR     0x90.3
+   \   000002   02....       LJMP    ?BRET
+     36          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     37          void L298NClose()
+   \                     L298NClose:
+     38          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     39            IN1=0;
+   \   000000   C292         CLR     0x90.2
+     40            IN2=0;
+   \   000002   80..         SJMP    ?Subroutine1
+   \   000004                REQUIRE _A_P1
+     41          }
+     42          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     43          void JDQ1Start()
+   \                     JDQ1Start:
+     44          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     45            JDQ1=1;
+   \   000000   D287         SETB    0x80.7
+     46          }
+   \   000002   02....       LJMP    ?BRET
+   \   000005                REQUIRE _A_P0
+     47          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     48          void JDQ1Close()
+   \                     JDQ1Close:
+     49          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     50            JDQ1=0;
+   \   000000   C287         CLR     0x80.7
+     51          }
+   \   000002   02....       LJMP    ?BRET
+   \   000005                REQUIRE _A_P0
+     52          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     53          void BEEStart()
+   \                     BEEStart:
+     54          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     55            BEE=1;
+   \   000000   D281         SETB    0x80.1
+     56          }
+   \   000002   02....       LJMP    ?BRET
+   \   000005                REQUIRE _A_P0
+     57          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     58          void BEEClose()
+   \                     BEEClose:
+     59          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     60            BEE=0;
+   \   000000   C281         CLR     0x80.1
+     61          }
+   \   000002   02....       LJMP    ?BRET
+   \   000005                REQUIRE _A_P0
+     62          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     63          void JDQStart()
+   \                     JDQStart:
+     64          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     65            JDQ=1;
+   \   000000   D286         SETB    0x80.6
+     66          }
+   \   000002   02....       LJMP    ?BRET
+   \   000005                REQUIRE _A_P0
+     67          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     68          void JDQClose()
+   \                     JDQClose:
+     69          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     70            JDQ=0;
+   \   000000   C286         CLR     0x80.6
+     71          }
+   \   000002   02....       LJMP    ?BRET
+   \   000005                REQUIRE _A_P0
+     72          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     73          void JDQ2Start()
+   \                     JDQ2Start:
+     74          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     75            JDQ2=1;
+   \   000000   D280         SETB    0x80.0
+     76          }
+   \   000002   02....       LJMP    ?BRET
+   \   000005                REQUIRE _A_P0
+     77          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     78          void JDQ2Close()
+   \                     JDQ2Close:
+     79          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     80            JDQ2=0;
+   \   000000   80..         SJMP    ?Subroutine0
+   \   000002                REQUIRE _A_P0
+     81          }
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Initout?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Initout
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??InitJDQ2?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    InitJDQ2
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??L298NStart?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    L298NStart
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??L298NClose?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    L298NClose
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??JDQ1Start?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    JDQ1Start
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??JDQ1Close?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    JDQ1Close
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??BEEStart?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    BEEStart
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??BEEClose?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    BEEClose
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??JDQStart?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    JDQStart
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??JDQClose?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    JDQClose
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??JDQ2Start?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    JDQ2Start
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??JDQ2Close?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    JDQ2Close
+
+   Maximum stack usage in bytes:
+
+     Function   ISTACK PSTACK XSTACK
+     --------   ------ ------ ------
+     BEEClose       0      0      0
+     BEEStart       0      0      0
+     InitJDQ2       0      0      0
+     Initout        2      0      0
+     JDQ1Close      0      0      0
+     JDQ1Start      0      0      0
+     JDQ2Close      0      0      0
+     JDQ2Start      0      0      0
+     JDQClose       0      0      0
+     JDQStart       0      0      0
+     L298NClose     0      0      0
+     L298NStart     0      0      0
+
+
+   Segment part sizes:
+
+     Function/Label     Bytes
+     --------------     -----
+     _A_P0                 1
+     _A_P1                 1
+     P0DIR                 1
+     P1DIR                 1
+     BZ                    2
+     LZ                    2
+     Initout              40
+     InitJDQ2              3
+     ?Subroutine0          5
+     L298NStart            2
+     ?Subroutine1          5
+     L298NClose            4
+     JDQ1Start             5
+     JDQ1Close             5
+     BEEStart              5
+     BEEClose              5
+     JDQStart              5
+     JDQClose              5
+     JDQ2Start             5
+     JDQ2Close             2
+     ??Initout?relay       6
+     ??InitJDQ2?relay      6
+     ??L298NStart?relay    6
+     ??L298NClose?relay    6
+     ??JDQ1Start?relay     6
+     ??JDQ1Close?relay     6
+     ??BEEStart?relay      6
+     ??BEEClose?relay      6
+     ??JDQStart?relay      6
+     ??JDQClose?relay      6
+     ??JDQ2Start?relay     6
+     ??JDQ2Close?relay     6
+
+ 
+ 96 bytes in segment BANKED_CODE
+ 72 bytes in segment BANK_RELAYS
+  4 bytes in segment SFR_AN
+  4 bytes in segment XDATA_Z
+ 
+ 168 bytes of CODE  memory
+   0 bytes of DATA  memory (+ 4 bytes shared)
+   4 bytes of XDATA memory
+
+Errors: none
+Warnings: none

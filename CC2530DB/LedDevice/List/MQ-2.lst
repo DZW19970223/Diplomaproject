@@ -1,0 +1,298 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         26/Sep/2019  17:38:53 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects #
+#                          \zstack\Samples\Diplomaproject\Source\MQ-2.c       #
+#    Command line       =  -f "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Proj #
+#                          ects\zstack\Samples\Diplomaproject\CC2530DB\..\..\ #
+#                          ..\Tools\CC2530DB\f8wEndev.cfg" (-DCPU32MHZ        #
+#                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3         #
+#                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f          #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\..\..\..\ #
+#                          Tools\CC2530DB\f8wConfig.cfg" (-DZIGBEEPRO         #
+#                          -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR       #
+#                          "-DDEFAULT_CHANLIST=(0xFFFF<<11)"                  #
+#                          -DZDAPP_CONFIG_PAN_ID=0x57a                        #
+#                          -DNWK_START_DELAY=0x57a -DEXTENDED_JOINING_RANDOM_ #
+#                          MASK=0x007F -DBEACON_REQUEST_DELAY=100             #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=1000        #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 "C:\Texas                   #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\Source\MQ-2.c" -D            #
+#                          NWK_AUTO_POLL -D ZTOOL_P1 -D                       #
+#                          RFD_RCVC_ALWAYS_ON=TRUE -D xMT_TASK -D             #
+#                          xMT_SYS_FUNC -D MT_ZDO_FUNC -D                     #
+#                          xLCD_SUPPORTED=DEBUG -D xPOWER_SAVING -lC          #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\LedDevice #
+#                          \List\" -lA "C:\Texas Instruments\ZStack-CC2530-2. #
+#                          5.1a\Projects\zstack\Samples\Diplomaproject\CC2530 #
+#                          DB\LedDevice\List\" --diag_suppress Pe001,Pa010    #
+#                          -o "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Proj #
+#                          ects\zstack\Samples\Diplomaproject\CC2530DB\LedDev #
+#                          ice\Obj\" -e --no_code_motion --debug              #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I "C:\Texas                  #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\" -I "C:\Texas      #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\Source\" -I      #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\..\..\..\ #
+#                          ZMain\TI2530DB\" -I "C:\Texas                      #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\hal\include\" -I "C:\Texas                  #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\hal\target\CC2530EB\" -I "C:\Texas          #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\include\" -I "C:\Texas                  #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\high_level\" -I "C:\Texas               #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\low_level\srf04\" -I "C:\Texas          #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\low_level\srf04\single_chip\" -I        #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\..\..\..\ #
+#                          ..\..\Components\mt\" -I "C:\Texas                 #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\osal\include\" -I "C:\Texas                 #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\services\saddr\" -I "C:\Texas               #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\services\sdata\" -I "C:\Texas               #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\af\" -I "C:\Texas                     #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\nwk\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\sapi\" -I "C:\Texas                   #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\sec\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\sys\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\zdo\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\zmac\" -I "C:\Texas                         #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\zmac\f8w\" -Ohz                             #
+#    List file          =  C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects #
+#                          \zstack\Samples\Diplomaproject\CC2530DB\LedDevice\ #
+#                          List\MQ-2.lst                                      #
+#    Object file        =  C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects #
+#                          \zstack\Samples\Diplomaproject\CC2530DB\LedDevice\ #
+#                          Obj\MQ-2.r51                                       #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject\Source\MQ-2.c
+      1          #include <ioCC2530.h>
+
+   \                                 In  segment SFR_AN, at 0x80
+   \   union <unnamed> volatile __sfr _A_P0
+   \                     _A_P0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf3
+   \   unsigned char volatile __sfr P0SEL
+   \                     P0SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfd
+   \   unsigned char volatile __sfr P0DIR
+   \                     P0DIR:
+   \   000000                DS 1
+      2          #include "MQ-2.h"
+      3          #include "OnBoard.h"
+      4          #include "out.h"
+      5          
+      6          #define AIR P0_0      //烟雾为P0.0口控制
+      7          extern int BZ;	
+      8          void AirInit(); 
+      9          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     10          void AirInit()
+   \                     AirInit:
+     11          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     12                  P0SEL &= ~0X01;     //设置P0.0为普通IO口  
+   \   000000   53F3FE       ANL     0xf3,#0xfe
+     13                  P0DIR &= ~0X01;    // 在P0.0口，设置为输入模式 
+   \   000003   53FDFE       ANL     0xfd,#0xfe
+     14          }
+   \   000006   02....       LJMP    ?BRET
+   \   000009                REQUIRE P0SEL
+   \   000009                REQUIRE P0DIR
+     15          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     16          uchar AirScan(void)
+   \                     AirScan:
+     17          {    
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     18                  AirInit();
+   \   000004                ; Setup parameters for call to function AirInit
+   \   000004   12....       LCALL   ??AirInit?relay
+     19                  if(AIR==0)
+   \   000007   A280         MOV     C,0x80.0
+   \   000009   4021         JC      ??AirScan_0
+     20                  {
+     21                     MicroWait(10000);
+   \   00000B                ; Setup parameters for call to function Onboard_wait
+   \   00000B   7A10         MOV     R2,#0x10
+   \   00000D   7B27         MOV     R3,#0x27
+   \   00000F   12....       LCALL   ??Onboard_wait?relay
+     22                     if(AIR==0)
+   \   000012   A280         MOV     C,0x80.0
+   \   000014   4016         JC      ??AirScan_0
+     23                     {
+     24                       if(BZ==0)
+   \   000016   90....       MOV     DPTR,#BZ
+   \   000019   E0           MOVX    A,@DPTR
+   \   00001A   F8           MOV     R0,A
+   \   00001B   A3           INC     DPTR
+   \   00001C   E0           MOVX    A,@DPTR
+   \   00001D   F9           MOV     R1,A
+   \   00001E   E8           MOV     A,R0
+   \   00001F   49           ORL     A,R1
+   \   000020   7006         JNZ     ??AirScan_1
+     25                       {
+     26                         BEEStart();
+   \   000022                ; Setup parameters for call to function BEEStart
+   \   000022   12....       LCALL   ??BEEStart?relay
+     27                         JDQStart();
+   \   000025                ; Setup parameters for call to function JDQStart
+   \   000025   12....       LCALL   ??JDQStart?relay
+     28                       }
+     29                       return 1;   //有烟雾          
+   \                     ??AirScan_1:
+   \   000028   7901         MOV     R1,#0x1
+   \   00002A   8014         SJMP    ??AirScan_2
+     30                     }
+     31                  }
+     32                  if(BZ==0)
+   \                     ??AirScan_0:
+   \   00002C   90....       MOV     DPTR,#BZ
+   \   00002F   E0           MOVX    A,@DPTR
+   \   000030   F8           MOV     R0,A
+   \   000031   A3           INC     DPTR
+   \   000032   E0           MOVX    A,@DPTR
+   \   000033   F9           MOV     R1,A
+   \   000034   E8           MOV     A,R0
+   \   000035   49           ORL     A,R1
+   \   000036   7006         JNZ     ??AirScan_3
+     33                  {
+     34                     BEEClose();
+   \   000038                ; Setup parameters for call to function BEEClose
+   \   000038   12....       LCALL   ??BEEClose?relay
+     35                     JDQClose();
+   \   00003B                ; Setup parameters for call to function JDQClose
+   \   00003B   12....       LCALL   ??JDQClose?relay
+     36                  }
+     37                  return 0;           //无烟雾
+   \                     ??AirScan_3:
+   \   00003E   7900         MOV     R1,#0x0
+   \                     ??AirScan_2:
+   \   000040   D083         POP     DPH
+   \   000042   D082         POP     DPL
+   \   000044   02....       LJMP    ?BRET
+   \   000047                REQUIRE _A_P0
+     38          }
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??AirInit?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    AirInit
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??AirScan?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    AirScan
+
+   Maximum stack usage in bytes:
+
+     Function          ISTACK PSTACK XSTACK
+     --------          ------ ------ ------
+     AirInit               0      0      0
+     AirScan               2      0      0
+       -> AirInit          4      0      0
+       -> Onboard_wait     4      0      0
+       -> BEEStart         4      0      0
+       -> JDQStart         4      0      0
+       -> BEEClose         4      0      0
+       -> JDQClose         4      0      0
+
+
+   Segment part sizes:
+
+     Function/Label  Bytes
+     --------------  -----
+     _A_P0              1
+     P0SEL              1
+     P0DIR              1
+     AirInit            9
+     AirScan           71
+     ??AirInit?relay    6
+     ??AirScan?relay    6
+
+ 
+ 80 bytes in segment BANKED_CODE
+ 12 bytes in segment BANK_RELAYS
+  3 bytes in segment SFR_AN
+ 
+ 92 bytes of CODE memory
+  0 bytes of DATA memory (+ 3 bytes shared)
+
+Errors: none
+Warnings: none

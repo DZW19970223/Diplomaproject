@@ -1,0 +1,417 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.1.40194/W32 for 8051         03/Mar/2020  12:22:06 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects #
+#                          \zstack\Samples\Diplomaproject\Source\SG90.c       #
+#    Command line       =  -f "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Proj #
+#                          ects\zstack\Samples\Diplomaproject\CC2530DB\..\..\ #
+#                          ..\Tools\CC2530DB\f8wEndev.cfg" (-DCPU32MHZ        #
+#                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3         #
+#                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f          #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\..\..\..\ #
+#                          Tools\CC2530DB\f8wConfig.cfg" (-DZIGBEEPRO         #
+#                          -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR       #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=1000        #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 "C:\Texas                   #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\Source\SG90.c" -D            #
+#                          NWK_AUTO_POLL -D ZTOOL_P1 -D                       #
+#                          RFD_RCVC_ALWAYS_ON=TRUE -D xMT_TASK -D             #
+#                          xMT_SYS_FUNC -D MT_ZDO_FUNC -D                     #
+#                          xLCD_SUPPORTED=DEBUG -D xPOWER_SAVING -lC          #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\LedDevice #
+#                          2\List\" -lA "C:\Texas Instruments\ZStack-CC2530-2 #
+#                          .5.1a\Projects\zstack\Samples\Diplomaproject\CC253 #
+#                          0DB\LedDevice2\List\" --diag_suppress Pe001,Pa010  #
+#                          -o "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Proj #
+#                          ects\zstack\Samples\Diplomaproject\CC2530DB\LedDev #
+#                          ice2\Obj\" -e --no_code_motion --debug             #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I "C:\Texas                  #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\" -I "C:\Texas      #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\Source\" -I      #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\..\..\..\ #
+#                          ZMain\TI2530DB\" -I "C:\Texas                      #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\hal\include\" -I "C:\Texas                  #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\hal\target\CC2530EB\" -I "C:\Texas          #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\include\" -I "C:\Texas                  #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\high_level\" -I "C:\Texas               #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\low_level\srf04\" -I "C:\Texas          #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\low_level\srf04\single_chip\" -I        #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\..\..\..\ #
+#                          ..\..\Components\mt\" -I "C:\Texas                 #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\osal\include\" -I "C:\Texas                 #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\services\saddr\" -I "C:\Texas               #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\services\sdata\" -I "C:\Texas               #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\af\" -I "C:\Texas                     #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\nwk\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\sapi\" -I "C:\Texas                   #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\sec\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\sys\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\zdo\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\zmac\" -I "C:\Texas                         #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\zmac\f8w\" -Ohz                             #
+#    List file          =  C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects #
+#                          \zstack\Samples\Diplomaproject\CC2530DB\LedDevice2 #
+#                          \List\SG90.lst                                     #
+#    Object file        =  C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects #
+#                          \zstack\Samples\Diplomaproject\CC2530DB\LedDevice2 #
+#                          \Obj\SG90.r51                                      #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject\Source\SG90.c
+      1          #include <ioCC2530.h>
+
+   \                                 In  segment SFR_AN, at 0x80
+   \   union <unnamed> volatile __sfr _A_P0
+   \                     _A_P0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf3
+   \   unsigned char volatile __sfr P0SEL
+   \                     P0SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfd
+   \   unsigned char volatile __sfr P0DIR
+   \                     P0DIR:
+   \   000000                DS 1
+      2          #include "SG90.h"
+      3          #include "OnBoard.h"
+      4          
+      5          #define SG90 P0_6
+      6          
+      7          //unsigned char count=0;
+      8          //unsigned char PWM_count=3;
+      9          //unsigned char a=0;
+     10          //int i=0;
+     11          
+     12          /*void Timer_init(void)
+     13          {
+     14           // /*=内部16MHz晶振8分频定时0.1ms的最大计数值为0x00c8=/
+                     ^
+Warning[Pe009]: nested comment is not allowed
+     15            T1CC0L = 0xe8;    //设置最大计数值的低8位
+     16            T1CC0H = 0x03;    //设置最大计数值的高8位
+     17            T1CCTL0 |= 0x04;  //开启通道0的输出比较模式
+     18            T1IE = 1;         //使能定时器1中断
+     19            T1OVFIM = 1;      //使能定时器1溢出中断
+     20            EA = 1;           //使能总中断
+     21            T1CTL = 0x06;     //分频系数是8,模模式
+     22          }
+     23          
+     24          #pragma vector = T1_VECTOR
+     25          __interrupt void Timer1_Sevice(void)
+     26          {
+     27            T1STAT &= ~0x01;    
+     28            count++;              
+     29            if(count <= PWM_count)           
+     30            {
+     31              SG90 = 1; 
+     32            }
+     33            else  
+     34            {
+     35              SG90 = 0; 
+     36            }
+     37            if(count>=40)
+     38            {
+     39              count=0;
+     40              a++;
+     41            }
+     42          }*/
+     43          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     44          void Init_Port(void)
+   \                     Init_Port:
+     45          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     46            P0SEL &= ~(1<<6);  
+   \   000000   53F3BF       ANL     0xf3,#0xbf
+     47            P0DIR |= (1<<6);   
+   \   000003   43FD40       ORL     0xfd,#0x40
+     48            SG90 = 0;       
+   \   000006   C286         CLR     0x80.6
+     49          }
+   \   000008   02....       LJMP    ?BRET
+   \   00000B                REQUIRE P0SEL
+   \   00000B                REQUIRE P0DIR
+   \   00000B                REQUIRE _A_P0
+     50          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     51          void SG90start(void)
+   \                     SG90start:
+     52          {
+   \   000000   74F5         MOV     A,#-0xb
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 11
+   \   000005                ; Auto size: 0
+     53            /*Timer_init();
+     54            Init_Port();
+     55            /*while(i<1)
+                   ^
+Warning[Pe009]: nested comment is not allowed
+     56            {
+     57              if(a==150)
+     58              {
+     59                PWM_count=1;
+     60              }
+     61              if(a==160)
+     62              {
+     63                PWM_count=3;
+     64                a=0;
+     65                i++;
+     66                if(i==1)
+     67                  T1IE=0;
+     68              }
+     69            }*/
+     70            int k=1;
+   \   000005   7E01         MOV     R6,#0x1
+     71            Init_Port();
+   \   000007                ; Setup parameters for call to function Init_Port
+   \   000007   12....       LCALL   ??Init_Port?relay
+     72            for(int i=0;i<160;i++)
+   \   00000A   75..00       MOV     ?V0 + 0,#0x0
+   \   00000D   75..00       MOV     ?V0 + 1,#0x0
+   \   000010   8005         SJMP    ??SG90start_0
+     73            {
+     74              if(k==1)
+   \                     ??SG90start_1:
+   \   000012   EE           MOV     A,R6
+   \   000013   A2E0         MOV     C,0xE0 /* A   */.0
+   \   000015   5017         JNC     ??SG90start_2
+     75              {
+     76                for(int j=0;j<3;j++)
+   \                     ??SG90start_0:
+   \   000017   75..03       MOV     ?V0 + 2,#0x3
+     77                {
+     78                  SG90=1;
+   \                     ??SG90start_3:
+   \   00001A   12....       LCALL   ?Subroutine0 & 0xFFFF
+     79                  MicroWait(500);
+     80                }
+   \                     ??CrossCallReturnLabel_0:
+   \   00001D   70FB         JNZ     ??SG90start_3
+     81                for(int a=0;a<37;a++)
+   \   00001F   75..25       MOV     ?V0 + 2,#0x25
+     82                {
+     83                  SG90=0;
+   \                     ??SG90start_4:
+   \   000022   C286         CLR     0x80.6
+     84                  MicroWait(500);
+   \   000024                ; Setup parameters for call to function Onboard_wait
+   \   000024   12....       LCALL   ??Subroutine1_0 & 0xFFFF
+     85                }
+     86              }
+   \                     ??CrossCallReturnLabel_2:
+   \   000027   70F9         JNZ     ??SG90start_4
+     87              if(k==0)
+   \   000029   EE           MOV     A,R6
+   \   00002A   A2E0         MOV     C,0xE0 /* A   */.0
+   \   00002C   4012         JC      ??SG90start_5
+     88              {
+     89                for(int j=0;j<1;j++)
+   \                     ??SG90start_2:
+   \   00002E   75..01       MOV     ?V0 + 2,#0x1
+     90                {
+     91                  SG90=1;
+   \                     ??SG90start_6:
+   \   000031   12....       LCALL   ?Subroutine0 & 0xFFFF
+     92                  MicroWait(500);
+     93                }
+   \                     ??CrossCallReturnLabel_1:
+   \   000034   70FB         JNZ     ??SG90start_6
+     94                for(int a=0;a<39;a++)
+   \   000036   75..27       MOV     ?V0 + 2,#0x27
+     95                {
+     96                  SG90=0;
+   \                     ??SG90start_7:
+   \   000039   C286         CLR     0x80.6
+     97                  MicroWait(500);
+   \   00003B                ; Setup parameters for call to function Onboard_wait
+   \   00003B   12....       LCALL   ??Subroutine1_0 & 0xFFFF
+     98                }
+     99              }
+   \                     ??CrossCallReturnLabel_3:
+   \   00003E   70F9         JNZ     ??SG90start_7
+    100              if(i==149)
+   \                     ??SG90start_5:
+   \   000040   7495         MOV     A,#-0x6b
+   \   000042   65..         XRL     A,?V0 + 0
+   \   000044   7002         JNZ     ??SG90start_8
+   \   000046   E5..         MOV     A,?V0 + 1
+   \                     ??SG90start_8:
+   \   000048   7004         JNZ     ??SG90start_9
+    101                k=0;
+   \   00004A   7E00         MOV     R6,#0x0
+   \   00004C   800C         SJMP    ??SG90start_10
+    102              if(i==159)
+   \                     ??SG90start_9:
+   \   00004E   749F         MOV     A,#-0x61
+   \   000050   65..         XRL     A,?V0 + 0
+   \   000052   7002         JNZ     ??SG90start_11
+   \   000054   E5..         MOV     A,?V0 + 1
+   \                     ??SG90start_11:
+   \   000056   7002         JNZ     ??SG90start_10
+    103                k=1;
+   \   000058   7E01         MOV     R6,#0x1
+    104            }
+   \                     ??SG90start_10:
+   \   00005A   E5..         MOV     A,?V0 + 0
+   \   00005C   2401         ADD     A,#0x1
+   \   00005E   F5..         MOV     ?V0 + 0,A
+   \   000060   E5..         MOV     A,?V0 + 1
+   \   000062   3400         ADDC    A,#0x0
+   \   000064   F5..         MOV     ?V0 + 1,A
+   \   000066   C3           CLR     C
+   \   000067   E5..         MOV     A,?V0 + 0
+   \   000069   94A0         SUBB    A,#-0x60
+   \   00006B   E5..         MOV     A,?V0 + 1
+   \   00006D   9400         SUBB    A,#0x0
+   \   00006F   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   000071   65D0         XRL     A,PSW
+   \   000073   33           RLC     A
+   \   000074   409C         JC      ??SG90start_1
+    105          }
+   \   000076   7F03         MOV     R7,#0x3
+   \   000078   02....       LJMP    ?BANKED_LEAVE_XDATA
+   \   00007B                REQUIRE _A_P0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   D286         SETB    0x80.6
+   \   000002                ; Setup parameters for call to function Onboard_wait
+   \   000002                ; Setup parameters for call to function Onboard_wait
+   \   000002                REQUIRE ??Subroutine1_0
+   \   000002                ; // Fall through to label ??Subroutine1_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine1_0:
+   \   000000   7AF4         MOV     R2,#-0xc
+   \   000002   7B01         MOV     R3,#0x1
+   \   000004   12....       LCALL   ??Onboard_wait?relay
+   \   000007   15..         DEC     ?V0 + 2
+   \   000009   E5..         MOV     A,?V0 + 2
+   \   00000B   22           RET
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Init_Port?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Init_Port
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??SG90start?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    SG90start
+
+   Maximum stack usage in bytes:
+
+     Function          ISTACK PSTACK XSTACK
+     --------          ------ ------ ------
+     Init_Port             0      0     11
+     SG90start             0      0     11
+       -> Init_Port        0      0     22
+       -> Onboard_wait     0      0     22
+       -> Onboard_wait     0      0     22
+       -> Onboard_wait     0      0     22
+       -> Onboard_wait     0      0     22
+
+
+   Segment part sizes:
+
+     Function/Label    Bytes
+     --------------    -----
+     _A_P0                1
+     P0SEL                1
+     P0DIR                1
+     Init_Port           11
+     SG90start          123
+     ?Subroutine0         2
+     ??Subroutine1_0     12
+     ??Init_Port?relay    6
+     ??SG90start?relay    6
+
+ 
+ 148 bytes in segment BANKED_CODE
+  12 bytes in segment BANK_RELAYS
+   3 bytes in segment SFR_AN
+ 
+ 160 bytes of CODE memory
+   0 bytes of DATA memory (+ 3 bytes shared)
+
+Errors: none
+Warnings: 2

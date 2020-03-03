@@ -1,0 +1,731 @@
+///////////////////////////////////////////////////////////////////////////////
+//                                                                            /
+// IAR C/C++ Compiler V8.10.1.40194/W32 for 8051        03/Mar/2020  12:55:14 /
+// Copyright 2004-2011 IAR Systems AB.                                        /
+//                                                                            /
+//    Core               =  plain                                             /
+//    Code model         =  banked                                            /
+//    Data model         =  large                                             /
+//    Calling convention =  xdata reentrant                                   /
+//    Constant location  =  data_rom                                          /
+//    Dptr setup         =  1,16                                              /
+//    Source file        =  C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project /
+//                          s\zstack\Samples\Diplomaproject\Source\out.c      /
+//    Command line       =  -f "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Pro /
+//                          jects\zstack\Samples\Diplomaproject\CC2530DB\..\. /
+//                          .\..\Tools\CC2530DB\f8wEndev.cfg" (-DCPU32MHZ     /
+//                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3        /
+//                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f         /
+//                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projec /
+//                          ts\zstack\Samples\Diplomaproject\CC2530DB\..\..\. /
+//                          .\Tools\CC2530DB\f8wConfig.cfg" (-DZIGBEEPRO      /
+//                          -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR      /
+//                          -DDEFAULT_CHANLIST=0x00000800                     /
+//                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                      /
+//                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_M /
+//                          ASK=0x007F -DBEACON_REQUEST_DELAY=100             /
+//                          -DBEACON_REQ_DELAY_MASK=0x00FF                    /
+//                          -DLINK_STATUS_JITTER_MASK=0x007F                  /
+//                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_P /
+//                          OLLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7           /
+//                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3   /
+//                          -DNWK_MAX_DATA_RETRIES=2                          /
+//                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9        /
+//                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40          /
+//                          -DNWK_MAX_BINDING_ENTRIES=4                       /
+//                          -DMAX_BINDING_CLUSTER_IDS=4                       /
+//                          "-DDEFAULT_KEY={0x01, 0x03, 0x05, 0x07, 0x09,     /
+//                          0x0B, 0x0D, 0x0F, 0x00, 0x02, 0x04, 0x06, 0x08,   /
+//                          0x0A, 0x0C, 0x0D}" -DMAC_MAX_FRAME_SIZE=116       /
+//                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const    /
+//                          __code" -DGENERIC=__generic                       /
+//                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=1000       /
+//                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)  /
+//                          -DREJOIN_POLL_RATE=440 "C:\Texas                  /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\Source\out.c" -D           /
+//                          NWK_AUTO_POLL -D ZTOOL_P1 -D                      /
+//                          RFD_RCVC_ALWAYS_ON=TRUE -D xMT_TASK -D            /
+//                          xMT_SYS_FUNC -D MT_ZDO_FUNC -D                    /
+//                          xLCD_SUPPORTED=DEBUG -D xPOWER_SAVING -lC         /
+//                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projec /
+//                          ts\zstack\Samples\Diplomaproject\CC2530DB\LedDevi /
+//                          ce\List\" -lA "C:\Texas                           /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\LedDevice\List\"  /
+//                          --diag_suppress Pe001,Pa010 -o "C:\Texas          /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\LedDevice\Obj\"   /
+//                          -e --no_code_motion --debug --core=plain          /
+//                          --dptr=16,1 --data_model=large                    /
+//                          --code_model=banked --calling_convention=xdata_re /
+//                          entrant --place_constants=data_rom                /
+//                          --nr_virtual_regs 16 -I "C:\Texas                 /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\" -I "C:\Texas    /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\Source\" -I    /
+//                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projec /
+//                          ts\zstack\Samples\Diplomaproject\CC2530DB\..\..\. /
+//                          .\ZMain\TI2530DB\" -I "C:\Texas                   /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\hal\include\" -I "C:\Texas               /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\hal\target\CC2530EB\" -I "C:\Texas       /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\mac\include\" -I "C:\Texas               /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\mac\high_level\" -I "C:\Texas            /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\mac\low_level\srf04\" -I "C:\Texas       /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\mac\low_level\srf04\single_chip\" -I     /
+//                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projec /
+//                          ts\zstack\Samples\Diplomaproject\CC2530DB\..\..\. /
+//                          .\..\..\Components\mt\" -I "C:\Texas              /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\osal\include\" -I "C:\Texas              /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\services\saddr\" -I "C:\Texas            /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\services\sdata\" -I "C:\Texas            /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\stack\af\" -I "C:\Texas                  /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\stack\nwk\" -I "C:\Texas                 /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\stack\sapi\" -I "C:\Texas                /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\stack\sec\" -I "C:\Texas                 /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\stack\sys\" -I "C:\Texas                 /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\stack\zdo\" -I "C:\Texas                 /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\zmac\" -I "C:\Texas                      /
+//                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\ /
+//                          Samples\Diplomaproject\CC2530DB\..\..\..\..\..\Co /
+//                          mponents\zmac\f8w\" -Ohz                          /
+//    List file          =  C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project /
+//                          s\zstack\Samples\Diplomaproject\CC2530DB\LedDevic /
+//                          e\List\out.s51                                    /
+//                                                                            /
+//                                                                            /
+///////////////////////////////////////////////////////////////////////////////
+
+        NAME out
+
+        RTMODEL "__SystemLibrary", "CLib"
+        RTMODEL "__calling_convention", "xdata_reentrant"
+        RTMODEL "__code_model", "banked"
+        RTMODEL "__core", "plain"
+        RTMODEL "__data_model", "large"
+        RTMODEL "__dptr_size", "16"
+        RTMODEL "__extended_stack", "disabled"
+        RTMODEL "__location_for_constants", "data"
+        RTMODEL "__number_of_dptrs", "1"
+        RTMODEL "__rt_version", "1"
+
+        RSEG DOVERLAY:DATA:NOROOT(0)
+        RSEG IOVERLAY:IDATA:NOROOT(0)
+        RSEG ISTACK:IDATA:NOROOT(0)
+        RSEG PSTACK:XDATA:NOROOT(0)
+        RSEG XSTACK:XDATA:NOROOT(0)
+
+        EXTERN ?BDISPATCH
+        EXTERN ?BRET
+        EXTERN __INIT_XDATA_Z
+
+        PUBLIC ??BEEClose?relay
+        FUNCTION ??BEEClose?relay,0203H
+        PUBLIC ??BEEStart?relay
+        FUNCTION ??BEEStart?relay,0203H
+        PUBLIC ??InitJDQ2?relay
+        FUNCTION ??InitJDQ2?relay,0203H
+        PUBLIC ??Initout?relay
+        FUNCTION ??Initout?relay,0203H
+        PUBLIC ??JDQ1Close?relay
+        FUNCTION ??JDQ1Close?relay,0203H
+        PUBLIC ??JDQ1Start?relay
+        FUNCTION ??JDQ1Start?relay,0203H
+        PUBLIC ??JDQ2Close?relay
+        FUNCTION ??JDQ2Close?relay,0203H
+        PUBLIC ??JDQ2Start?relay
+        FUNCTION ??JDQ2Start?relay,0203H
+        PUBLIC ??JDQClose?relay
+        FUNCTION ??JDQClose?relay,0203H
+        PUBLIC ??JDQStart?relay
+        FUNCTION ??JDQStart?relay,0203H
+        PUBLIC ??L298NClose?relay
+        FUNCTION ??L298NClose?relay,0203H
+        PUBLIC ??L298NStart?relay
+        FUNCTION ??L298NStart?relay,0203H
+        PUBLIC BEEClose
+        FUNCTION BEEClose,0201H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC BEEStart
+        FUNCTION BEEStart,0201H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC BZ
+        PUBLIC InitJDQ2
+        FUNCTION InitJDQ2,0201H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC Initout
+        FUNCTION Initout,0203H
+        ARGFRAME XSTACK, 0, STACK
+        LOCFRAME ISTACK, 2, STACK
+        PUBLIC JDQ1Close
+        FUNCTION JDQ1Close,0201H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC JDQ1Start
+        FUNCTION JDQ1Start,0201H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC JDQ2Close
+        FUNCTION JDQ2Close,0201H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC JDQ2Start
+        FUNCTION JDQ2Start,0201H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC JDQClose
+        FUNCTION JDQClose,0201H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC JDQStart
+        FUNCTION JDQStart,0201H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC L298NClose
+        FUNCTION L298NClose,0201H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC L298NStart
+        FUNCTION L298NStart,0201H
+        ARGFRAME XSTACK, 0, STACK
+        PUBLIC LZ
+        PUBWEAK P0DIR
+        PUBWEAK P1DIR
+        PUBWEAK _A_P0
+        PUBWEAK _A_P1
+        
+        CFI Names cfiNames0
+        CFI StackFrame CFA_SP SP IDATA
+        CFI StackFrame CFA_PSP16 PSP16 XDATA
+        CFI StackFrame CFA_XSP16 XSP16 XDATA
+        CFI StaticOverlayFrame CFA_IOVERLAY IOVERLAY
+        CFI StaticOverlayFrame CFA_DOVERLAY DOVERLAY
+        CFI Resource `PSW.CY`:1, `B.BR0`:1, `B.BR1`:1, `B.BR2`:1, `B.BR3`:1
+        CFI Resource `B.BR4`:1, `B.BR5`:1, `B.BR6`:1, `B.BR7`:1, `VB.BR8`:1
+        CFI Resource `VB.BR9`:1, `VB.BR10`:1, `VB.BR11`:1, `VB.BR12`:1
+        CFI Resource `VB.BR13`:1, `VB.BR14`:1, `VB.BR15`:1, VB:8, B:8, A:8
+        CFI Resource PSW:8, DPL0:8, DPH0:8, R0:8, R1:8, R2:8, R3:8, R4:8, R5:8
+        CFI Resource R6:8, R7:8, V0:8, V1:8, V2:8, V3:8, V4:8, V5:8, V6:8, V7:8
+        CFI Resource V8:8, V9:8, V10:8, V11:8, V12:8, V13:8, V14:8, V15:8, SP:8
+        CFI Resource PSPH:8, PSPL:8, PSP16:16, XSPH:8, XSPL:8, XSP16:16
+        CFI VirtualResource ?RET:24
+        CFI Resource ?BRET_EXT:8
+        CFI VirtualResource ?RET_HIGH:8, ?RET_LOW:8
+        CFI ResourceParts PSP16 PSPH, PSPL
+        CFI ResourceParts XSP16 XSPH, XSPL
+        CFI ResourceParts ?RET ?BRET_EXT, ?RET_HIGH, ?RET_LOW
+        CFI EndNames cfiNames0
+        
+        CFI Common cfiCommon0 Using cfiNames0
+        CFI CodeAlign 1
+        CFI DataAlign -1
+        CFI ReturnAddress ?RET CODE
+        CFI CFA_DOVERLAY Used
+        CFI CFA_IOVERLAY Used
+        CFI CFA_SP SP+-3
+        CFI CFA_PSP16 PSP16+0
+        CFI CFA_XSP16 XSP16+0
+        CFI `PSW.CY` SameValue
+        CFI `B.BR0` SameValue
+        CFI `B.BR1` SameValue
+        CFI `B.BR2` SameValue
+        CFI `B.BR3` SameValue
+        CFI `B.BR4` SameValue
+        CFI `B.BR5` SameValue
+        CFI `B.BR6` SameValue
+        CFI `B.BR7` SameValue
+        CFI `VB.BR8` SameValue
+        CFI `VB.BR9` SameValue
+        CFI `VB.BR10` SameValue
+        CFI `VB.BR11` SameValue
+        CFI `VB.BR12` SameValue
+        CFI `VB.BR13` SameValue
+        CFI `VB.BR14` SameValue
+        CFI `VB.BR15` SameValue
+        CFI VB SameValue
+        CFI B Undefined
+        CFI A Undefined
+        CFI PSW SameValue
+        CFI DPL0 SameValue
+        CFI DPH0 SameValue
+        CFI R0 Undefined
+        CFI R1 Undefined
+        CFI R2 Undefined
+        CFI R3 Undefined
+        CFI R4 Undefined
+        CFI R5 Undefined
+        CFI R6 SameValue
+        CFI R7 SameValue
+        CFI V0 SameValue
+        CFI V1 SameValue
+        CFI V2 SameValue
+        CFI V3 SameValue
+        CFI V4 SameValue
+        CFI V5 SameValue
+        CFI V6 SameValue
+        CFI V7 SameValue
+        CFI V8 SameValue
+        CFI V9 SameValue
+        CFI V10 SameValue
+        CFI V11 SameValue
+        CFI V12 SameValue
+        CFI V13 SameValue
+        CFI V14 SameValue
+        CFI V15 SameValue
+        CFI PSPH Undefined
+        CFI PSPL Undefined
+        CFI XSPH Undefined
+        CFI XSPL Undefined
+        CFI ?RET Concat
+        CFI ?BRET_EXT Frame(CFA_SP, 3)
+        CFI ?RET_HIGH Frame(CFA_SP, 2)
+        CFI ?RET_LOW Frame(CFA_SP, 1)
+        CFI EndCommon cfiCommon0
+        
+BEEClose            SYMBOL "BEEClose"
+??BEEClose?relay    SYMBOL "?relay", BEEClose
+BEEStart            SYMBOL "BEEStart"
+??BEEStart?relay    SYMBOL "?relay", BEEStart
+InitJDQ2            SYMBOL "InitJDQ2"
+??InitJDQ2?relay    SYMBOL "?relay", InitJDQ2
+Initout             SYMBOL "Initout"
+??Initout?relay     SYMBOL "?relay", Initout
+JDQ1Close           SYMBOL "JDQ1Close"
+??JDQ1Close?relay   SYMBOL "?relay", JDQ1Close
+JDQ1Start           SYMBOL "JDQ1Start"
+??JDQ1Start?relay   SYMBOL "?relay", JDQ1Start
+JDQ2Close           SYMBOL "JDQ2Close"
+??JDQ2Close?relay   SYMBOL "?relay", JDQ2Close
+JDQ2Start           SYMBOL "JDQ2Start"
+??JDQ2Start?relay   SYMBOL "?relay", JDQ2Start
+JDQClose            SYMBOL "JDQClose"
+??JDQClose?relay    SYMBOL "?relay", JDQClose
+JDQStart            SYMBOL "JDQStart"
+??JDQStart?relay    SYMBOL "?relay", JDQStart
+L298NClose          SYMBOL "L298NClose"
+??L298NClose?relay  SYMBOL "?relay", L298NClose
+L298NStart          SYMBOL "L298NStart"
+??L298NStart?relay  SYMBOL "?relay", L298NStart
+
+// C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject\Source\out.c
+//    1 #include "ioCC2530.h"
+
+        ASEGN SFR_AN:DATA:NOROOT,080H
+// union <unnamed> volatile __sfr _A_P0
+_A_P0:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,090H
+// union <unnamed> volatile __sfr _A_P1
+_A_P1:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0fdH
+// unsigned char volatile __sfr P0DIR
+P0DIR:
+        DATA8
+        DS 1
+
+        ASEGN SFR_AN:DATA:NOROOT,0feH
+// unsigned char volatile __sfr P1DIR
+P1DIR:
+        DATA8
+        DS 1
+//    2 #include "out.h"
+//    3 
+//    4 #define  IN1  P1_2
+//    5 #define  IN2  P1_3
+//    6 #define  BEE  P0_1      
+//    7 #define  JDQ  P0_6     
+//    8 #define  JDQ1  P0_7
+//    9 #define  JDQ2  P0_0
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+//   10 int BZ,LZ;
+BZ:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+
+        RSEG XDATA_Z:XDATA:NOROOT(0)
+        DATA16
+LZ:
+        DS 2
+        REQUIRE __INIT_XDATA_Z
+//   11 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   12 void Initout(void)
+Initout:
+        CFI Block cfiBlock0 Using cfiCommon0
+        CFI Function Initout
+        CODE
+//   13 {
+        PUSH    DPL
+        CFI DPL0 Frame(CFA_SP, 4)
+        CFI CFA_SP SP+-4
+        PUSH    DPH
+        CFI DPH0 Frame(CFA_SP, 5)
+        CFI CFA_SP SP+-5
+        ; Saved register size: 2
+        ; Auto size: 0
+//   14   P1DIR|=0x0c;
+        ORL     0xfe,#0xc
+//   15   P0DIR|=0xc2;
+        ORL     0xfd,#0xc2
+//   16   IN1=0;
+        CLR     0x90.2
+//   17   IN2=0;
+        CLR     0x90.3
+//   18   BEE=0;        
+        CLR     0x80.1
+//   19   JDQ=0;
+        CLR     0x80.6
+//   20   JDQ1=0;   
+        CLR     0x80.7
+//   21   BZ=0;
+        MOV     DPTR,#BZ
+        CLR     A
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    @DPTR,A
+//   22   LZ=0;
+        MOV     DPTR,#LZ
+        MOVX    @DPTR,A
+        INC     DPTR
+        MOVX    @DPTR,A
+//   23 }
+        POP     DPH
+        CFI DPH0 SameValue
+        CFI CFA_SP SP+-4
+        POP     DPL
+        CFI DPL0 SameValue
+        CFI CFA_SP SP+-3
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock0
+        REQUIRE P1DIR
+        REQUIRE P0DIR
+        REQUIRE _A_P1
+        REQUIRE _A_P0
+//   24 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   25 void InitJDQ2()
+InitJDQ2:
+        CFI Block cfiBlock1 Using cfiCommon0
+        CFI Function InitJDQ2
+        CODE
+//   26 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   27   P0DIR|=0x01;
+        ORL     0xfd,#0x1
+        CFI EndBlock cfiBlock1
+//   28   JDQ2=0;
+        REQUIRE ?Subroutine0
+        REQUIRE P0DIR
+        REQUIRE _A_P0
+        ; // Fall through to label ?Subroutine0
+//   29 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine0:
+        CFI Block cfiBlock2 Using cfiCommon0
+        CFI NoFunction
+        CLR     0x80.0
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock2
+//   30 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   31 void L298NStart()
+L298NStart:
+        CFI Block cfiBlock3 Using cfiCommon0
+        CFI Function L298NStart
+        CODE
+//   32 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   33   IN1=1;
+        SETB    0x90.2
+        CFI EndBlock cfiBlock3
+//   34   IN2=0;
+        REQUIRE ?Subroutine1
+        REQUIRE _A_P1
+        ; // Fall through to label ?Subroutine1
+//   35 }
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+?Subroutine1:
+        CFI Block cfiBlock4 Using cfiCommon0
+        CFI NoFunction
+        CLR     0x90.3
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock4
+//   36 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   37 void L298NClose()
+L298NClose:
+        CFI Block cfiBlock5 Using cfiCommon0
+        CFI Function L298NClose
+        CODE
+//   38 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   39   IN1=0;
+        CLR     0x90.2
+//   40   IN2=0;
+        SJMP    ?Subroutine1
+        CFI EndBlock cfiBlock5
+        REQUIRE _A_P1
+//   41 }
+//   42 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   43 void JDQ1Start()
+JDQ1Start:
+        CFI Block cfiBlock6 Using cfiCommon0
+        CFI Function JDQ1Start
+        CODE
+//   44 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   45   JDQ1=1;
+        SETB    0x80.7
+//   46 }
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock6
+        REQUIRE _A_P0
+//   47 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   48 void JDQ1Close()
+JDQ1Close:
+        CFI Block cfiBlock7 Using cfiCommon0
+        CFI Function JDQ1Close
+        CODE
+//   49 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   50   JDQ1=0;
+        CLR     0x80.7
+//   51 }
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock7
+        REQUIRE _A_P0
+//   52 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   53 void BEEStart()
+BEEStart:
+        CFI Block cfiBlock8 Using cfiCommon0
+        CFI Function BEEStart
+        CODE
+//   54 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   55   BEE=1;
+        SETB    0x80.1
+//   56 }
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock8
+        REQUIRE _A_P0
+//   57 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   58 void BEEClose()
+BEEClose:
+        CFI Block cfiBlock9 Using cfiCommon0
+        CFI Function BEEClose
+        CODE
+//   59 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   60   BEE=0;
+        CLR     0x80.1
+//   61 }
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock9
+        REQUIRE _A_P0
+//   62 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   63 void JDQStart()
+JDQStart:
+        CFI Block cfiBlock10 Using cfiCommon0
+        CFI Function JDQStart
+        CODE
+//   64 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   65   JDQ=1;
+        SETB    0x80.6
+//   66 }
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock10
+        REQUIRE _A_P0
+//   67 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   68 void JDQClose()
+JDQClose:
+        CFI Block cfiBlock11 Using cfiCommon0
+        CFI Function JDQClose
+        CODE
+//   69 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   70   JDQ=0;
+        CLR     0x80.6
+//   71 }
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock11
+        REQUIRE _A_P0
+//   72 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   73 void JDQ2Start()
+JDQ2Start:
+        CFI Block cfiBlock12 Using cfiCommon0
+        CFI Function JDQ2Start
+        CODE
+//   74 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   75   JDQ2=1;
+        SETB    0x80.0
+//   76 }
+        LJMP    ?BRET
+        CFI EndBlock cfiBlock12
+        REQUIRE _A_P0
+//   77 
+
+        RSEG BANKED_CODE:CODE:NOROOT(0)
+//   78 void JDQ2Close()
+JDQ2Close:
+        CFI Block cfiBlock13 Using cfiCommon0
+        CFI Function JDQ2Close
+        CODE
+//   79 {
+        ; Saved register size: 0
+        ; Auto size: 0
+//   80   JDQ2=0;
+        SJMP    ?Subroutine0
+        CFI EndBlock cfiBlock13
+        REQUIRE _A_P0
+//   81 }
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??Initout?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    Initout
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??InitJDQ2?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    InitJDQ2
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??L298NStart?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    L298NStart
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??L298NClose?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    L298NClose
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??JDQ1Start?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    JDQ1Start
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??JDQ1Close?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    JDQ1Close
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??BEEStart?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    BEEStart
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??BEEClose?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    BEEClose
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??JDQStart?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    JDQStart
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??JDQClose?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    JDQClose
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??JDQ2Start?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    JDQ2Start
+
+        RSEG BANK_RELAYS:CODE:REORDER:NOROOT(0)
+??JDQ2Close?relay:
+        LCALL   ?BDISPATCH
+        DATA
+        DC24    JDQ2Close
+
+        END
+// 
+// 96 bytes in segment BANKED_CODE
+// 72 bytes in segment BANK_RELAYS
+//  4 bytes in segment SFR_AN
+//  4 bytes in segment XDATA_Z
+// 
+// 168 bytes of CODE  memory
+//   0 bytes of DATA  memory (+ 4 bytes shared)
+//   4 bytes of XDATA memory
+//
+//Errors: none
+//Warnings: none

@@ -1,0 +1,437 @@
+###############################################################################
+#                                                                             #
+# IAR C/C++ Compiler V8.10.1.40194/W32 for 8051         03/Mar/2020  13:17:03 #
+# Copyright 2004-2011 IAR Systems AB.                                         #
+#                                                                             #
+#    Core               =  plain                                              #
+#    Code model         =  banked                                             #
+#    Data model         =  large                                              #
+#    Calling convention =  xdata reentrant                                    #
+#    Constant location  =  data_rom                                           #
+#    Dptr setup         =  1,16                                               #
+#    Source file        =  C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects #
+#                          \zstack\Samples\Diplomaproject\Source\IC.c         #
+#    Command line       =  -f "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Proj #
+#                          ects\zstack\Samples\Diplomaproject\CC2530DB\..\..\ #
+#                          ..\Tools\CC2530DB\f8wEndev.cfg" (-DCPU32MHZ        #
+#                          -DROOT=__near_func -DMAC_CFG_TX_DATA_MAX=3         #
+#                          -DMAC_CFG_TX_MAX=6 -DMAC_CFG_RX_MAX=3) -f          #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\..\..\..\ #
+#                          Tools\CC2530DB\f8wConfig.cfg" (-DZIGBEEPRO         #
+#                          -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR       #
+#                          -DDEFAULT_CHANLIST=0x00000800                      #
+#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
+#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
+#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
+#                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
+#                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
+#                          LLED=3000 -DNWK_INDIRECT_MSG_TIMEOUT=7             #
+#                          -DMAX_RREQ_ENTRIES=8 -DAPSC_MAX_FRAME_RETRIES=3    #
+#                          -DNWK_MAX_DATA_RETRIES=2                           #
+#                          -DMAX_POLL_FAILURE_RETRIES=2 -DMAX_BCAST=9         #
+#                          -DAPS_MAX_GROUPS=16 -DMAX_RTG_ENTRIES=40           #
+#                          -DNWK_MAX_BINDING_ENTRIES=4                        #
+#                          -DMAX_BINDING_CLUSTER_IDS=4 "-DDEFAULT_KEY={0x01,  #
+#                          0x03, 0x05, 0x07, 0x09, 0x0B, 0x0D, 0x0F, 0x00,    #
+#                          0x02, 0x04, 0x06, 0x08, 0x0A, 0x0C, 0x0D}"         #
+#                          -DMAC_MAX_FRAME_SIZE=116                           #
+#                          -DZDNWKMGR_MIN_TRANSMISSIONS=20 "-DCONST=const     #
+#                          __code" -DGENERIC=__generic                        #
+#                          -DRFD_RCVC_ALWAYS_ON=FALSE -DPOLL_RATE=1000        #
+#                          -DQUEUED_POLL_RATE=100 -DRESPONSE_POLL_RATE=100)   #
+#                          -DREJOIN_POLL_RATE=440 "C:\Texas                   #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\Source\IC.c" -D              #
+#                          NWK_AUTO_POLL -D ZTOOL_P1 -D                       #
+#                          RFD_RCVC_ALWAYS_ON=TRUE -D xMT_TASK -D             #
+#                          xMT_SYS_FUNC -D MT_ZDO_FUNC -D                     #
+#                          xLCD_SUPPORTED=DEBUG -D xPOWER_SAVING -lC          #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\LedDevice #
+#                          2\List\" -lA "C:\Texas Instruments\ZStack-CC2530-2 #
+#                          .5.1a\Projects\zstack\Samples\Diplomaproject\CC253 #
+#                          0DB\LedDevice2\List\" --diag_suppress Pe001,Pa010  #
+#                          -o "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Proj #
+#                          ects\zstack\Samples\Diplomaproject\CC2530DB\LedDev #
+#                          ice2\Obj\" -e --no_code_motion --debug             #
+#                          --core=plain --dptr=16,1 --data_model=large        #
+#                          --code_model=banked --calling_convention=xdata_ree #
+#                          ntrant --place_constants=data_rom                  #
+#                          --nr_virtual_regs 16 -I "C:\Texas                  #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\" -I "C:\Texas      #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\Source\" -I      #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\..\..\..\ #
+#                          ZMain\TI2530DB\" -I "C:\Texas                      #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\hal\include\" -I "C:\Texas                  #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\hal\target\CC2530EB\" -I "C:\Texas          #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\include\" -I "C:\Texas                  #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\high_level\" -I "C:\Texas               #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\low_level\srf04\" -I "C:\Texas          #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\mac\low_level\srf04\single_chip\" -I        #
+#                          "C:\Texas Instruments\ZStack-CC2530-2.5.1a\Project #
+#                          s\zstack\Samples\Diplomaproject\CC2530DB\..\..\..\ #
+#                          ..\..\Components\mt\" -I "C:\Texas                 #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\osal\include\" -I "C:\Texas                 #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\services\saddr\" -I "C:\Texas               #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\services\sdata\" -I "C:\Texas               #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\af\" -I "C:\Texas                     #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\nwk\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\sapi\" -I "C:\Texas                   #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\sec\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\sys\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\stack\zdo\" -I "C:\Texas                    #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\zmac\" -I "C:\Texas                         #
+#                          Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\S #
+#                          amples\Diplomaproject\CC2530DB\..\..\..\..\..\Comp #
+#                          onents\zmac\f8w\" -Ohz                             #
+#    List file          =  C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects #
+#                          \zstack\Samples\Diplomaproject\CC2530DB\LedDevice2 #
+#                          \List\IC.lst                                       #
+#    Object file        =  C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects #
+#                          \zstack\Samples\Diplomaproject\CC2530DB\LedDevice2 #
+#                          \Obj\IC.r51                                        #
+#                                                                             #
+#                                                                             #
+###############################################################################
+
+C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject\Source\IC.c
+      1          #include "variable.h"
+
+   \                                 In  segment SFR_AN, at 0x80
+   \   union <unnamed> volatile __sfr _A_P0
+   \                     _A_P0:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x8f
+   \   unsigned char volatile __sfr P0INP
+   \                     P0INP:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x90
+   \   union <unnamed> volatile __sfr _A_P1
+   \                     _A_P1:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0x9e
+   \   unsigned char volatile __sfr CLKCONSTA
+   \                     CLKCONSTA:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xc6
+   \   unsigned char volatile __sfr CLKCONCMD
+   \                     CLKCONCMD:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf3
+   \   unsigned char volatile __sfr P0SEL
+   \                     P0SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf4
+   \   unsigned char volatile __sfr P1SEL
+   \                     P1SEL:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xf6
+   \   unsigned char volatile __sfr P1INP
+   \                     P1INP:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfd
+   \   unsigned char volatile __sfr P0DIR
+   \                     P0DIR:
+   \   000000                DS 1
+
+   \                                 In  segment SFR_AN, at 0xfe
+   \   unsigned char volatile __sfr P1DIR
+   \                     P1DIR:
+   \   000000                DS 1
+      2          #include "IC_w_r.h"
+      3          #include "MT_UART.h"
+      4          #include "IC.h"
+      5          
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+      6          uchar qq[4];
+   \                     qq:
+   \   000000                DS 4
+   \   000004                REQUIRE __INIT_XDATA_Z
+
+   \                                 In  segment XDATA_Z, align 1, keep-with-next
+      7          uchar buf[4];
+   \                     buf:
+   \   000000                DS 4
+   \   000004                REQUIRE __INIT_XDATA_Z
+      8          
+      9          void Initial(void);
+     10          uchar IC_Test(void);
+     11          void IC_Init(void);
+     12          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     13          void Initial(void)
+   \                     Initial:
+     14          {
+   \   000000                ; Saved register size: 0
+   \   000000                ; Auto size: 0
+     15            CLKCONCMD &= ~0x40;                           //设置系统时钟源为32MHZ晶振 
+   \   000000   53C6BF       ANL     0xc6,#0xbf
+     16            while(CLKCONSTA & 0x40);                      //等待晶振稳定为32M 
+   \                     ??Initial_0:
+   \   000003   E59E         MOV     A,0x9e
+   \   000005   A2E6         MOV     C,0xE0 /* A   */.6
+   \   000007   40FA         JC      ??Initial_0
+     17            CLKCONCMD &= ~0x47;                          //设置系统主时钟频率为32MHZ     
+   \   000009   53C6B8       ANL     0xc6,#0xb8
+     18            
+     19            
+     20            /*  IC_CS P1_7 */
+     21            P1DIR |= 1<<7;
+   \   00000C   43FE80       ORL     0xfe,#0x80
+     22            P1INP |= 1<<7;
+   \   00000F   43F680       ORL     0xf6,#0x80
+     23            P1SEL &= ~(1<<7);
+   \   000012   53F47F       ANL     0xf4,#0x7f
+     24            
+     25            /* IC_SCK  P0_1 */
+     26            P0DIR |= 1<<1;
+   \   000015   43FD02       ORL     0xfd,#0x2
+     27            P0INP |= 1<<1;
+   \   000018   438F02       ORL     0x8f,#0x2
+     28            P0SEL &= ~(1<<1);
+   \   00001B   53F3FD       ANL     0xf3,#0xfd
+     29            
+     30            /* IC_MOSI P1_2 */
+     31            P1DIR |= 1<<2;
+   \   00001E   43FE04       ORL     0xfe,#0x4
+     32            P1INP |= 1<<2;
+   \   000021   43F604       ORL     0xf6,#0x4
+     33            P1SEL &= ~(1<<2);
+   \   000024   53F4FB       ANL     0xf4,#0xfb
+     34            
+     35            /* IC_MISO P0_4 */
+     36            P0DIR &= ~(1<<4);
+   \   000027   53FDEF       ANL     0xfd,#0xef
+     37            P0INP &= ~(1<<4);
+   \   00002A   538FEF       ANL     0x8f,#0xef
+     38            P0SEL &= ~(1<<4);
+   \   00002D   53F3EF       ANL     0xf3,#0xef
+     39            
+     40            /* IC_REST P0_5 */
+     41            P0DIR |= 1<<5;
+   \   000030   43FD20       ORL     0xfd,#0x20
+     42            P0INP |= 1<<5;
+   \   000033   438F20       ORL     0x8f,#0x20
+     43            P0SEL &= ~(1<<5);
+   \   000036   53F3DF       ANL     0xf3,#0xdf
+     44            
+     45            IC_SCK = 1;
+   \   000039   D281         SETB    0x80.1
+     46            IC_CS = 1;
+   \   00003B   D297         SETB    0x90.7
+     47            // HalUARTWrite(0,"IC INIT SUCCESS!",16);
+     48          }
+   \   00003D   02....       LJMP    ?BRET
+   \   000040                REQUIRE CLKCONCMD
+   \   000040                REQUIRE CLKCONSTA
+   \   000040                REQUIRE P1DIR
+   \   000040                REQUIRE P1INP
+   \   000040                REQUIRE P1SEL
+   \   000040                REQUIRE P0DIR
+   \   000040                REQUIRE P0INP
+   \   000040                REQUIRE P0SEL
+   \   000040                REQUIRE _A_P0
+   \   000040                REQUIRE _A_P1
+     49          
+     50          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     51          uchar IC_Test(void)
+   \                     IC_Test:
+     52          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     53            //uint i;
+     54            uchar find=0xaa;
+     55            uchar ar;   
+     56            ar = PcdRequest(0x52,buf);//寻卡
+     57            if(ar != 0x26)
+   \   000004                ; Setup parameters for call to function PcdRequest
+   \   000004   7A..         MOV     R2,#buf & 0xff
+   \   000006   7B..         MOV     R3,#(buf >> 8) & 0xff
+   \   000008   7952         MOV     R1,#0x52
+   \   00000A   12....       LCALL   ??PcdRequest?relay
+   \   00000D   E9           MOV     A,R1
+   \   00000E   6426         XRL     A,#0x26
+   \   000010   600E         JZ      ??IC_Test_0
+     58              ar = PcdRequest(0x52,buf);
+     59            if(ar != 0x26)
+     60              find = 0xaa;
+     61            if((ar == 0x26)&&(find == 0xaa))
+   \   000012                ; Setup parameters for call to function PcdRequest
+   \   000012   7A..         MOV     R2,#buf & 0xff
+   \   000014   7B..         MOV     R3,#(buf >> 8) & 0xff
+   \   000016   7952         MOV     R1,#0x52
+   \   000018   12....       LCALL   ??PcdRequest?relay
+   \   00001B   E9           MOV     A,R1
+   \   00001C   6426         XRL     A,#0x26
+   \   00001E   700B         JNZ     ??IC_Test_1
+     62            {
+     63              if(PcdAnticoll(qq) == 0x26);//防冲撞
+   \                     ??IC_Test_0:
+   \   000020                ; Setup parameters for call to function PcdAnticoll
+   \   000020   7A..         MOV     R2,#qq & 0xff
+   \   000022   7B..         MOV     R3,#(qq >> 8) & 0xff
+   \   000024   12....       LCALL   ??PcdAnticoll?relay
+     64              {
+     65                // HalUARTWrite(0,qq,4);
+     66                find = 0x00;
+     67                return 1;
+   \   000027   7901         MOV     R1,#0x1
+   \   000029   8002         SJMP    ??IC_Test_2
+     68              }
+     69            }
+     70            return 0;
+   \                     ??IC_Test_1:
+   \   00002B   7900         MOV     R1,#0x0
+   \                     ??IC_Test_2:
+   \   00002D                REQUIRE ?Subroutine0
+   \   00002D                ; // Fall through to label ?Subroutine0
+     71            
+     72          }
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine0:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+     73          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+     74          void IC_Init(void)
+   \                     IC_Init:
+     75          {
+   \   000000   C082         PUSH    DPL
+   \   000002   C083         PUSH    DPH
+   \   000004                ; Saved register size: 2
+   \   000004                ; Auto size: 0
+     76            Initial();
+   \   000004                ; Setup parameters for call to function Initial
+   \   000004   12....       LCALL   ??Initial?relay
+     77            PcdReset();
+   \   000007                ; Setup parameters for call to function PcdReset
+   \   000007   12....       LCALL   ??PcdReset?relay
+     78            M500PcdConfigISOType('A');
+   \   00000A                ; Setup parameters for call to function M500PcdConfigISOType
+   \   00000A   7941         MOV     R1,#0x41
+   \   00000C   12....       LCALL   ??M500PcdConfigISOType?relay
+     79          }
+   \   00000F   80..         SJMP    ?Subroutine0
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??Initial?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    Initial
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??IC_Test?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    IC_Test
+
+   \                                 In  segment BANK_RELAYS, align 1
+   \                     ??IC_Init?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    IC_Init
+     80          
+     81          
+
+   Maximum stack usage in bytes:
+
+     Function                  ISTACK PSTACK XSTACK
+     --------                  ------ ------ ------
+     IC_Init                       2      0      0
+       -> Initial                  4      0      0
+       -> PcdReset                 4      0      0
+       -> M500PcdConfigISOType     4      0      0
+     IC_Test                       2      0      0
+       -> PcdRequest               4      0      0
+       -> PcdRequest               4      0      0
+       -> PcdAnticoll              4      0      0
+     Initial                       0      0      0
+
+
+   Segment part sizes:
+
+     Function/Label  Bytes
+     --------------  -----
+     _A_P0              1
+     P0INP              1
+     _A_P1              1
+     CLKCONSTA          1
+     CLKCONCMD          1
+     P0SEL              1
+     P1SEL              1
+     P1INP              1
+     P0DIR              1
+     P1DIR              1
+     qq                 4
+     buf                4
+     Initial           64
+     IC_Test           45
+     ?Subroutine0       7
+     IC_Init           17
+     ??Initial?relay    6
+     ??IC_Test?relay    6
+     ??IC_Init?relay    6
+
+ 
+ 133 bytes in segment BANKED_CODE
+  18 bytes in segment BANK_RELAYS
+  10 bytes in segment SFR_AN
+   8 bytes in segment XDATA_Z
+ 
+ 151 bytes of CODE  memory
+   0 bytes of DATA  memory (+ 10 bytes shared)
+   8 bytes of XDATA memory
+
+Errors: none
+Warnings: none
