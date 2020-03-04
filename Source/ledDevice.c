@@ -3,7 +3,8 @@
 #include "hal_led.h"
 #include "adc.h"
 #include "IC.h"
-#include "LCD.h"
+//#include "LCD.h"
+#include "OLED.h"
 #include "SG90.h"
 #include "out.h"
 #include "OnBoard.h"
@@ -70,73 +71,73 @@ void zb_ReceiveDataIndication( uint16 source, uint16 command,
         HalLedSet(HAL_LED_1,HAL_LED_MODE_OFF);
       else if(led_status==2)
       {
-        LCD_P8x16Str(8,0, "ID:");
-        LCD_P8x16Str(33,0,buffer);    
-        memset(buffer,0,8); 
-        for(int i=0; i<2; i++) 
-        {
-          LCD_P16x16Ch(16*i+8, 3, i);   
-        }
-        LCD_P8x16Str(40,3, ":");
-        unsigned char buffe[1];
-        sprintf((char *)buffe,"%d",unit);
-        if(unit!=10)
-          LCD_P8x16Str(64,3,buffe);
-        else
-          LCD_P8x16Str(64,3,"0");
-        sprintf((char *)buffe,"%d",ten);
-        if(ten!=10)
-          LCD_P8x16Str(56,3,buffe);
-        else
-          LCD_P8x16Str(56,3,"0");
-        sprintf((char *)buffe,"%d",hundred);
-        if(hundred!=10)
-          LCD_P8x16Str(48,3,buffe);
-        else
-          LCD_P8x16Str(48,3,"0");
-        LCD_P16x16Ch(72, 3, 4);
-        for(int j=0,k=5;k<9;j++,k++)
-        {
-          LCD_P16x16Ch(16*j+8, 6, k);
-        }
-        LCD_P8x16Str(72,6, ":");
-        sprintf((char *)buffe,"%d",unit1);
-        if(unit1!=10)
-          LCD_P8x16Str(88,6,buffe);
-        else
-          LCD_P8x16Str(88,6,"0");
-        sprintf((char *)buffe,"%d",ten1);
-        if(ten1!=10)
-          LCD_P8x16Str(80,6,buffe);
-        else
-          LCD_P8x16Str(80,6,"0");
-        LCD_P16x16Ch(96, 6, 9);
+//        LCD_P8x16Str(8,0, "ID:");
+//        LCD_P8x16Str(33,0,buffer);    
+//        memset(buffer,0,8); 
+//        for(int i=0; i<2; i++) 
+//        {
+//          LCD_P16x16Ch(16*i+8, 3, i);   
+//        }
+//        LCD_P8x16Str(40,3, ":");
+//        unsigned char buffe[1];
+//        sprintf((char *)buffe,"%d",unit);
+//        if(unit!=10)
+//          LCD_P8x16Str(64,3,buffe);
+//        else
+//          LCD_P8x16Str(64,3,"0");
+//        sprintf((char *)buffe,"%d",ten);
+//        if(ten!=10)
+//          LCD_P8x16Str(56,3,buffe);
+//        else
+//          LCD_P8x16Str(56,3,"0");
+//        sprintf((char *)buffe,"%d",hundred);
+//        if(hundred!=10)
+//          LCD_P8x16Str(48,3,buffe);
+//        else
+//          LCD_P8x16Str(48,3,"0");
+//        LCD_P16x16Ch(72, 3, 4);
+//        for(int j=0,k=5;k<9;j++,k++)
+//        {
+//          LCD_P16x16Ch(16*j+8, 6, k);
+//        }
+//        LCD_P8x16Str(72,6, ":");
+//        sprintf((char *)buffe,"%d",unit1);
+//        if(unit1!=10)
+//          LCD_P8x16Str(88,6,buffe);
+//        else
+//          LCD_P8x16Str(88,6,"0");
+//        sprintf((char *)buffe,"%d",ten1);
+//        if(ten1!=10)
+//          LCD_P8x16Str(80,6,buffe);
+//        else
+//          LCD_P8x16Str(80,6,"0");
+//        LCD_P16x16Ch(96, 6, 9);
         SG90start(); 
-        LCD_CLS(); 
+//        LCD_CLS(); 
       }
       else if(led_status==3)
       {
-        LCD_P8x16Str(8,0, "ID:");
-        LCD_P8x16Str(33,0,buffer);    
-        memset(buffer,0,8); 
-        for(int i=0; i<4; i++) 
-        {
-          LCD_P16x16Ch(16*i+8, 3, i);   
-        }
-        for(int a=0;a<100;a++)
-        {
-          MicroWait(10000);
-        }
-        LCD_CLS(); 
+//        LCD_P8x16Str(8,0, "ID:");
+//        LCD_P8x16Str(33,0,buffer);    
+//        memset(buffer,0,8); 
+//        for(int i=0; i<4; i++) 
+//        {
+//          LCD_P16x16Ch(16*i+8, 3, i);   
+//        }
+//        for(int a=0;a<100;a++)
+//        {
+//          MicroWait(10000);
+//        }
+//        LCD_CLS(); 
       }
       else if(led_status==4)
       {
-        Draw_BMP(0,0,127,7,BMP2);
-        for(int a=0;a<100;a++)
-        {
-          MicroWait(10000);
-        }
-        LCD_CLS(); 
+//        Draw_BMP(0,0,127,7,BMP2);
+//        for(int a=0;a<100;a++)
+//        {
+//          MicroWait(10000);
+//        }
+//        LCD_CLS(); 
       }
     }
     else if(led_num==NUM_LED_2)
@@ -175,8 +176,8 @@ void zb_StartConfirm( uint8 status )
     HalLedBlink(HAL_LED_ALL,5,50,2000);
     
     IC_Init();
-    LCD_Init(); //oled 初始化 
-    LCD_CLS(); //屏全亮
+//    LCD_Init(); //oled 初始化 
+//    LCD_CLS(); //屏全亮
   }
 }
 
@@ -198,13 +199,13 @@ void zb_HandleOsalEvent( uint16 event )
     unsigned int lightvalue;
     unsigned int AvgValue;
     unsigned char value[2];
-    for(int j=0,k=10;k<13;j++,k++)
-    {
-      LCD_P16x16Ch(24*j+32, 3, k);
-    }
+//    for(int j=0,k=10;k<13;j++,k++)
+//    {
+//      LCD_P16x16Ch(24*j+32, 3, k);
+//    }
     if(IC_Test()==1)
     {   
-      LCD_CLS(); 
+//      LCD_CLS(); 
       //16进制转ASC码 串口打印IC卡号码
       for(i=0;i<4;i++)
       {
