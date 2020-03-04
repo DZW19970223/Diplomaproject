@@ -111,33 +111,79 @@ void zb_ReceiveDataIndication( uint16 source, uint16 command,
 //          LCD_P8x16Str(80,6,buffe);
 //        else
 //          LCD_P8x16Str(80,6,"0");
-//        LCD_P16x16Ch(96, 6, 9);
+        OLED_ShowString(8,0, "ID:",16);  
+        OLED_ShowString(33,0, buffer,16);
+        memset(buffer,0,8); 
+        for(int i=0; i<2; i++) 
+        {
+          LCD_P16x16Ch(16*i+8, 3, i);   
+        }
+        OLED_ShowString(40,3, ":",16);
+        unsigned char buffe[1];
+        sprintf((char *)buffe,"%d",unit);
+        if(unit!=10)
+          OLED_ShowString(64,3, buffe,16);
+        else
+          OLED_ShowString(64,3, "0",16);
+        sprintf((char *)buffe,"%d",ten);
+        if(ten!=10)
+          OLED_ShowString(56,3, buffe,16);
+        else
+          OLED_ShowString(56,3, "0",16);
+        sprintf((char *)buffe,"%d",hundred);
+        if(hundred!=10)
+          OLED_ShowString(48,3, buffe,16);
+        else
+          OLED_ShowString(48,3, "0",16);
+        LCD_P16x16Ch(72, 3, 4);
+        for(int j=0,k=5;k<9;j++,k++)
+        {
+          LCD_P16x16Ch(16*j+8, 6, k);
+        }
+        OLED_ShowString(72,6, ":",16);
+        sprintf((char *)buffe,"%d",unit1);
+        if(unit1!=10)
+          OLED_ShowString(88,6, buffe,16);
+        else
+          OLED_ShowString(88,6, "0",16);
+        sprintf((char *)buffe,"%d",ten1);
+        if(ten1!=10)
+          OLED_ShowString(80,6, buffe,16);
+        else
+          OLED_ShowString(80,6, "0",16);
+        LCD_P16x16Ch(96, 6, 9);
         SG90start(); 
-//        LCD_CLS(); 
+//        LCD_CLS();
+        OLED_Clear();
       }
       else if(led_status==3)
       {
 //        LCD_P8x16Str(8,0, "ID:");
-//        LCD_P8x16Str(33,0,buffer);    
-//        memset(buffer,0,8); 
-//        for(int i=0; i<4; i++) 
-//        {
-//          LCD_P16x16Ch(16*i+8, 3, i);   
-//        }
-//        for(int a=0;a<100;a++)
-//        {
-//          MicroWait(10000);
-//        }
-//        LCD_CLS(); 
+//        LCD_P8x16Str(33,0,buffer); 
+        OLED_ShowString(8,0, "ID:",16);
+        OLED_ShowString(8,0, buffer,16);
+        memset(buffer,0,8); 
+        for(int i=0; i<4; i++) 
+        {
+          LCD_P16x16Ch(16*i+8, 3, i);   
+        }
+        for(int a=0;a<100;a++)
+        {
+          MicroWait(10000);
+        }
+//        LCD_CLS();
+        OLED_Clear();
       }
       else if(led_status==4)
       {
-//        Draw_BMP(0,0,127,7,BMP2);
-//        for(int a=0;a<100;a++)
-//        {
-//          MicroWait(10000);
-//        }
+        //Draw_BMP(0,0,127,7,BMP2);
+        OLED_DrawBMP(0,0,127,7,BMP2);
+        for(int a=0;a<100;a++)
+        {
+          MicroWait(10000);
+        }
 //        LCD_CLS(); 
+        OLED_Clear();
       }
     }
     else if(led_num==NUM_LED_2)
@@ -178,6 +224,8 @@ void zb_StartConfirm( uint8 status )
     IC_Init();
 //    LCD_Init(); //oled 初始化 
 //    LCD_CLS(); //屏全亮
+    OLED_Init();
+    OLED_Clear();
   }
 }
 
@@ -199,13 +247,14 @@ void zb_HandleOsalEvent( uint16 event )
     unsigned int lightvalue;
     unsigned int AvgValue;
     unsigned char value[2];
-//    for(int j=0,k=10;k<13;j++,k++)
-//    {
-//      LCD_P16x16Ch(24*j+32, 3, k);
-//    }
+    for(int j=0,k=10;k<13;j++,k++)
+    {
+      LCD_P16x16Ch(24*j+32, 3, k);
+    }
     if(IC_Test()==1)
     {   
 //      LCD_CLS(); 
+      OLED_Clear();
       //16进制转ASC码 串口打印IC卡号码
       for(i=0;i<4;i++)
       {

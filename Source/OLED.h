@@ -275,6 +275,42 @@ void OLED_ShowString(u8 x,u8 y,u8 *chr,u8 Char_Size)
     }
 }
 
+void LCD_P16x16Ch(unsigned char x, unsigned char y, unsigned char N)
+
+{
+  
+  unsigned char wm=0;
+  
+  unsigned int adder=32*N; // 
+  
+  OLED_Set_Pos(x , y);
+  
+  for(wm = 0;wm < 16;wm++) // 
+    
+  {
+    
+    //LCD_WrDat(F16x16[adder]); 
+    
+    OLED_WR_Byte(F16x16[adder],OLED_DATA);
+    
+    adder += 1;
+    
+  } 
+  
+  OLED_Set_Pos(x,y + 1); 
+  
+  for(wm = 0;wm < 16;wm++) // 
+    
+  {
+    
+    //LCD_WrDat(F16x16[adder]);
+    OLED_WR_Byte(F16x16[adder],OLED_DATA);
+    
+    adder += 1;
+    
+  } 
+  
+}
 /***********功能描述：显示显示BMP图片128×64起始点坐标(x,y),x的范围0～127，y为页的范围0～7*****************/
 void OLED_DrawBMP(unsigned char x0, unsigned char y0,unsigned char x1, unsigned char y1,unsigned char BMP[])
 {     

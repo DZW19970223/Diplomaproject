@@ -1,6 +1,6 @@
 ###############################################################################
 #                                                                             #
-# IAR C/C++ Compiler V8.10.1.40194/W32 for 8051         04/Mar/2020  16:12:55 #
+# IAR C/C++ Compiler V8.10.1.10194/W32 for 8051         05/Mar/2020  00:23:11 #
 # Copyright 2004-2011 IAR Systems AB.                                         #
 #                                                                             #
 #    Core               =  plain                                              #
@@ -20,10 +20,10 @@
 #                          s\zstack\Samples\Diplomaproject\CC2530DB\..\..\..\ #
 #                          Tools\CC2530DB\f8wConfig.cfg" (-DZIGBEEPRO         #
 #                          -DSECURE=0 -DZG_SECURE_DYNAMIC=0 -DREFLECTOR       #
-#                          -DDEFAULT_CHANLIST=0x00000800                      #
-#                          -DZDAPP_CONFIG_PAN_ID=0xFFFF                       #
-#                          -DNWK_START_DELAY=100 -DEXTENDED_JOINING_RANDOM_MA #
-#                          SK=0x007F -DBEACON_REQUEST_DELAY=100               #
+#                          "-DDEFAULT_CHANLIST=(0xFFFF<<11)"                  #
+#                          -DZDAPP_CONFIG_PAN_ID=0x57a                        #
+#                          -DNWK_START_DELAY=0x57a -DEXTENDED_JOINING_RANDOM_ #
+#                          MASK=0x007F -DBEACON_REQUEST_DELAY=100             #
 #                          -DBEACON_REQ_DELAY_MASK=0x00FF                     #
 #                          -DLINK_STATUS_JITTER_MASK=0x007F                   #
 #                          -DROUTE_EXPIRY_TIME=30 -DAPSC_ACK_WAIT_DURATION_PO #
@@ -2302,13 +2302,13 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000020   00           nop
    \   000021   00           nop
    \                     ??Delay_1u_0:
-   \   000022   12....       LCALL   ?Subroutine10 & 0xFFFF
-   \                     ??CrossCallReturnLabel_10:
+   \   000022   12....       LCALL   ?Subroutine12 & 0xFFFF
+   \                     ??CrossCallReturnLabel_12:
    \   000025   70DB         JNZ     ??Delay_1u_1
    \   000027   02....       LJMP    ?BRET
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine10:
+   \                     ?Subroutine12:
    \   000000   EA           MOV     A,R2
    \   000001   F8           MOV     R0,A
    \   000002   EB           MOV     A,R3
@@ -2338,23 +2338,29 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000004                ; Auto size: 0
    \   000004   D294         SETB    0x90.4
    \   000006                ; Setup parameters for call to function Delay_1u
-   \   000006   12....       LCALL   ?Subroutine6 & 0xFFFF
+   \   000006   12....       LCALL   ?Subroutine7 & 0xFFFF
    \                     ??CrossCallReturnLabel_3:
    \   000009   C294         CLR     0x90.4
    \   00000B                ; Setup parameters for call to function Delay_1u
-   \   00000B                REQUIRE ?Subroutine4
+   \   00000B                REQUIRE ?Subroutine5
    \   00000B                REQUIRE _A_P1
-   \   00000B                ; // Fall through to label ?Subroutine4
+   \   00000B                ; // Fall through to label ?Subroutine5
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine4:
+   \                     ?Subroutine5:
    \   000000   7A08         MOV     R2,#0x8
    \   000002   7B00         MOV     R3,#0x0
    \   000004   12....       LCALL   ??Delay_1u?relay
-   \   000007   80..         SJMP    ??Subroutine26_0
+   \   000007   80..         SJMP    ??Subroutine35_0
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine6:
+   \                     ??Subroutine35_0:
+   \   000000   D083         POP     DPH
+   \   000002   D082         POP     DPL
+   \   000004   02....       LJMP    ?BRET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine7:
    \   000000   7A08         MOV     R2,#0x8
    \   000002   7B00         MOV     R3,#0x0
    \   000004   12....       LCALL   ??Delay_1u?relay
@@ -2368,12 +2374,6 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000010   22           RET
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ??Subroutine26_0:
-   \   000000   D083         POP     DPH
-   \   000002   D082         POP     DPL
-   \   000004   02....       LJMP    ?BRET
-
-   \                                 In  segment BANKED_CODE, align 1, keep-with-next
    \   __banked_func __xdata_reentrant void iic_stop()
    \                     iic_stop:
    \   000000   C082         PUSH    DPL
@@ -2382,11 +2382,11 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000004                ; Auto size: 0
    \   000004   C294         CLR     0x90.4
    \   000006                ; Setup parameters for call to function Delay_1u
-   \   000006   12....       LCALL   ?Subroutine6 & 0xFFFF
+   \   000006   12....       LCALL   ?Subroutine7 & 0xFFFF
    \                     ??CrossCallReturnLabel_4:
    \   000009   D294         SETB    0x90.4
    \   00000B                ; Setup parameters for call to function Delay_1u
-   \   00000B   80..         SJMP    ?Subroutine4
+   \   00000B   80..         SJMP    ?Subroutine5
    \   00000D                REQUIRE _A_P1
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
@@ -2408,7 +2408,7 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000013   90....       MOV     DPTR,#ack_sign
    \   000016   F0           MOVX    @DPTR,A
    \   000017   C295         CLR     0x90.5
-   \   000019   80..         SJMP    ??Subroutine26_0
+   \   000019   80..         SJMP    ??Subroutine35_0
    \   00001B                REQUIRE _A_P1
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
@@ -2432,7 +2432,7 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000016   A2E7         MOV     C,0xE0 /* A   */.7
    \   000018   9294         MOV     0x90.4,C
    \   00001A                ; Setup parameters for call to function Delay_1u
-   \   00001A   12....       LCALL   ?Subroutine6 & 0xFFFF
+   \   00001A   12....       LCALL   ?Subroutine7 & 0xFFFF
    \                     ??CrossCallReturnLabel_5:
    \   00001D   C295         CLR     0x90.5
    \   00001F                ; Setup parameters for call to function Delay_1u
@@ -2470,28 +2470,28 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000009   12....       LCALL   ??iic_start?relay
    \   00000C                ; Setup parameters for call to function iic_write_byte
    \   00000C   7978         MOV     R1,#0x78
-   \   00000E   12....       LCALL   ??Subroutine27_0 & 0xFFFF
-   \                     ??CrossCallReturnLabel_63:
+   \   00000E   12....       LCALL   ??Subroutine36_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_81:
    \   000011                ; Setup parameters for call to function iic_write_byte
    \   000011   EF           MOV     A,R7
-   \   000012   12....       LCALL   ?Subroutine9 & 0xFFFF
-   \                     ??CrossCallReturnLabel_61:
+   \   000012   12....       LCALL   ?Subroutine11 & 0xFFFF
+   \                     ??CrossCallReturnLabel_79:
    \   000015                ; Setup parameters for call to function iic_write_byte
    \   000015   EE           MOV     A,R6
-   \   000016   12....       LCALL   ?Subroutine9 & 0xFFFF
-   \                     ??CrossCallReturnLabel_62:
+   \   000016   12....       LCALL   ?Subroutine11 & 0xFFFF
+   \                     ??CrossCallReturnLabel_80:
    \   000019                ; Setup parameters for call to function iic_stop
    \   000019   12....       LCALL   ??iic_stop?relay
    \   00001C   80..         SJMP    ?Subroutine1
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine9:
+   \                     ?Subroutine11:
    \   000000   F9           MOV     R1,A
-   \   000001                REQUIRE ??Subroutine27_0
-   \   000001                ; // Fall through to label ??Subroutine27_0
+   \   000001                REQUIRE ??Subroutine36_0
+   \   000001                ; // Fall through to label ??Subroutine36_0
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ??Subroutine27_0:
+   \                     ??Subroutine36_0:
    \   000000   12....       LCALL   ??iic_write_byte?relay
    \   000003                ; Setup parameters for call to function iic_ack
    \   000003                ; Setup parameters for call to function iic_ack
@@ -2517,7 +2517,7 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   00000C   7900         MOV     R1,#0x0
    \                     ??OLED_WR_Byte_1:
    \   00000E   12....       LCALL   ??iic_write?relay
-   \   000011   02....       LJMP    ??Subroutine26_0 & 0xFFFF
+   \   000011   02....       LJMP    ??Subroutine35_0 & 0xFFFF
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
    \   __banked_func __xdata_reentrant void fill_picture(unsigned char)
@@ -2530,7 +2530,7 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000007   7E00         MOV     R6,#0x0
    \                     ??fill_picture_0:
    \   000009                ; Setup parameters for call to function OLED_WR_Byte
-   \   000009   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \   000009   12....       LCALL   ?Subroutine6 & 0xFFFF
    \                     ??CrossCallReturnLabel_0:
    \   00000C                ; Setup parameters for call to function OLED_WR_Byte
    \   00000C   7C01         MOV     R4,#0x1
@@ -2551,7 +2551,7 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000027   02....       LJMP    ?BANKED_LEAVE_XDATA
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine5:
+   \                     ?Subroutine6:
    \   000000   7C00         MOV     R4,#0x0
    \   000002   7D00         MOV     R5,#0x0
    \   000004   8E..         MOV     ?V0 + 0,R6
@@ -2561,21 +2561,21 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   00000B   E4           CLR     A
    \   00000C   3400         ADDC    A,#0x0
    \   00000E   FB           MOV     R3,A
-   \   00000F   12....       LCALL   ?Subroutine21 & 0xFFFF
-   \                     ??CrossCallReturnLabel_54:
-   \   000012   12....       LCALL   ?Subroutine20 & 0xFFFF
-   \                     ??CrossCallReturnLabel_52:
+   \   00000F   12....       LCALL   ?Subroutine29 & 0xFFFF
+   \                     ??CrossCallReturnLabel_69:
+   \   000012   12....       LCALL   ?Subroutine28 & 0xFFFF
+   \                     ??CrossCallReturnLabel_67:
    \   000015   7F80         MOV     R7,#-0x80
    \   000017   22           RET
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine24:
+   \                     ?Subroutine33:
    \   000000   7B00         MOV     R3,#0x0
-   \   000002                REQUIRE ??Subroutine29_0
-   \   000002                ; // Fall through to label ??Subroutine29_0
+   \   000002                REQUIRE ??Subroutine38_0
+   \   000002                ; // Fall through to label ??Subroutine38_0
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ??Subroutine29_0:
+   \                     ??Subroutine38_0:
    \   000000   12....       LCALL   ??OLED_WR_Byte?relay
    \   000003                ; Setup parameters for call to function OLED_WR_Byte
    \   000003                ; Setup parameters for call to function OLED_WR_Byte
@@ -2617,16 +2617,16 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000007   22           RET
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine21:
-   \   000000   12....       LCALL   ??Subroutine29_0 & 0xFFFF
-   \                     ??CrossCallReturnLabel_70:
+   \                     ?Subroutine29:
+   \   000000   12....       LCALL   ??Subroutine38_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_88:
    \   000003   7A00         MOV     R2,#0x0
    \   000005   22           RET
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine20:
-   \   000000   12....       LCALL   ?Subroutine24 & 0xFFFF
-   \                     ??CrossCallReturnLabel_68:
+   \                     ?Subroutine28:
+   \   000000   12....       LCALL   ?Subroutine33 & 0xFFFF
+   \                     ??CrossCallReturnLabel_86:
    \   000003   7A10         MOV     R2,#0x10
    \   000005   7B00         MOV     R3,#0x0
    \   000007   12....       LCALL   ??OLED_WR_Byte?relay
@@ -2657,8 +2657,8 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
    \                     ??Delay_1ms_0:
-   \   000000   12....       LCALL   ?Subroutine10 & 0xFFFF
-   \                     ??CrossCallReturnLabel_11:
+   \   000000   12....       LCALL   ?Subroutine12 & 0xFFFF
+   \                     ??CrossCallReturnLabel_13:
    \   000003   70FB         JNZ     ??Delay_1ms_0
    \   000005   02....       LJMP    ?BRET
 
@@ -2680,14 +2680,14 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   00000F   E4           CLR     A
    \   000010   3400         ADDC    A,#0x0
    \   000012   FB           MOV     R3,A
-   \   000013   12....       LCALL   ?Subroutine13 & 0xFFFF
+   \   000013   12....       LCALL   ?Subroutine14 & 0xFFFF
    \                     ??CrossCallReturnLabel_16:
    \   000016   C4           SWAP    A
    \   000017   540F         ANL     A,#0xf
    \   000019   4410         ORL     A,#0x10
    \   00001B   FA           MOV     R2,A
    \   00001C   7B00         MOV     R3,#0x0
-   \   00001E   12....       LCALL   ?Subroutine13 & 0xFFFF
+   \   00001E   12....       LCALL   ?Subroutine14 & 0xFFFF
    \                     ??CrossCallReturnLabel_17:
    \   000021   540F         ANL     A,#0xf
    \   000023   FA           MOV     R2,A
@@ -2696,9 +2696,9 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000029   80..         SJMP    ?Subroutine2
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine13:
-   \   000000   12....       LCALL   ??Subroutine29_0 & 0xFFFF
-   \                     ??CrossCallReturnLabel_69:
+   \                     ?Subroutine14:
+   \   000000   12....       LCALL   ??Subroutine38_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_87:
    \   000003   EF           MOV     A,R7
    \   000004   22           RET
 
@@ -2712,21 +2712,21 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000000   7C00         MOV     R4,#0x0
    \   000002   7D00         MOV     R5,#0x0
    \   000004   7A8D         MOV     R2,#-0x73
-   \   000006   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   000006   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_18:
    \   000009   7A14         MOV     R2,#0x14
-   \   00000B   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   00000B   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_19:
    \   00000E   7AAF         MOV     R2,#-0x51
-   \   000010                REQUIRE ??Subroutine25_0
-   \   000010                ; // Fall through to label ??Subroutine25_0
+   \   000010                REQUIRE ??Subroutine34_0
+   \   000010                ; // Fall through to label ??Subroutine34_0
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ??Subroutine25_0:
+   \                     ??Subroutine34_0:
    \   000000   7B00         MOV     R3,#0x0
    \   000002   12....       LCALL   ??OLED_WR_Byte?relay
-   \   000005                REQUIRE ??Subroutine26_0
-   \   000005                ; // Fall through to label ??Subroutine26_0
+   \   000005                REQUIRE ??Subroutine35_0
+   \   000005                ; // Fall through to label ??Subroutine35_0
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
    \   __banked_func __xdata_reentrant void OLED_Display_On(void)
@@ -2739,9 +2739,9 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000004   02....       LJMP    ?Subroutine0 & 0xFFFF
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine14:
-   \   000000   12....       LCALL   ?Subroutine24 & 0xFFFF
-   \                     ??CrossCallReturnLabel_67:
+   \                     ?Subroutine15:
+   \   000000   12....       LCALL   ?Subroutine33 & 0xFFFF
+   \                     ??CrossCallReturnLabel_85:
    \   000003   22           RET
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
@@ -2755,15 +2755,15 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000004   7C00         MOV     R4,#0x0
    \   000006   7D00         MOV     R5,#0x0
    \   000008   7A8D         MOV     R2,#-0x73
-   \   00000A   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \   00000A   12....       LCALL   ?Subroutine8 & 0xFFFF
    \                     ??CrossCallReturnLabel_6:
    \   00000D   7AAE         MOV     R2,#-0x52
-   \   00000F   02....       LJMP    ??Subroutine25_0 & 0xFFFF
+   \   00000F   02....       LJMP    ??Subroutine34_0 & 0xFFFF
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine7:
-   \   000000   12....       LCALL   ?Subroutine20 & 0xFFFF
-   \                     ??CrossCallReturnLabel_53:
+   \                     ?Subroutine8:
+   \   000000   12....       LCALL   ?Subroutine28 & 0xFFFF
+   \                     ??CrossCallReturnLabel_68:
    \   000003                ; Setup parameters for call to function OLED_WR_Byte
    \   000003                ; Setup parameters for call to function OLED_WR_Byte
    \   000003   7C00         MOV     R4,#0x0
@@ -2780,7 +2780,7 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000005   7E00         MOV     R6,#0x0
    \                     ??OLED_Clear_0:
    \   000007                ; Setup parameters for call to function OLED_WR_Byte
-   \   000007   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \   000007   12....       LCALL   ?Subroutine6 & 0xFFFF
    \                     ??CrossCallReturnLabel_1:
    \   00000A                ; Setup parameters for call to function OLED_WR_Byte
    \   00000A   7C01         MOV     R4,#0x1
@@ -2808,7 +2808,7 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000005   7E00         MOV     R6,#0x0
    \                     ??OLED_On_0:
    \   000007                ; Setup parameters for call to function OLED_WR_Byte
-   \   000007   12....       LCALL   ?Subroutine5 & 0xFFFF
+   \   000007   12....       LCALL   ?Subroutine6 & 0xFFFF
    \                     ??CrossCallReturnLabel_2:
    \   00000A                ; Setup parameters for call to function OLED_WR_Byte
    \   00000A   7C01         MOV     R4,#0x1
@@ -2855,8 +2855,8 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   00001F   65..         XRL     A,?V0 + 2
    \   000021   7049         JNZ     ??OLED_ShowChar_1
    \   000023                ; Setup parameters for call to function OLED_Set_Pos
-   \   000023   12....       LCALL   ?Subroutine16 & 0xFFFF
-   \                     ??CrossCallReturnLabel_64:
+   \   000023   12....       LCALL   ?Subroutine18 & 0xFFFF
+   \                     ??CrossCallReturnLabel_82:
    \   000026                ; Setup parameters for call to function OLED_WR_Byte
    \   000026   7C01         MOV     R4,#0x1
    \   000028   7D00         MOV     R5,#0x0
@@ -2865,20 +2865,20 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   00002F   7404         MOV     A,#0x4
    \   000031   78..         MOV     R0,#?V0 + 4
    \   000033   12....       LCALL   ?S_SHL
-   \   000036   12....       LCALL   ?Subroutine18 & 0xFFFF
-   \                     ??CrossCallReturnLabel_48:
+   \   000036   12....       LCALL   ?Subroutine20 & 0xFFFF
+   \                     ??CrossCallReturnLabel_50:
    \   000039   74..         MOV     A,#F8X16 & 0xff
    \   00003B   28           ADD     A,R0
    \   00003C   F582         MOV     DPL,A
    \   00003E   74..         MOV     A,#(F8X16 >> 8) & 0xff
-   \   000040   12....       LCALL   ?Subroutine8 & 0xFFFF
-   \                     ??CrossCallReturnLabel_8:
-   \   000043   40E1         JC      ??CrossCallReturnLabel_64
+   \   000040   12....       LCALL   ?Subroutine10 & 0xFFFF
+   \                     ??CrossCallReturnLabel_10:
+   \   000043   40E1         JC      ??CrossCallReturnLabel_82
    \   000045                ; Setup parameters for call to function OLED_Set_Pos
    \   000045   7401         MOV     A,#0x1
    \   000047   2F           ADD     A,R7
-   \   000048   12....       LCALL   ??Subroutine28_0 & 0xFFFF
-   \                     ??CrossCallReturnLabel_66:
+   \   000048   12....       LCALL   ??Subroutine37_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_84:
    \   00004B                ; Setup parameters for call to function OLED_WR_Byte
    \   00004B   7C01         MOV     R4,#0x1
    \   00004D   7D00         MOV     R5,#0x0
@@ -2887,20 +2887,20 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000054   7404         MOV     A,#0x4
    \   000056   78..         MOV     R0,#?V0 + 4
    \   000058   12....       LCALL   ?S_SHL
-   \   00005B   12....       LCALL   ?Subroutine18 & 0xFFFF
-   \                     ??CrossCallReturnLabel_49:
+   \   00005B   12....       LCALL   ?Subroutine20 & 0xFFFF
+   \                     ??CrossCallReturnLabel_51:
    \   00005E   74..         MOV     A,#(F8X16 + 8) & 0xff
    \   000060   28           ADD     A,R0
    \   000061   F582         MOV     DPL,A
    \   000063   74..         MOV     A,#((F8X16 + 8) >> 8) & 0xff
-   \   000065   12....       LCALL   ?Subroutine8 & 0xFFFF
-   \                     ??CrossCallReturnLabel_9:
+   \   000065   12....       LCALL   ?Subroutine10 & 0xFFFF
+   \                     ??CrossCallReturnLabel_11:
    \   000068   5031         JNC     ??OLED_ShowChar_2
-   \   00006A   80DF         SJMP    ??CrossCallReturnLabel_66
+   \   00006A   80DF         SJMP    ??CrossCallReturnLabel_84
    \                     ??OLED_ShowChar_1:
    \   00006C                ; Setup parameters for call to function OLED_Set_Pos
-   \   00006C   12....       LCALL   ?Subroutine16 & 0xFFFF
-   \                     ??CrossCallReturnLabel_65:
+   \   00006C   12....       LCALL   ?Subroutine18 & 0xFFFF
+   \                     ??CrossCallReturnLabel_83:
    \   00006F                ; Setup parameters for call to function OLED_WR_Byte
    \   00006F   7C01         MOV     R4,#0x1
    \   000071   7D00         MOV     R5,#0x0
@@ -2921,13 +2921,13 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   00008A   F582         MOV     DPL,A
    \   00008C   E9           MOV     A,R1
    \   00008D   3400         ADDC    A,#0x0
-   \   00008F   12....       LCALL   ?Subroutine19 & 0xFFFF
-   \                     ??CrossCallReturnLabel_50:
+   \   00008F   12....       LCALL   ?Subroutine21 & 0xFFFF
+   \                     ??CrossCallReturnLabel_52:
    \   000092   05..         INC     ?V0 + 0
    \   000094   E5..         MOV     A,?V0 + 0
    \   000096   C3           CLR     C
    \   000097   9406         SUBB    A,#0x6
-   \   000099   40D4         JC      ??CrossCallReturnLabel_65
+   \   000099   40D4         JC      ??CrossCallReturnLabel_83
    \                     ??OLED_ShowChar_2:
    \   00009B                REQUIRE ?Subroutine3
    \   00009B                ; // Fall through to label ?Subroutine3
@@ -2938,7 +2938,7 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine18:
+   \                     ?Subroutine20:
    \   000000   85....       MOV     ?V0 + 6,?V0 + 0
    \   000003   E5..         MOV     A,?V0 + 4
    \   000005   25..         ADD     A,?V0 + 6
@@ -2949,13 +2949,13 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   00000D   22           RET
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine16:
+   \                     ?Subroutine18:
    \   000000   EF           MOV     A,R7
-   \   000001                REQUIRE ??Subroutine28_0
-   \   000001                ; // Fall through to label ??Subroutine28_0
+   \   000001                REQUIRE ??Subroutine37_0
+   \   000001                ; // Fall through to label ??Subroutine37_0
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ??Subroutine28_0:
+   \                     ??Subroutine37_0:
    \   000000   FA           MOV     R2,A
    \   000001   EE           MOV     A,R6
    \   000002   F9           MOV     R1,A
@@ -2964,10 +2964,10 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000009   22           RET
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine8:
+   \                     ?Subroutine10:
    \   000000   39           ADDC    A,R1
-   \   000001   12....       LCALL   ?Subroutine22 & 0xFFFF
-   \                     ??CrossCallReturnLabel_56:
+   \   000001   12....       LCALL   ?Subroutine30 & 0xFFFF
+   \                     ??CrossCallReturnLabel_71:
    \   000004   05..         INC     ?V0 + 0
    \   000006   E5..         MOV     A,?V0 + 0
    \   000008   C3           CLR     C
@@ -2975,13 +2975,13 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   00000B   22           RET
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine19:
-   \   000000   12....       LCALL   ?Subroutine22 & 0xFFFF
-   \                     ??CrossCallReturnLabel_57:
+   \                     ?Subroutine21:
+   \   000000   12....       LCALL   ?Subroutine30 & 0xFFFF
+   \                     ??CrossCallReturnLabel_73:
    \   000003   22           RET
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine22:
+   \                     ?Subroutine30:
    \   000000   F583         MOV     DPH,A
    \   000002   E0           MOVX    A,@DPTR
    \   000003   FA           MOV     R2,A
@@ -3159,6 +3159,71 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000044   02....       LJMP    ?BANKED_LEAVE_XDATA
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \   __banked_func __xdata_reentrant void LCD_P16x16Ch(unsigned char, unsigned char, unsigned char)
+   \                     LCD_P16x16Ch:
+   \   000000   74F3         MOV     A,#-0xd
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 13
+   \   000005                ; Auto size: 0
+   \   000005   89..         MOV     ?V0 + 0,R1
+   \   000007   8A..         MOV     ?V0 + 1,R2
+   \   000009   8B..         MOV     ?V0 + 2,R3
+   \   00000B   75..00       MOV     ?V0 + 3,#0x0
+   \   00000E   7405         MOV     A,#0x5
+   \   000010   78..         MOV     R0,#?V0 + 2
+   \   000012   12....       LCALL   ?S_SHL
+   \   000015   AE..         MOV     R6,?V0 + 2
+   \   000017   AF..         MOV     R7,?V0 + 3
+   \   000019                ; Setup parameters for call to function OLED_Set_Pos
+   \   000019   12....       LCALL   ??OLED_Set_Pos?relay
+   \   00001C   75..10       MOV     ?V0 + 2,#0x10
+   \                     ??LCD_P16x16Ch_0:
+   \   00001F                ; Setup parameters for call to function OLED_WR_Byte
+   \   00001F   12....       LCALL   ?Subroutine9 & 0xFFFF
+   \                     ??CrossCallReturnLabel_8:
+   \   000022   70FB         JNZ     ??LCD_P16x16Ch_0
+   \   000024                ; Setup parameters for call to function OLED_Set_Pos
+   \   000024   7401         MOV     A,#0x1
+   \   000026   25..         ADD     A,?V0 + 1
+   \   000028   FA           MOV     R2,A
+   \   000029   A9..         MOV     R1,?V0 + 0
+   \   00002B   12....       LCALL   ??OLED_Set_Pos?relay
+   \   00002E   75..10       MOV     ?V0 + 2,#0x10
+   \                     ??LCD_P16x16Ch_1:
+   \   000031                ; Setup parameters for call to function OLED_WR_Byte
+   \   000031   12....       LCALL   ?Subroutine9 & 0xFFFF
+   \                     ??CrossCallReturnLabel_9:
+   \   000034   70FB         JNZ     ??LCD_P16x16Ch_1
+   \   000036                REQUIRE ?Subroutine4
+   \   000036                ; // Fall through to label ?Subroutine4
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine4:
+   \   000000   7F05         MOV     R7,#0x5
+   \   000002   02....       LJMP    ?BANKED_LEAVE_XDATA
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine9:
+   \   000000   7C01         MOV     R4,#0x1
+   \   000002   7D00         MOV     R5,#0x0
+   \   000004   74..         MOV     A,#F16x16 & 0xff
+   \   000006   2E           ADD     A,R6
+   \   000007   F582         MOV     DPL,A
+   \   000009   74..         MOV     A,#(F16x16 >> 8) & 0xff
+   \   00000B   3F           ADDC    A,R7
+   \   00000C   12....       LCALL   ?Subroutine30 & 0xFFFF
+   \                     ??CrossCallReturnLabel_72:
+   \   00000F   EE           MOV     A,R6
+   \   000010   2401         ADD     A,#0x1
+   \   000012   0E           INC     R6
+   \   000013   EF           MOV     A,R7
+   \   000014   3400         ADDC    A,#0x0
+   \   000016   FF           MOV     R7,A
+   \   000017   15..         DEC     ?V0 + 2
+   \   000019   E5..         MOV     A,?V0 + 2
+   \   00001B   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
    \   __banked_func __xdata_reentrant void OLED_DrawBMP(unsigned char, unsigned char, unsigned char, unsigned char, unsigned char *)
    \                     OLED_DrawBMP:
    \   000000   74F0         MOV     A,#-0x10
@@ -3182,7 +3247,7 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000019   75..00       MOV     ?V0 + 0,#0x0
    \   00001C   75..00       MOV     ?V0 + 1,#0x0
    \   00001F   8A..         MOV     ?V0 + 2,R2
-   \   000021   8026         SJMP    ??OLED_DrawBMP_0
+   \   000021   801D         SJMP    ??OLED_DrawBMP_0
    \                     ??OLED_DrawBMP_1:
    \   000023                ; Setup parameters for call to function OLED_WR_Byte
    \   000023   7C01         MOV     R4,#0x1
@@ -3192,34 +3257,40 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   00002A   F582         MOV     DPL,A
    \   00002C   EF           MOV     A,R7
    \   00002D   35..         ADDC    A,?V0 + 1
-   \   00002F   12....       LCALL   ?Subroutine19 & 0xFFFF
-   \                     ??CrossCallReturnLabel_51:
-   \   000032   E5..         MOV     A,?V0 + 0
-   \   000034   2401         ADD     A,#0x1
-   \   000036   F5..         MOV     ?V0 + 0,A
-   \   000038   E5..         MOV     A,?V0 + 1
-   \   00003A   3400         ADDC    A,#0x0
-   \   00003C   F5..         MOV     ?V0 + 1,A
-   \   00003E   05..         INC     ?V0 + 7
+   \   00002F   12....       LCALL   ?Subroutine21 & 0xFFFF
+   \                     ??CrossCallReturnLabel_53:
+   \   000032   12....       LCALL   ?Subroutine25 & 0xFFFF
+   \                     ??CrossCallReturnLabel_61:
+   \   000035   05..         INC     ?V0 + 7
    \                     ??OLED_DrawBMP_2:
-   \   000040   E5..         MOV     A,?V0 + 7
-   \   000042   C3           CLR     C
-   \   000043   95..         SUBB    A,?V0 + 5
-   \   000045   40DC         JC      ??OLED_DrawBMP_1
-   \   000047   05..         INC     ?V0 + 2
+   \   000037   E5..         MOV     A,?V0 + 7
+   \   000039   C3           CLR     C
+   \   00003A   95..         SUBB    A,?V0 + 5
+   \   00003C   40E5         JC      ??OLED_DrawBMP_1
+   \   00003E   05..         INC     ?V0 + 2
    \                     ??OLED_DrawBMP_0:
-   \   000049   E5..         MOV     A,?V0 + 2
-   \   00004B   C3           CLR     C
-   \   00004C   95..         SUBB    A,?V0 + 6
-   \   00004E   500C         JNC     ??OLED_DrawBMP_3
-   \   000050                ; Setup parameters for call to function OLED_Set_Pos
-   \   000050   AA..         MOV     R2,?V0 + 2
-   \   000052   A9..         MOV     R1,?V0 + 3
-   \   000054   12....       LCALL   ??OLED_Set_Pos?relay
-   \   000057   85....       MOV     ?V0 + 7,?V0 + 3
-   \   00005A   80E4         SJMP    ??OLED_DrawBMP_2
+   \   000040   E5..         MOV     A,?V0 + 2
+   \   000042   C3           CLR     C
+   \   000043   95..         SUBB    A,?V0 + 6
+   \   000045   500C         JNC     ??OLED_DrawBMP_3
+   \   000047                ; Setup parameters for call to function OLED_Set_Pos
+   \   000047   AA..         MOV     R2,?V0 + 2
+   \   000049   A9..         MOV     R1,?V0 + 3
+   \   00004B   12....       LCALL   ??OLED_Set_Pos?relay
+   \   00004E   85....       MOV     ?V0 + 7,?V0 + 3
+   \   000051   80E4         SJMP    ??OLED_DrawBMP_2
    \                     ??OLED_DrawBMP_3:
-   \   00005C   02....       LJMP    ?Subroutine3 & 0xFFFF
+   \   000053   02....       LJMP    ?Subroutine3 & 0xFFFF
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine25:
+   \   000000   E5..         MOV     A,?V0 + 0
+   \   000002   2401         ADD     A,#0x1
+   \   000004   F5..         MOV     ?V0 + 0,A
+   \   000006   E5..         MOV     A,?V0 + 1
+   \   000008   3400         ADDC    A,#0x0
+   \   00000A   F5..         MOV     ?V0 + 1,A
+   \   00000C   22           RET
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
    \   __banked_func __xdata_reentrant void OLED_Init(void)
@@ -3236,68 +3307,68 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000010   7C00         MOV     R4,#0x0
    \   000012   7D00         MOV     R5,#0x0
    \   000014   7AAE         MOV     R2,#-0x52
-   \   000016   12....       LCALL   ?Subroutine11 & 0xFFFF
-   \                     ??CrossCallReturnLabel_12:
-   \   000019   12....       LCALL   ?Subroutine7 & 0xFFFF
+   \   000016   12....       LCALL   ?Subroutine13 & 0xFFFF
+   \                     ??CrossCallReturnLabel_14:
+   \   000019   12....       LCALL   ?Subroutine8 & 0xFFFF
    \                     ??CrossCallReturnLabel_7:
    \   00001C   7A40         MOV     R2,#0x40
-   \   00001E   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   00001E   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_20:
    \   000021   7AB0         MOV     R2,#-0x50
-   \   000023   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   000023   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_21:
    \   000026   7A81         MOV     R2,#-0x7f
-   \   000028   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   000028   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_22:
    \   00002B   7AFF         MOV     R2,#-0x1
-   \   00002D   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   00002D   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_23:
    \   000030   7AA1         MOV     R2,#-0x5f
-   \   000032   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   000032   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_24:
    \   000035   7AA6         MOV     R2,#-0x5a
-   \   000037   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   000037   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_25:
    \   00003A   7AA8         MOV     R2,#-0x58
-   \   00003C   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   00003C   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_26:
    \   00003F   7A3F         MOV     R2,#0x3f
-   \   000041   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   000041   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_27:
    \   000044   7AC8         MOV     R2,#-0x38
-   \   000046   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   000046   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_28:
    \   000049   7AD3         MOV     R2,#-0x2d
-   \   00004B   12....       LCALL   ?Subroutine11 & 0xFFFF
-   \                     ??CrossCallReturnLabel_13:
-   \   00004E   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   00004B   12....       LCALL   ?Subroutine13 & 0xFFFF
+   \                     ??CrossCallReturnLabel_15:
+   \   00004E   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_29:
    \   000051   7AD5         MOV     R2,#-0x2b
-   \   000053   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   000053   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_30:
    \   000056   7A80         MOV     R2,#-0x80
-   \   000058   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   000058   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_31:
    \   00005B   7AD8         MOV     R2,#-0x28
-   \   00005D   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   00005D   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_32:
    \   000060   7A05         MOV     R2,#0x5
-   \   000062   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   000062   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_33:
    \   000065   7AD9         MOV     R2,#-0x27
-   \   000067   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   000067   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_34:
    \   00006A   7AF1         MOV     R2,#-0xf
-   \   00006C   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   00006C   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_35:
    \   00006F   7ADA         MOV     R2,#-0x26
-   \   000071   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   000071   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_36:
    \   000074   7A12         MOV     R2,#0x12
-   \   000076   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   000076   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_37:
    \   000079   7ADB         MOV     R2,#-0x25
-   \   00007B   12....       LCALL   ?Subroutine14 & 0xFFFF
+   \   00007B   12....       LCALL   ?Subroutine15 & 0xFFFF
    \                     ??CrossCallReturnLabel_38:
    \   00007E   7A30         MOV     R2,#0x30
    \   000080   7B00         MOV     R3,#0x0
@@ -3308,10 +3379,10 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \   000088                REQUIRE P1DIR
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine11:
+   \                     ?Subroutine13:
    \   000000   7B00         MOV     R3,#0x0
-   \   000002   12....       LCALL   ?Subroutine21 & 0xFFFF
-   \                     ??CrossCallReturnLabel_55:
+   \   000002   12....       LCALL   ?Subroutine29 & 0xFFFF
+   \                     ??CrossCallReturnLabel_70:
    \   000005   22           RET
       8          #include "SG90.h"
       9          #include "out.h"
@@ -3401,78 +3472,113 @@ C:\Texas Instruments\ZStack-CC2530-2.5.1a\Projects\zstack\Samples\Diplomaproject
    \                     zb_ReceiveDataIndication:
      54                                        uint16 len, uint8 *pData  )
      55          {
-   \   000000   C082         PUSH    DPL
-   \   000002   C083         PUSH    DPH
-   \   000004                ; Saved register size: 2
-   \   000004                ; Auto size: 0
-   \   000004   7402         MOV     A,#0x2
-   \   000006   12....       LCALL   ?XSTACK_DISP0_8
-   \   000009   E0           MOVX    A,@DPTR
-   \   00000A   F8           MOV     R0,A
-   \   00000B   A3           INC     DPTR
-   \   00000C   E0           MOVX    A,@DPTR
-   \   00000D   F9           MOV     R1,A
-   \   00000E   8882         MOV     DPL,R0
-   \   000010   8983         MOV     DPH,R1
+   \   000000   74F3         MOV     A,#-0xd
+   \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
+   \   000005                ; Saved register size: 13
+   \   000005                ; Auto size: 1
+   \   000005   74FF         MOV     A,#-0x1
+   \   000007   12....       LCALL   ?ALLOC_XSTACK8
+   \   00000A   7410         MOV     A,#0x10
+   \   00000C   12....       LCALL   ?XSTACK_DISP0_8
+   \   00000F   E0           MOVX    A,@DPTR
+   \   000010   F8           MOV     R0,A
+   \   000011   A3           INC     DPTR
+   \   000012   E0           MOVX    A,@DPTR
+   \   000013   F9           MOV     R1,A
      56            if(command==TOGGLE_LED_CMD_ID)
-   \   000012   7402         MOV     A,#0x2
-   \   000014   6C           XRL     A,R4
-   \   000015   7001         JNZ     ??zb_ReceiveDataIndication_0
-   \   000017   ED           MOV     A,R5
+   \   000014   7402         MOV     A,#0x2
+   \   000016   6C           XRL     A,R4
+   \   000017   7001         JNZ     ??zb_ReceiveDataIndication_0
+   \   000019   ED           MOV     A,R5
    \                     ??zb_ReceiveDataIndication_0:
-   \   000018   703E         JNZ     ??zb_ReceiveDataIndication_1
+   \   00001A   6003         JZ      $+5
+   \   00001C   02....       LJMP    ??zb_ReceiveDataIndication_1 & 0xFFFF
      57            {
      58              uint8 led_num=pData[0];
-   \   00001A   E0           MOVX    A,@DPTR
-   \   00001B   F8           MOV     R0,A
+   \   00001F   8882         MOV     DPL,R0
+   \   000021   8983         MOV     DPH,R1
+   \   000023   E0           MOVX    A,@DPTR
+   \   000024   FA           MOV     R2,A
      59              uint8 led_status=pData[1];
-   \   00001C   A3           INC     DPTR
-   \   00001D   E0           MOVX    A,@DPTR
-   \   00001E   F9           MOV     R1,A
+   \   000025   A3           INC     DPTR
+   \   000026   E0           MOVX    A,@DPTR
+   \   000027   FB           MOV     R3,A
      60              uint8 unit=pData[2];
-                           ^
-Warning[Pe177]: variable "unit" was declared but never referenced
+   \   000028   8882         MOV     DPL,R0
+   \   00002A   8983         MOV     DPH,R1
+   \   00002C   A3           INC     DPTR
+   \   00002D   A3           INC     DPTR
+   \   00002E   E0           MOVX    A,@DPTR
+   \   00002F   FF           MOV     R7,A
      61              uint8 ten=pData[3];
-                           ^
-Warning[Pe177]: variable "ten" was declared but never referenced
+   \   000030   8882         MOV     DPL,R0
+   \   000032   8983         MOV     DPH,R1
+   \   000034   A3           INC     DPTR
+   \   000035   A3           INC     DPTR
+   \   000036   A3           INC     DPTR
+   \   000037   E0           MOVX    A,@DPTR
+   \   000038   F5..         MOV     ?V0 + 1,A
      62              uint8 hundred=pData[4];
-                           ^
-Warning[Pe177]: variable "hundred" was declared but never referenced
+   \   00003A   8882         MOV     DPL,R0
+   \   00003C   8983         MOV     DPH,R1
+   \   00003E   A3           INC     DPTR
+   \   00003F   A3           INC     DPTR
+   \   000040   A3           INC     DPTR
+   \   000041   A3           INC     DPTR
+   \   000042   E0           MOVX    A,@DPTR
+   \   000043   F5..         MOV     ?V0 + 0,A
      63              uint8 unit1=pData[5];
-                           ^
-Warning[Pe177]: variable "unit1" was declared but never referenced
+   \   000045   8882         MOV     DPL,R0
+   \   000047   8983         MOV     DPH,R1
+   \   000049   A3           INC     DPTR
+   \   00004A   A3           INC     DPTR
+   \   00004B   A3           INC     DPTR
+   \   00004C   A3           INC     DPTR
+   \   00004D   A3           INC     DPTR
+   \   00004E   E0           MOVX    A,@DPTR
+   \   00004F   F5..         MOV     ?V0 + 4,A
      64              uint8 ten1=pData[6];
-                           ^
-Warning[Pe177]: variable "ten1" was declared but never referenced
+   \   000051   8882         MOV     DPL,R0
+   \   000053   8983         MOV     DPH,R1
+   \   000055   A3           INC     DPTR
+   \   000056   A3           INC     DPTR
+   \   000057   A3           INC     DPTR
+   \   000058   A3           INC     DPTR
+   \   000059   A3           INC     DPTR
+   \   00005A   A3           INC     DPTR
+   \   00005B   E0           MOVX    A,@DPTR
+   \   00005C   FE           MOV     R6,A
      65              
      66              if(led_num==NUM_LED_1)
-   \   00001F   7401         MOV     A,#0x1
-   \   000021   68           XRL     A,R0
-   \   000022   701C         JNZ     ??zb_ReceiveDataIndication_2
+   \   00005D   7401         MOV     A,#0x1
+   \   00005F   6A           XRL     A,R2
+   \   000060   6003         JZ      $+5
+   \   000062   02....       LJMP    ??zb_ReceiveDataIndication_2 & 0xFFFF
      67              {
      68                if(led_status==1)
-   \   000024   7401         MOV     A,#0x1
-   \   000026   69           XRL     A,R1
-   \   000027   7006         JNZ     ??zb_ReceiveDataIndication_3
+   \   000065   7401         MOV     A,#0x1
+   \   000067   6B           XRL     A,R3
+   \   000068   7007         JNZ     ??zb_ReceiveDataIndication_3
      69                  HalLedSet(HAL_LED_1,HAL_LED_MODE_ON);
-   \   000029                ; Setup parameters for call to function HalLedSet
-   \   000029   7A01         MOV     R2,#0x1
+   \   00006A                ; Setup parameters for call to function HalLedSet
+   \   00006A   7A01         MOV     R2,#0x1
    \                     ??zb_ReceiveDataIndication_4:
-   \   00002B   7901         MOV     R1,#0x1
-   \   00002D   8026         SJMP    ??zb_ReceiveDataIndication_5
+   \   00006C   7901         MOV     R1,#0x1
+   \   00006E   02....       LJMP    ??zb_ReceiveDataIndication_5 & 0xFFFF
      70                else if(led_status==0)
    \                     ??zb_ReceiveDataIndication_3:
-   \   00002F   E9           MOV     A,R1
-   \   000030   7004         JNZ     ??zb_ReceiveDataIndication_6
+   \   000071   EB           MOV     A,R3
+   \   000072   7004         JNZ     ??zb_ReceiveDataIndication_6
      71                  HalLedSet(HAL_LED_1,HAL_LED_MODE_OFF);
-   \   000032                ; Setup parameters for call to function HalLedSet
-   \   000032   7A00         MOV     R2,#0x0
-   \   000034   80F5         SJMP    ??zb_ReceiveDataIndication_4
+   \   000074                ; Setup parameters for call to function HalLedSet
+   \   000074   7A00         MOV     R2,#0x0
+   \   000076   80F4         SJMP    ??zb_ReceiveDataIndication_4
      72                else if(led_status==2)
    \                     ??zb_ReceiveDataIndication_6:
-   \   000036   7402         MOV     A,#0x2
-   \   000038   69           XRL     A,R1
-   \   000039   701D         JNZ     ??zb_ReceiveDataIndication_1
+   \   000078   7402         MOV     A,#0x2
+   \   00007A   6B           XRL     A,R3
+   \   00007B   6003         JZ      $+5
+   \   00007D   02....       LJMP    ??zb_ReceiveDataIndication_7 & 0xFFFF
      73                {
      74          //        LCD_P8x16Str(8,0, "ID:");
      75          //        LCD_P8x16Str(33,0,buffer);    
@@ -3514,117 +3620,535 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
     111          //          LCD_P8x16Str(80,6,buffe);
     112          //        else
     113          //          LCD_P8x16Str(80,6,"0");
-    114          //        LCD_P16x16Ch(96, 6, 9);
-    115                  SG90start(); 
-   \   00003B                ; Setup parameters for call to function SG90start
-   \   00003B   12....       LCALL   ??SG90start?relay
-   \   00003E   8018         SJMP    ??zb_ReceiveDataIndication_1
-    116          //        LCD_CLS(); 
-    117                }
-    118                else if(led_status==3)
-    119                {
-    120          //        LCD_P8x16Str(8,0, "ID:");
-    121          //        LCD_P8x16Str(33,0,buffer);    
-    122          //        memset(buffer,0,8); 
-    123          //        for(int i=0; i<4; i++) 
-    124          //        {
-    125          //          LCD_P16x16Ch(16*i+8, 3, i);   
-    126          //        }
-    127          //        for(int a=0;a<100;a++)
-    128          //        {
-    129          //          MicroWait(10000);
-    130          //        }
-    131          //        LCD_CLS(); 
-    132                }
-    133                else if(led_status==4)
-    134                {
-    135          //        Draw_BMP(0,0,127,7,BMP2);
-    136          //        for(int a=0;a<100;a++)
-    137          //        {
-    138          //          MicroWait(10000);
-    139          //        }
-    140          //        LCD_CLS(); 
-    141                }
-    142              }
-    143              else if(led_num==NUM_LED_2)
-   \                     ??zb_ReceiveDataIndication_2:
-   \   000040   7402         MOV     A,#0x2
-   \   000042   68           XRL     A,R0
-   \   000043   7013         JNZ     ??zb_ReceiveDataIndication_1
-    144              {
-    145                if(led_status==1)
-   \   000045   7401         MOV     A,#0x1
-   \   000047   69           XRL     A,R1
-   \   000048   7004         JNZ     ??zb_ReceiveDataIndication_7
-    146                  HalLedSet(HAL_LED_2,HAL_LED_MODE_ON);
-   \   00004A                ; Setup parameters for call to function HalLedSet
-   \   00004A   7A01         MOV     R2,#0x1
-   \   00004C   8005         SJMP    ??zb_ReceiveDataIndication_8
-    147                else if(led_status==0)
-   \                     ??zb_ReceiveDataIndication_7:
-   \   00004E   E9           MOV     A,R1
-   \   00004F   7007         JNZ     ??zb_ReceiveDataIndication_1
-    148                  HalLedSet(HAL_LED_2,HAL_LED_MODE_OFF);
-   \   000051                ; Setup parameters for call to function HalLedSet
-   \   000051   7A00         MOV     R2,#0x0
+    114                  OLED_ShowString(8,0, "ID:",16);  
+   \   000080                ; Setup parameters for call to function OLED_ShowString
+   \   000080   12....       LCALL   ?Subroutine23 & 0xFFFF
+    115                  OLED_ShowString(33,0, buffer,16);
+   \                     ??CrossCallReturnLabel_54:
+   \   000083   7921         MOV     R1,#0x21
+   \   000085   12....       LCALL   ??OLED_ShowString?relay
+    116                  memset(buffer,0,8); 
+   \   000088                ; Setup parameters for call to function memset
+   \   000088   75..08       MOV     ?V0 + 2,#0x8
+   \   00008B   75..00       MOV     ?V0 + 3,#0x0
+   \   00008E   78..         MOV     R0,#?V0 + 2
+   \   000090   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000093   7C00         MOV     R4,#0x0
+   \   000095   7D00         MOV     R5,#0x0
+   \   000097   7A..         MOV     R2,#buffer & 0xff
+   \   000099   7B..         MOV     R3,#(buffer >> 8) & 0xff
+   \   00009B   12....       LCALL   ??memset?relay
+   \   00009E   7402         MOV     A,#0x2
+   \   0000A0   12....       LCALL   ?DEALLOC_XSTACK8
+    117                  for(int i=0; i<2; i++) 
+   \   0000A3   75..00       MOV     ?V0 + 2,#0x0
+    118                  {
+    119                    LCD_P16x16Ch(16*i+8, 3, i);   
    \                     ??zb_ReceiveDataIndication_8:
-   \   000053   7902         MOV     R1,#0x2
+   \   0000A6                ; Setup parameters for call to function LCD_P16x16Ch
+   \   0000A6   AB..         MOV     R3,?V0 + 2
+   \   0000A8   7A03         MOV     R2,#0x3
+   \   0000AA   EB           MOV     A,R3
+   \   0000AB   12....       LCALL   ?Subroutine26 & 0xFFFF
+    120                  }
+   \                     ??CrossCallReturnLabel_63:
+   \   0000AE   2401         ADD     A,#0x1
+   \   0000B0   F5..         MOV     ?V0 + 2,A
+   \   0000B2   E5..         MOV     A,?V0 + 3
+   \   0000B4   3400         ADDC    A,#0x0
+   \   0000B6   F5..         MOV     ?V0 + 3,A
+   \   0000B8   C3           CLR     C
+   \   0000B9   E5..         MOV     A,?V0 + 2
+   \   0000BB   9402         SUBB    A,#0x2
+   \   0000BD   E5..         MOV     A,?V0 + 3
+   \   0000BF   12....       LCALL   ??Subroutine39_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_89:
+   \   0000C2   40E2         JC      ??zb_ReceiveDataIndication_8
+    121                  OLED_ShowString(40,3, ":",16);
+   \   0000C4                ; Setup parameters for call to function OLED_ShowString
+   \   0000C4   7B10         MOV     R3,#0x10
+   \   0000C6   7C..         MOV     R4,#`?<Constant ":">` & 0xff
+   \   0000C8   7D..         MOV     R5,#(`?<Constant ":">` >> 8) & 0xff
+   \   0000CA   7A03         MOV     R2,#0x3
+   \   0000CC   7928         MOV     R1,#0x28
+   \   0000CE   12....       LCALL   ??OLED_ShowString?relay
+    122                  unsigned char buffe[1];
+    123                  sprintf((char *)buffe,"%d",unit);
+   \   0000D1                ; Setup parameters for call to function sprintf
+   \   0000D1   8F..         MOV     ?V0 + 2,R7
+   \   0000D3   75..00       MOV     ?V0 + 3,#0x0
+   \   0000D6   78..         MOV     R0,#?V0 + 2
+   \   0000D8   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000DB   7C..         MOV     R4,#`?<Constant "%d">` & 0xff
+   \   0000DD   7D..         MOV     R5,#(`?<Constant "%d">` >> 8) & 0xff
+   \   0000DF   7402         MOV     A,#0x2
+   \   0000E1   12....       LCALL   ?XSTACK_DISP0_8
+   \   0000E4   12....       LCALL   ?Subroutine24 & 0xFFFF
+   \                     ??CrossCallReturnLabel_56:
+   \   0000E7   12....       LCALL   ?DEALLOC_XSTACK8
+    124                  if(unit!=10)
+   \   0000EA   740A         MOV     A,#0xa
+   \   0000EC   6F           XRL     A,R7
+   \   0000ED   7B10         MOV     R3,#0x10
+   \   0000EF   600C         JZ      ??zb_ReceiveDataIndication_9
+    125                    OLED_ShowString(64,3, buffe,16);
+   \   0000F1                ; Setup parameters for call to function OLED_ShowString
+   \   0000F1   85..82       MOV     DPL,?XSP + 0
+   \   0000F4   85..83       MOV     DPH,?XSP + 1
+   \   0000F7   AC82         MOV     R4,DPL
+   \   0000F9   AD83         MOV     R5,DPH
+   \   0000FB   8004         SJMP    ??zb_ReceiveDataIndication_10
+    126                  else
+    127                    OLED_ShowString(64,3, "0",16);
+   \                     ??zb_ReceiveDataIndication_9:
+   \   0000FD                ; Setup parameters for call to function OLED_ShowString
+   \   0000FD   7C..         MOV     R4,#`?<Constant "0">` & 0xff
+   \   0000FF   7D..         MOV     R5,#(`?<Constant "0">` >> 8) & 0xff
+   \                     ??zb_ReceiveDataIndication_10:
+   \   000101   7A03         MOV     R2,#0x3
+   \   000103   7940         MOV     R1,#0x40
+   \   000105   12....       LCALL   ??OLED_ShowString?relay
+    128                  sprintf((char *)buffe,"%d",ten);
+   \   000108                ; Setup parameters for call to function sprintf
+   \   000108   85....       MOV     ?V0 + 2,?V0 + 1
+   \   00010B   78..         MOV     R0,#?V0 + 2
+   \   00010D   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000110   7C..         MOV     R4,#`?<Constant "%d">` & 0xff
+   \   000112   7D..         MOV     R5,#(`?<Constant "%d">` >> 8) & 0xff
+   \   000114   7402         MOV     A,#0x2
+   \   000116   12....       LCALL   ?XSTACK_DISP0_8
+   \   000119   12....       LCALL   ?Subroutine24 & 0xFFFF
+   \                     ??CrossCallReturnLabel_57:
+   \   00011C   12....       LCALL   ?DEALLOC_XSTACK8
+    129                  if(ten!=10)
+   \   00011F   740A         MOV     A,#0xa
+   \   000121   65..         XRL     A,?V0 + 1
+   \   000123   7B10         MOV     R3,#0x10
+   \   000125   600C         JZ      ??zb_ReceiveDataIndication_11
+    130                    OLED_ShowString(56,3, buffe,16);
+   \   000127                ; Setup parameters for call to function OLED_ShowString
+   \   000127   85..82       MOV     DPL,?XSP + 0
+   \   00012A   85..83       MOV     DPH,?XSP + 1
+   \   00012D   AC82         MOV     R4,DPL
+   \   00012F   AD83         MOV     R5,DPH
+   \   000131   8004         SJMP    ??zb_ReceiveDataIndication_12
+    131                  else
+    132                    OLED_ShowString(56,3, "0",16);
+   \                     ??zb_ReceiveDataIndication_11:
+   \   000133                ; Setup parameters for call to function OLED_ShowString
+   \   000133   7C..         MOV     R4,#`?<Constant "0">` & 0xff
+   \   000135   7D..         MOV     R5,#(`?<Constant "0">` >> 8) & 0xff
+   \                     ??zb_ReceiveDataIndication_12:
+   \   000137   7A03         MOV     R2,#0x3
+   \   000139   7938         MOV     R1,#0x38
+   \   00013B   12....       LCALL   ??OLED_ShowString?relay
+    133                  sprintf((char *)buffe,"%d",hundred);
+   \   00013E                ; Setup parameters for call to function sprintf
+   \   00013E   85....       MOV     ?V0 + 2,?V0 + 0
+   \   000141   78..         MOV     R0,#?V0 + 2
+   \   000143   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000146   7C..         MOV     R4,#`?<Constant "%d">` & 0xff
+   \   000148   7D..         MOV     R5,#(`?<Constant "%d">` >> 8) & 0xff
+   \   00014A   7402         MOV     A,#0x2
+   \   00014C   12....       LCALL   ?XSTACK_DISP0_8
+   \   00014F   12....       LCALL   ?Subroutine24 & 0xFFFF
+   \                     ??CrossCallReturnLabel_58:
+   \   000152   12....       LCALL   ?DEALLOC_XSTACK8
+    134                  if(hundred!=10)
+   \   000155   740A         MOV     A,#0xa
+   \   000157   65..         XRL     A,?V0 + 0
+   \   000159   7B10         MOV     R3,#0x10
+   \   00015B   600C         JZ      ??zb_ReceiveDataIndication_13
+    135                    OLED_ShowString(48,3, buffe,16);
+   \   00015D                ; Setup parameters for call to function OLED_ShowString
+   \   00015D   85..82       MOV     DPL,?XSP + 0
+   \   000160   85..83       MOV     DPH,?XSP + 1
+   \   000163   AC82         MOV     R4,DPL
+   \   000165   AD83         MOV     R5,DPH
+   \   000167   8004         SJMP    ??zb_ReceiveDataIndication_14
+    136                  else
+    137                    OLED_ShowString(48,3, "0",16);
+   \                     ??zb_ReceiveDataIndication_13:
+   \   000169                ; Setup parameters for call to function OLED_ShowString
+   \   000169   7C..         MOV     R4,#`?<Constant "0">` & 0xff
+   \   00016B   7D..         MOV     R5,#(`?<Constant "0">` >> 8) & 0xff
+   \                     ??zb_ReceiveDataIndication_14:
+   \   00016D   7A03         MOV     R2,#0x3
+   \   00016F   7930         MOV     R1,#0x30
+   \   000171   12....       LCALL   ??OLED_ShowString?relay
+    138                  LCD_P16x16Ch(72, 3, 4);
+   \   000174                ; Setup parameters for call to function LCD_P16x16Ch
+   \   000174   7B04         MOV     R3,#0x4
+   \   000176   7A03         MOV     R2,#0x3
+   \   000178   7948         MOV     R1,#0x48
+   \   00017A   12....       LCALL   ??LCD_P16x16Ch?relay
+    139                  for(int j=0,k=5;k<9;j++,k++)
+   \   00017D   75..00       MOV     ?V0 + 2,#0x0
+   \   000180   75..05       MOV     ?V0 + 0,#0x5
+   \   000183   75..00       MOV     ?V0 + 1,#0x0
+    140                  {
+    141                    LCD_P16x16Ch(16*j+8, 6, k);
+   \                     ??zb_ReceiveDataIndication_15:
+   \   000186                ; Setup parameters for call to function LCD_P16x16Ch
+   \   000186   AB..         MOV     R3,?V0 + 0
+   \   000188   7A06         MOV     R2,#0x6
+   \   00018A   E5..         MOV     A,?V0 + 2
+   \   00018C   12....       LCALL   ?Subroutine26 & 0xFFFF
+    142                  }
+   \                     ??CrossCallReturnLabel_64:
+   \   00018F   04           INC     A
+   \   000190   F5..         MOV     ?V0 + 2,A
+   \   000192   12....       LCALL   ?Subroutine25 & 0xFFFF
+   \                     ??CrossCallReturnLabel_62:
+   \   000195   C3           CLR     C
+   \   000196   E5..         MOV     A,?V0 + 0
+   \   000198   9409         SUBB    A,#0x9
+   \   00019A   E5..         MOV     A,?V0 + 1
+   \   00019C   12....       LCALL   ??Subroutine39_0 & 0xFFFF
+   \                     ??CrossCallReturnLabel_90:
+   \   00019F   40E5         JC      ??zb_ReceiveDataIndication_15
+    143                  OLED_ShowString(72,6, ":",16);
+   \   0001A1                ; Setup parameters for call to function OLED_ShowString
+   \   0001A1   7B10         MOV     R3,#0x10
+   \   0001A3   7C..         MOV     R4,#`?<Constant ":">` & 0xff
+   \   0001A5   7D..         MOV     R5,#(`?<Constant ":">` >> 8) & 0xff
+   \   0001A7   7A06         MOV     R2,#0x6
+   \   0001A9   7948         MOV     R1,#0x48
+   \   0001AB   12....       LCALL   ??OLED_ShowString?relay
+    144                  sprintf((char *)buffe,"%d",unit1);
+   \   0001AE                ; Setup parameters for call to function sprintf
+   \   0001AE   85....       MOV     ?V0 + 0,?V0 + 4
+   \   0001B1   75..00       MOV     ?V0 + 1,#0x0
+   \   0001B4   78..         MOV     R0,#?V0 + 0
+   \   0001B6   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0001B9   7C..         MOV     R4,#`?<Constant "%d">` & 0xff
+   \   0001BB   7D..         MOV     R5,#(`?<Constant "%d">` >> 8) & 0xff
+   \   0001BD   7402         MOV     A,#0x2
+   \   0001BF   12....       LCALL   ?XSTACK_DISP0_8
+   \   0001C2   12....       LCALL   ?Subroutine24 & 0xFFFF
+   \                     ??CrossCallReturnLabel_59:
+   \   0001C5   12....       LCALL   ?DEALLOC_XSTACK8
+    145                  if(unit1!=10)
+   \   0001C8   740A         MOV     A,#0xa
+   \   0001CA   65..         XRL     A,?V0 + 4
+   \   0001CC   7B10         MOV     R3,#0x10
+   \   0001CE   600C         JZ      ??zb_ReceiveDataIndication_16
+    146                    OLED_ShowString(88,6, buffe,16);
+   \   0001D0                ; Setup parameters for call to function OLED_ShowString
+   \   0001D0   85..82       MOV     DPL,?XSP + 0
+   \   0001D3   85..83       MOV     DPH,?XSP + 1
+   \   0001D6   AC82         MOV     R4,DPL
+   \   0001D8   AD83         MOV     R5,DPH
+   \   0001DA   8004         SJMP    ??zb_ReceiveDataIndication_17
+    147                  else
+    148                    OLED_ShowString(88,6, "0",16);
+   \                     ??zb_ReceiveDataIndication_16:
+   \   0001DC                ; Setup parameters for call to function OLED_ShowString
+   \   0001DC   7C..         MOV     R4,#`?<Constant "0">` & 0xff
+   \   0001DE   7D..         MOV     R5,#(`?<Constant "0">` >> 8) & 0xff
+   \                     ??zb_ReceiveDataIndication_17:
+   \   0001E0   7A06         MOV     R2,#0x6
+   \   0001E2   7958         MOV     R1,#0x58
+   \   0001E4   12....       LCALL   ??OLED_ShowString?relay
+    149                  sprintf((char *)buffe,"%d",ten1);
+   \   0001E7                ; Setup parameters for call to function sprintf
+   \   0001E7   8E..         MOV     ?V0 + 0,R6
+   \   0001E9   78..         MOV     R0,#?V0 + 0
+   \   0001EB   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0001EE   7C..         MOV     R4,#`?<Constant "%d">` & 0xff
+   \   0001F0   7D..         MOV     R5,#(`?<Constant "%d">` >> 8) & 0xff
+   \   0001F2   7402         MOV     A,#0x2
+   \   0001F4   12....       LCALL   ?XSTACK_DISP0_8
+   \   0001F7   12....       LCALL   ?Subroutine24 & 0xFFFF
+   \                     ??CrossCallReturnLabel_60:
+   \   0001FA   12....       LCALL   ?DEALLOC_XSTACK8
+    150                  if(ten1!=10)
+   \   0001FD   740A         MOV     A,#0xa
+   \   0001FF   6E           XRL     A,R6
+   \   000200   7B10         MOV     R3,#0x10
+   \   000202   600C         JZ      ??zb_ReceiveDataIndication_18
+    151                    OLED_ShowString(80,6, buffe,16);
+   \   000204                ; Setup parameters for call to function OLED_ShowString
+   \   000204   85..82       MOV     DPL,?XSP + 0
+   \   000207   85..83       MOV     DPH,?XSP + 1
+   \   00020A   AC82         MOV     R4,DPL
+   \   00020C   AD83         MOV     R5,DPH
+   \   00020E   8004         SJMP    ??zb_ReceiveDataIndication_19
+    152                  else
+    153                    OLED_ShowString(80,6, "0",16);
+   \                     ??zb_ReceiveDataIndication_18:
+   \   000210                ; Setup parameters for call to function OLED_ShowString
+   \   000210   7C..         MOV     R4,#`?<Constant "0">` & 0xff
+   \   000212   7D..         MOV     R5,#(`?<Constant "0">` >> 8) & 0xff
+   \                     ??zb_ReceiveDataIndication_19:
+   \   000214   7A06         MOV     R2,#0x6
+   \   000216   7950         MOV     R1,#0x50
+   \   000218   12....       LCALL   ??OLED_ShowString?relay
+    154                  LCD_P16x16Ch(96, 6, 9);
+   \   00021B                ; Setup parameters for call to function LCD_P16x16Ch
+   \   00021B   7B09         MOV     R3,#0x9
+   \   00021D   7A06         MOV     R2,#0x6
+   \   00021F   7960         MOV     R1,#0x60
+   \   000221   12....       LCALL   ??LCD_P16x16Ch?relay
+    155                  SG90start(); 
+   \   000224                ; Setup parameters for call to function SG90start
+   \   000224   12....       LCALL   ??SG90start?relay
+   \   000227   804A         SJMP    ??zb_ReceiveDataIndication_20
+    156          //        LCD_CLS();
+    157                  OLED_Clear();
+    158                }
+    159                else if(led_status==3)
+   \                     ??zb_ReceiveDataIndication_7:
+   \   000229   7403         MOV     A,#0x3
+   \   00022B   6B           XRL     A,R3
+   \   00022C   704A         JNZ     ??zb_ReceiveDataIndication_21
+    160                {
+    161          //        LCD_P8x16Str(8,0, "ID:");
+    162          //        LCD_P8x16Str(33,0,buffer); 
+    163                  OLED_ShowString(8,0, "ID:",16);
+   \   00022E                ; Setup parameters for call to function OLED_ShowString
+   \   00022E   12....       LCALL   ?Subroutine23 & 0xFFFF
+    164                  OLED_ShowString(8,0, buffer,16);
+   \                     ??CrossCallReturnLabel_55:
+   \   000231   7908         MOV     R1,#0x8
+   \   000233   12....       LCALL   ??OLED_ShowString?relay
+    165                  memset(buffer,0,8); 
+   \   000236                ; Setup parameters for call to function memset
+   \   000236   75..08       MOV     ?V0 + 0,#0x8
+   \   000239   75..00       MOV     ?V0 + 1,#0x0
+   \   00023C   78..         MOV     R0,#?V0 + 0
+   \   00023E   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000241   7C00         MOV     R4,#0x0
+   \   000243   7D00         MOV     R5,#0x0
+   \   000245   7A..         MOV     R2,#buffer & 0xff
+   \   000247   7B..         MOV     R3,#(buffer >> 8) & 0xff
+   \   000249   12....       LCALL   ??memset?relay
+   \   00024C   7402         MOV     A,#0x2
+   \   00024E   12....       LCALL   ?DEALLOC_XSTACK8
+    166                  for(int i=0; i<4; i++) 
+   \   000251   7E00         MOV     R6,#0x0
+   \   000253   7F00         MOV     R7,#0x0
+    167                  {
+    168                    LCD_P16x16Ch(16*i+8, 3, i);   
+   \                     ??zb_ReceiveDataIndication_22:
+   \   000255                ; Setup parameters for call to function LCD_P16x16Ch
+   \   000255   EE           MOV     A,R6
+   \   000256   FB           MOV     R3,A
+   \   000257   7A03         MOV     R2,#0x3
+   \   000259   12....       LCALL   ?Subroutine31 & 0xFFFF
+    169                  }
+   \                     ??CrossCallReturnLabel_74:
+   \   00025C   12....       LCALL   ?Subroutine27 & 0xFFFF
+   \                     ??CrossCallReturnLabel_65:
+   \   00025F   9404         SUBB    A,#0x4
+   \   000261   12....       LCALL   ?Subroutine22 & 0xFFFF
+   \                     ??CrossCallReturnLabel_91:
+   \   000264   40EF         JC      ??zb_ReceiveDataIndication_22
+    170                  for(int a=0;a<100;a++)
+   \   000266   7E64         MOV     R6,#0x64
+    171                  {
+    172                    MicroWait(10000);
+   \                     ??zb_ReceiveDataIndication_23:
+   \   000268                ; Setup parameters for call to function Onboard_wait
+   \   000268   7A10         MOV     R2,#0x10
+   \   00026A   7B27         MOV     R3,#0x27
+   \   00026C   12....       LCALL   ??Onboard_wait?relay
+    173                  }
+   \   00026F   1E           DEC     R6
+   \   000270   EE           MOV     A,R6
+   \   000271   70F5         JNZ     ??zb_ReceiveDataIndication_23
+    174          //        LCD_CLS();
+    175                  OLED_Clear();
+   \                     ??zb_ReceiveDataIndication_20:
+   \   000273                ; Setup parameters for call to function OLED_Clear
+   \   000273   12....       LCALL   ??OLED_Clear?relay
+   \   000276   8047         SJMP    ??zb_ReceiveDataIndication_1
+    176                }
+    177                else if(led_status==4)
+   \                     ??zb_ReceiveDataIndication_21:
+   \   000278   7404         MOV     A,#0x4
+   \   00027A   6B           XRL     A,R3
+   \   00027B   7042         JNZ     ??zb_ReceiveDataIndication_1
+    178                {
+    179                  //Draw_BMP(0,0,127,7,BMP2);
+    180                  OLED_DrawBMP(0,0,127,7,BMP2);
+   \   00027D                ; Setup parameters for call to function OLED_DrawBMP
+   \   00027D   75....       MOV     ?V0 + 0,#BMP2 & 0xff
+   \   000280   75....       MOV     ?V0 + 1,#(BMP2 >> 8) & 0xff
+   \   000283   78..         MOV     R0,#?V0 + 0
+   \   000285   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000288   7C07         MOV     R4,#0x7
+   \   00028A   7B7F         MOV     R3,#0x7f
+   \   00028C   7A00         MOV     R2,#0x0
+   \   00028E   7900         MOV     R1,#0x0
+   \   000290   12....       LCALL   ??OLED_DrawBMP?relay
+   \   000293   7402         MOV     A,#0x2
+   \   000295   12....       LCALL   ?DEALLOC_XSTACK8
+    181                  for(int a=0;a<100;a++)
+   \   000298   7E64         MOV     R6,#0x64
+    182                  {
+    183                    MicroWait(10000);
+   \                     ??zb_ReceiveDataIndication_24:
+   \   00029A                ; Setup parameters for call to function Onboard_wait
+   \   00029A   7A10         MOV     R2,#0x10
+   \   00029C   7B27         MOV     R3,#0x27
+   \   00029E   12....       LCALL   ??Onboard_wait?relay
+    184                  }
+   \   0002A1   1E           DEC     R6
+   \   0002A2   EE           MOV     A,R6
+   \   0002A3   60CE         JZ      ??zb_ReceiveDataIndication_20
+   \   0002A5   80F3         SJMP    ??zb_ReceiveDataIndication_24
+    185          //        LCD_CLS(); 
+    186                  OLED_Clear();
+    187                }
+    188              }
+    189              else if(led_num==NUM_LED_2)
+   \                     ??zb_ReceiveDataIndication_2:
+   \   0002A7   7402         MOV     A,#0x2
+   \   0002A9   6A           XRL     A,R2
+   \   0002AA   7013         JNZ     ??zb_ReceiveDataIndication_1
+    190              {
+    191                if(led_status==1)
+   \   0002AC   7401         MOV     A,#0x1
+   \   0002AE   6B           XRL     A,R3
+   \   0002AF   7004         JNZ     ??zb_ReceiveDataIndication_25
+    192                  HalLedSet(HAL_LED_2,HAL_LED_MODE_ON);
+   \   0002B1                ; Setup parameters for call to function HalLedSet
+   \   0002B1   7A01         MOV     R2,#0x1
+   \   0002B3   8005         SJMP    ??zb_ReceiveDataIndication_26
+    193                else if(led_status==0)
+   \                     ??zb_ReceiveDataIndication_25:
+   \   0002B5   EB           MOV     A,R3
+   \   0002B6   7007         JNZ     ??zb_ReceiveDataIndication_1
+    194                  HalLedSet(HAL_LED_2,HAL_LED_MODE_OFF);
+   \   0002B8                ; Setup parameters for call to function HalLedSet
+   \   0002B8   7A00         MOV     R2,#0x0
+   \                     ??zb_ReceiveDataIndication_26:
+   \   0002BA   7902         MOV     R1,#0x2
    \                     ??zb_ReceiveDataIndication_5:
-   \   000055   12....       LCALL   ??HalLedSet?relay
-    149              }
-    150            }
-    151          }
+   \   0002BC   12....       LCALL   ??HalLedSet?relay
+    195              }
+    196            }
+    197          }
    \                     ??zb_ReceiveDataIndication_1:
-   \   000058   02....       LJMP    ??Subroutine26_0 & 0xFFFF
-    152          
-    153          
+   \   0002BF   7401         MOV     A,#0x1
+   \   0002C1   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0002C4   02....       LJMP    ?Subroutine4 & 0xFFFF
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    154          void zb_AllowBindConfirm( uint16 source )
+   \                     ?Subroutine26:
+   \   000000   12....       LCALL   ?Subroutine31 & 0xFFFF
+   \                     ??CrossCallReturnLabel_75:
+   \   000003   E5..         MOV     A,?V0 + 2
+   \   000005   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine31:
+   \   000000   C4           SWAP    A
+   \   000001   54F0         ANL     A,#0xf0
+   \   000003   2408         ADD     A,#0x8
+   \   000005   F9           MOV     R1,A
+   \   000006   12....       LCALL   ??LCD_P16x16Ch?relay
+   \   000009   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine24:
+   \   000000   AA82         MOV     R2,DPL
+   \   000002   AB83         MOV     R3,DPH
+   \   000004   12....       LCALL   ??sprintf?relay
+   \   000007   7402         MOV     A,#0x2
+   \   000009   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine23:
+   \   000000   7B10         MOV     R3,#0x10
+   \   000002   7C..         MOV     R4,#`?<Constant "ID:">` & 0xff
+   \   000004   7D..         MOV     R5,#(`?<Constant "ID:">` >> 8) & 0xff
+   \   000006   7A00         MOV     R2,#0x0
+   \   000008   7908         MOV     R1,#0x8
+   \   00000A   12....       LCALL   ??OLED_ShowString?relay
+   \   00000D                ; Setup parameters for call to function OLED_ShowString
+   \   00000D                ; Setup parameters for call to function OLED_ShowString
+   \   00000D   7B10         MOV     R3,#0x10
+   \   00000F   7C..         MOV     R4,#buffer & 0xff
+   \   000011   7D..         MOV     R5,#(buffer >> 8) & 0xff
+   \   000013   7A00         MOV     R2,#0x0
+   \   000015   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine27:
+   \   000000   EE           MOV     A,R6
+   \   000001   2401         ADD     A,#0x1
+   \   000003   0E           INC     R6
+   \   000004   EF           MOV     A,R7
+   \   000005   3400         ADDC    A,#0x0
+   \   000007   FF           MOV     R7,A
+   \   000008   C3           CLR     C
+   \   000009   EE           MOV     A,R6
+   \   00000A   22           RET
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ?Subroutine22:
+   \   000000   EF           MOV     A,R7
+   \   000001                REQUIRE ??Subroutine39_0
+   \   000001                ; // Fall through to label ??Subroutine39_0
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+   \                     ??Subroutine39_0:
+   \   000000   9400         SUBB    A,#0x0
+   \   000002   A2D2         MOV     C,0xD0 /* PSW */.2
+   \   000004   65D0         XRL     A,PSW
+   \   000006   33           RLC     A
+   \   000007   22           RET
+    198          
+    199          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    200          void zb_AllowBindConfirm( uint16 source )
    \                     zb_AllowBindConfirm:
-    155          {
+    201          {
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
-    156          }
+    202          }
    \   000000   02....       LJMP    ?BRET
-    157          
+    203          
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    158          void zb_HandleKeys( uint8 shift, uint8 keys )
+    204          void zb_HandleKeys( uint8 shift, uint8 keys )
    \                     zb_HandleKeys:
-    159          {
+    205          {
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
-    160            
-    161          }
+    206            
+    207          }
    \   000000   02....       LJMP    ?BRET
-    162          
+    208          
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    163          void zb_BindConfirm( uint16 commandId, uint8 status )
+    209          void zb_BindConfirm( uint16 commandId, uint8 status )
    \                     zb_BindConfirm:
-    164          {
+    210          {
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
-    165          }
+    211          }
    \   000000   02....       LJMP    ?BRET
-    166          
+    212          
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    167          void zb_StartConfirm( uint8 status )
+    213          void zb_StartConfirm( uint8 status )
    \                     zb_StartConfirm:
-    168          {
+    214          {
    \   000000   74F6         MOV     A,#-0xa
    \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
    \   000005                ; Saved register size: 10
    \   000005                ; Auto size: 0
    \   000005   E9           MOV     A,R1
-    169            if(status==ZSUCCESS)
-   \   000006   704C         JNZ     ??zb_StartConfirm_0
-    170            {
-    171              //可把节点所包含的led灯的ID号发送过去
-    172              zb_SendDataRequest(0X0,LEDJOINNET_CMD_ID,
-    173                                 LEDNUM,ledIdList,0,FALSE,AF_DEFAULT_RADIUS);
+    215            if(status==ZSUCCESS)
+   \   000006   7052         JNZ     ??zb_StartConfirm_0
+    216            {
+    217              //可把节点所包含的led灯的ID号发送过去
+    218              zb_SendDataRequest(0X0,LEDJOINNET_CMD_ID,
+    219                                 LEDNUM,ledIdList,0,FALSE,AF_DEFAULT_RADIUS);
    \   000008                ; Setup parameters for call to function zb_SendDataRequest
    \   000008   75..1E       MOV     ?V0 + 0,#0x1e
    \   00000B   78..         MOV     R0,#?V0 + 0
@@ -3646,37 +4170,43 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
    \   000032   12....       LCALL   ??zb_SendDataRequest?relay
    \   000035   7405         MOV     A,#0x5
    \   000037   12....       LCALL   ?DEALLOC_XSTACK8
-    174              osal_start_timerEx(sapi_TaskID,TIMER_TIMEOUT_EVT,60000);
+    220              osal_start_timerEx(sapi_TaskID,TIMER_TIMEOUT_EVT,60000);
    \   00003A                ; Setup parameters for call to function osal_start_timerEx
    \   00003A   7C60         MOV     R4,#0x60
    \   00003C   7DEA         MOV     R5,#-0x16
    \   00003E   7A01         MOV     R2,#0x1
-   \   000040   12....       LCALL   ?Subroutine17 & 0xFFFF
-    175              osal_start_timerEx(sapi_TaskID,RC522_PERIOD_EVT,2000);
-   \                     ??CrossCallReturnLabel_46:
+   \   000040   12....       LCALL   ?Subroutine19 & 0xFFFF
+    221              osal_start_timerEx(sapi_TaskID,RC522_PERIOD_EVT,2000);
+   \                     ??CrossCallReturnLabel_48:
    \   000043   7A03         MOV     R2,#0x3
-   \   000045   12....       LCALL   ?Subroutine17 & 0xFFFF
-    176              HalLedBlink(HAL_LED_ALL,5,50,2000);
-   \                     ??CrossCallReturnLabel_47:
+   \   000045   12....       LCALL   ?Subroutine19 & 0xFFFF
+    222              HalLedBlink(HAL_LED_ALL,5,50,2000);
+   \                     ??CrossCallReturnLabel_49:
    \   000048   7B32         MOV     R3,#0x32
    \   00004A   7A05         MOV     R2,#0x5
    \   00004C   790F         MOV     R1,#0xf
    \   00004E   12....       LCALL   ??HalLedBlink?relay
-    177              
-    178              IC_Init();
+    223              
+    224              IC_Init();
    \   000051                ; Setup parameters for call to function IC_Init
    \   000051   12....       LCALL   ??IC_Init?relay
-    179          //    LCD_Init(); //oled 初始化 
-    180          //    LCD_CLS(); //屏全亮
-    181            }
-    182          }
+    225          //    LCD_Init(); //oled 初始化 
+    226          //    LCD_CLS(); //屏全亮
+    227              OLED_Init();
+   \   000054                ; Setup parameters for call to function OLED_Init
+   \   000054   12....       LCALL   ??OLED_Init?relay
+    228              OLED_Clear();
+   \   000057                ; Setup parameters for call to function OLED_Clear
+   \   000057   12....       LCALL   ??OLED_Clear?relay
+    229            }
+    230          }
    \                     ??zb_StartConfirm_0:
-   \   000054   02....       LJMP    ?Subroutine2 & 0xFFFF
+   \   00005A   02....       LJMP    ?Subroutine2 & 0xFFFF
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine17:
-   \   000000   12....       LCALL   ?Subroutine23 & 0xFFFF
-   \                     ??CrossCallReturnLabel_58:
+   \                     ?Subroutine19:
+   \   000000   12....       LCALL   ?Subroutine32 & 0xFFFF
+   \                     ??CrossCallReturnLabel_76:
    \   000003                ; Setup parameters for call to function osal_start_timerEx
    \   000003                ; Setup parameters for call to function HalLedBlink
    \   000003   7CD0         MOV     R4,#-0x30
@@ -3684,19 +4214,19 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
    \   000007   22           RET
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine23:
+   \                     ?Subroutine32:
    \   000000   7B00         MOV     R3,#0x0
    \   000002   90....       MOV     DPTR,#sapi_TaskID
    \   000005   E0           MOVX    A,@DPTR
    \   000006   F9           MOV     R1,A
    \   000007   12....       LCALL   ??osal_start_timerEx?relay
    \   00000A   22           RET
-    183          
+    231          
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    184          void zb_HandleOsalEvent( uint16 event )
+    232          void zb_HandleOsalEvent( uint16 event )
    \                     zb_HandleOsalEvent:
-    185          {
+    233          {
    \   000000   74F6         MOV     A,#-0xa
    \   000002   12....       LCALL   ?BANKED_ENTER_XDATA
    \   000005                ; Saved register size: 10
@@ -3705,19 +4235,19 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
    \   000007   12....       LCALL   ?ALLOC_XSTACK8
    \   00000A   EA           MOV     A,R2
    \   00000B   FE           MOV     R6,A
-    186            if(event&TIMER_TIMEOUT_EVT)
+    234            if(event&TIMER_TIMEOUT_EVT)
    \   00000C   A2E0         MOV     C,0xE0 /* A   */.0
    \   00000E   5038         JNC     ??zb_HandleOsalEvent_0
-    187            {
-    188              osal_start_timerEx(sapi_TaskID,TIMER_TIMEOUT_EVT,60000);
+    235            {
+    236              osal_start_timerEx(sapi_TaskID,TIMER_TIMEOUT_EVT,60000);
    \   000010                ; Setup parameters for call to function osal_start_timerEx
    \   000010   7C60         MOV     R4,#0x60
    \   000012   7DEA         MOV     R5,#-0x16
    \   000014   7A01         MOV     R2,#0x1
-   \   000016   12....       LCALL   ?Subroutine23 & 0xFFFF
-    189              zb_SendDataRequest(0X0,HEART_BEAT_CMD_ID,
-    190                                 0,NULL,0,FALSE,AF_DEFAULT_RADIUS); 
-   \                     ??CrossCallReturnLabel_59:
+   \   000016   12....       LCALL   ?Subroutine32 & 0xFFFF
+    237              zb_SendDataRequest(0X0,HEART_BEAT_CMD_ID,
+    238                                 0,NULL,0,FALSE,AF_DEFAULT_RADIUS); 
+   \                     ??CrossCallReturnLabel_77:
    \   000019                ; Setup parameters for call to function zb_SendDataRequest
    \   000019   75..1E       MOV     ?V0 + 0,#0x1e
    \   00001C   78..         MOV     R0,#?V0 + 0
@@ -3739,23 +4269,23 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
    \   000040   12....       LCALL   ??zb_SendDataRequest?relay
    \   000043   7405         MOV     A,#0x5
    \   000045   12....       LCALL   ?DEALLOC_XSTACK8
-    191            }
-    192            
-    193            if(event&RC522_PERIOD_EVT)
+    239            }
+    240            
+    241            if(event&RC522_PERIOD_EVT)
    \                     ??zb_HandleOsalEvent_0:
    \   000048   EE           MOV     A,R6
    \   000049   5403         ANL     A,#0x3
    \   00004B   7003         JNZ     $+5
    \   00004D   02....       LJMP    ??zb_HandleOsalEvent_1 & 0xFFFF
-    194            {
-    195              osal_start_timerEx(sapi_TaskID,RC522_PERIOD_EVT,2000);
+    242            {
+    243              osal_start_timerEx(sapi_TaskID,RC522_PERIOD_EVT,2000);
    \   000050                ; Setup parameters for call to function osal_start_timerEx
    \   000050   7CD0         MOV     R4,#-0x30
    \   000052   7D07         MOV     R5,#0x7
    \   000054   7A03         MOV     R2,#0x3
-   \   000056   12....       LCALL   ?Subroutine23 & 0xFFFF
-    196              unsigned char asc_16[16]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'},i;
-   \                     ??CrossCallReturnLabel_60:
+   \   000056   12....       LCALL   ?Subroutine32 & 0xFFFF
+    244              unsigned char asc_16[16]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'},i;
+   \                     ??CrossCallReturnLabel_78:
    \   000059   740C         MOV     A,#0xc
    \   00005B   12....       LCALL   ?XSTACK_DISP0_8
    \   00005E   AC82         MOV     R4,DPL
@@ -3764,237 +4294,256 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
    \   000065   7582..       MOV     DPL,#`?<Constant {48, 49, 50, 51, 52, 53, 54, 55, 56` & 0xff
    \   000068   7410         MOV     A,#0x10
    \   00006A   12....       LCALL   ?MOVE_LONG8_XDATA_XDATA
-    197              unsigned char Card_Id[8]; //存放32位卡号
-    198              
-    199              unsigned int lightvalue;
-    200              unsigned int AvgValue;
-    201              unsigned char value[2];
-    202          //    for(int j=0,k=10;k<13;j++,k++)
-    203          //    {
-    204          //      LCD_P16x16Ch(24*j+32, 3, k);
-    205          //    }
-    206              if(IC_Test()==1)
-   \   00006D                ; Setup parameters for call to function IC_Test
-   \   00006D   12....       LCALL   ??IC_Test?relay
-   \   000070   E9           MOV     A,R1
-   \   000071   6401         XRL     A,#0x1
-   \   000073   6003         JZ      $+5
-   \   000075   02....       LJMP    ??zb_HandleOsalEvent_2 & 0xFFFF
-    207              {   
-    208          //      LCD_CLS(); 
-    209                //16进制转ASC码 串口打印IC卡号码
-    210                for(i=0;i<4;i++)
-   \   000078   7C00         MOV     R4,#0x0
-    211                {
-    212                  Card_Id[i*2]=asc_16[qq[i]/16];
-   \                     ??zb_HandleOsalEvent_3:
-   \   00007A   8C82         MOV     DPL,R4
-   \   00007C   AA82         MOV     R2,DPL
-   \   00007E   EA           MOV     A,R2
-   \   00007F   C3           CLR     C
-   \   000080   33           RLC     A
-   \   000081   F8           MOV     R0,A
-   \   000082   E4           CLR     A
-   \   000083   33           RLC     A
-   \   000084   F9           MOV     R1,A
-   \   000085   7404         MOV     A,#0x4
-   \   000087   12....       LCALL   ?XSTACK_DISP0_8
-   \   00008A   E582         MOV     A,DPL
-   \   00008C   28           ADD     A,R0
-   \   00008D   F8           MOV     R0,A
-   \   00008E   E583         MOV     A,DPH
-   \   000090   39           ADDC    A,R1
-   \   000091   F9           MOV     R1,A
-   \   000092   74..         MOV     A,#qq & 0xff
-   \   000094   2A           ADD     A,R2
-   \   000095   F582         MOV     DPL,A
-   \   000097   74..         MOV     A,#(qq >> 8) & 0xff
-   \   000099   3400         ADDC    A,#0x0
-   \   00009B   F583         MOV     DPH,A
-   \   00009D   E0           MOVX    A,@DPTR
-   \   00009E   FD           MOV     R5,A
-   \   00009F   C4           SWAP    A
-   \   0000A0   540F         ANL     A,#0xf
-   \   0000A2   FA           MOV     R2,A
-   \   0000A3   740C         MOV     A,#0xc
-   \   0000A5   12....       LCALL   ?XSTACK_DISP0_8
-   \   0000A8   12....       LCALL   ?Subroutine12 & 0xFFFF
-   \                     ??CrossCallReturnLabel_14:
-   \   0000AB   F0           MOVX    @DPTR,A
-    213                  Card_Id[i*2+1]=asc_16[qq[i]%16];        
-   \   0000AC   740F         MOV     A,#0xf
-   \   0000AE   5D           ANL     A,R5
-   \   0000AF   FA           MOV     R2,A
-   \   0000B0   740C         MOV     A,#0xc
-   \   0000B2   12....       LCALL   ?XSTACK_DISP0_8
-   \   0000B5   12....       LCALL   ?Subroutine12 & 0xFFFF
-    214                }
-   \                     ??CrossCallReturnLabel_15:
-   \   0000B8   A3           INC     DPTR
-   \   0000B9   F0           MOVX    @DPTR,A
-   \   0000BA   0C           INC     R4
-   \   0000BB   EC           MOV     A,R4
-   \   0000BC   C3           CLR     C
-   \   0000BD   9404         SUBB    A,#0x4
-   \   0000BF   40B9         JC      ??zb_HandleOsalEvent_3
-    215                sprintf((char *)buffer,"%c%c%c%c%c%c%c%c",Card_Id[0],Card_Id[1],Card_Id[2],Card_Id[3],Card_Id[4],Card_Id[5],Card_Id[6],Card_Id[7]); 
-   \   0000C1                ; Setup parameters for call to function sprintf
-   \   0000C1   740B         MOV     A,#0xb
-   \   0000C3   12....       LCALL   ?XSTACK_DISP0_8
-   \   0000C6   E0           MOVX    A,@DPTR
-   \   0000C7   F5..         MOV     ?V0 + 0,A
-   \   0000C9   75..00       MOV     ?V0 + 1,#0x0
-   \   0000CC   78..         MOV     R0,#?V0 + 0
-   \   0000CE   12....       LCALL   ?PUSH_XSTACK_I_TWO
-   \   0000D1   740C         MOV     A,#0xc
-   \   0000D3   12....       LCALL   ?XSTACK_DISP0_8
-   \   0000D6   12....       LCALL   ?Subroutine15 & 0xFFFF
-   \                     ??CrossCallReturnLabel_39:
-   \   0000D9   12....       LCALL   ?PUSH_XSTACK_I_TWO
-   \   0000DC   740D         MOV     A,#0xd
-   \   0000DE   12....       LCALL   ?XSTACK_DISP0_8
-   \   0000E1   12....       LCALL   ?Subroutine15 & 0xFFFF
-   \                     ??CrossCallReturnLabel_40:
-   \   0000E4   12....       LCALL   ?PUSH_XSTACK_I_TWO
-   \   0000E7   740E         MOV     A,#0xe
-   \   0000E9   12....       LCALL   ?XSTACK_DISP0_8
-   \   0000EC   12....       LCALL   ?Subroutine15 & 0xFFFF
-   \                     ??CrossCallReturnLabel_41:
-   \   0000EF   12....       LCALL   ?PUSH_XSTACK_I_TWO
-   \   0000F2   740F         MOV     A,#0xf
-   \   0000F4   12....       LCALL   ?XSTACK_DISP0_8
-   \   0000F7   12....       LCALL   ?Subroutine15 & 0xFFFF
-   \                     ??CrossCallReturnLabel_42:
-   \   0000FA   12....       LCALL   ?PUSH_XSTACK_I_TWO
-   \   0000FD   7410         MOV     A,#0x10
-   \   0000FF   12....       LCALL   ?XSTACK_DISP0_8
-   \   000102   12....       LCALL   ?Subroutine15 & 0xFFFF
-   \                     ??CrossCallReturnLabel_43:
-   \   000105   12....       LCALL   ?PUSH_XSTACK_I_TWO
-   \   000108   7411         MOV     A,#0x11
-   \   00010A   12....       LCALL   ?XSTACK_DISP0_8
-   \   00010D   12....       LCALL   ?Subroutine15 & 0xFFFF
-   \                     ??CrossCallReturnLabel_44:
-   \   000110   12....       LCALL   ?PUSH_XSTACK_I_TWO
-   \   000113   7412         MOV     A,#0x12
-   \   000115   12....       LCALL   ?XSTACK_DISP0_8
-   \   000118   12....       LCALL   ?Subroutine15 & 0xFFFF
-   \                     ??CrossCallReturnLabel_45:
-   \   00011B   12....       LCALL   ?PUSH_XSTACK_I_TWO
-   \   00011E   7C..         MOV     R4,#`?<Constant "%c%c%c%c%c%c%c%c">` & 0xff
-   \   000120   7D..         MOV     R5,#(`?<Constant "%c%c%c%c%c%c%c%c">` >> 8) & 0xff
-   \   000122   7A..         MOV     R2,#buffer & 0xff
-   \   000124   7B..         MOV     R3,#(buffer >> 8) & 0xff
-   \   000126   12....       LCALL   ??sprintf?relay
-   \   000129   7410         MOV     A,#0x10
-   \   00012B   12....       LCALL   ?DEALLOC_XSTACK8
-    216                zb_SendDataRequest(0X0,RC522VALUE_CMD_ID,8,Card_Id,0,FALSE,AF_DEFAULT_RADIUS);
-   \   00012E                ; Setup parameters for call to function zb_SendDataRequest
-   \   00012E   75..1E       MOV     ?V0 + 0,#0x1e
-   \   000131   78..         MOV     R0,#?V0 + 0
-   \   000133   12....       LCALL   ?PUSH_XSTACK_I_ONE
-   \   000136   75..00       MOV     ?V0 + 0,#0x0
-   \   000139   78..         MOV     R0,#?V0 + 0
-   \   00013B   12....       LCALL   ?PUSH_XSTACK_I_ONE
-   \   00013E   78..         MOV     R0,#?V0 + 0
-   \   000140   12....       LCALL   ?PUSH_XSTACK_I_ONE
-   \   000143   7407         MOV     A,#0x7
-   \   000145   12....       LCALL   ?XSTACK_DISP0_8
-   \   000148   8582..       MOV     ?V0 + 0,DPL
-   \   00014B   8583..       MOV     ?V0 + 1,DPH
-   \   00014E   78..         MOV     R0,#?V0 + 0
-   \   000150   12....       LCALL   ?PUSH_XSTACK_I_TWO
-   \   000153   7908         MOV     R1,#0x8
-   \   000155   7C05         MOV     R4,#0x5
-   \   000157   7D00         MOV     R5,#0x0
-   \   000159   7A00         MOV     R2,#0x0
-   \   00015B   7B00         MOV     R3,#0x0
-   \   00015D   12....       LCALL   ??zb_SendDataRequest?relay
-   \   000160   7405         MOV     A,#0x5
-   \   000162   12....       LCALL   ?DEALLOC_XSTACK8
-    217              }
-    218              
-    219              Get_ADCValue(&lightvalue);
+    245              unsigned char Card_Id[8]; //存放32位卡号
+    246              
+    247              unsigned int lightvalue;
+    248              unsigned int AvgValue;
+    249              unsigned char value[2];
+    250              for(int j=0,k=10;k<13;j++,k++)
+   \   00006D   F5..         MOV     ?V0 + 0,A
+   \   00006F   7E0A         MOV     R6,#0xa
+   \   000071   FF           MOV     R7,A
+    251              {
+    252                LCD_P16x16Ch(24*j+32, 3, k);
    \                     ??zb_HandleOsalEvent_2:
-   \   000165                ; Setup parameters for call to function Get_ADCValue
-   \   000165   7402         MOV     A,#0x2
-   \   000167   12....       LCALL   ?XSTACK_DISP0_8
-   \   00016A   AA82         MOV     R2,DPL
-   \   00016C   AB83         MOV     R3,DPH
-   \   00016E   12....       LCALL   ??Get_ADCValue?relay
-    220              value[0]=lightvalue&0xff;
-   \   000171   7402         MOV     A,#0x2
-   \   000173   12....       LCALL   ?XSTACK_DISP0_8
-   \   000176   E0           MOVX    A,@DPTR
-   \   000177   85..82       MOV     DPL,?XSP + 0
-   \   00017A   85..83       MOV     DPH,?XSP + 1
-   \   00017D   F0           MOVX    @DPTR,A
-    221              value[1]=(lightvalue>>8)&0xff;
-   \   00017E   7402         MOV     A,#0x2
-   \   000180   12....       LCALL   ?XSTACK_DISP0_8
-   \   000183   A3           INC     DPTR
-   \   000184   E0           MOVX    A,@DPTR
-   \   000185   F9           MOV     R1,A
-   \   000186   7401         MOV     A,#0x1
-   \   000188   12....       LCALL   ?XSTACK_DISP0_8
-   \   00018B   E9           MOV     A,R1
-   \   00018C   F0           MOVX    @DPTR,A
-    222              AvgValue = value[0] | ((unsigned int)value[1] << 8);
-    223              
-    224              if(AvgValue==32763)
-   \   00018D   85..82       MOV     DPL,?XSP + 0
-   \   000190   85..83       MOV     DPH,?XSP + 1
-   \   000193   E0           MOVX    A,@DPTR
-   \   000194   F8           MOV     R0,A
-   \   000195   74FB         MOV     A,#-0x5
-   \   000197   68           XRL     A,R0
-   \   000198   7003         JNZ     ??zb_HandleOsalEvent_4
-   \   00019A   747F         MOV     A,#0x7f
-   \   00019C   69           XRL     A,R1
+   \   000072                ; Setup parameters for call to function LCD_P16x16Ch
+   \   000072   EE           MOV     A,R6
+   \   000073   FB           MOV     R3,A
+   \   000074   7A03         MOV     R2,#0x3
+   \   000076   75F018       MOV     B,#0x18
+   \   000079   E5..         MOV     A,?V0 + 0
+   \   00007B   A4           MUL     AB
+   \   00007C   2420         ADD     A,#0x20
+   \   00007E   F9           MOV     R1,A
+   \   00007F   12....       LCALL   ??LCD_P16x16Ch?relay
+    253              }
+   \   000082   E5..         MOV     A,?V0 + 0
+   \   000084   04           INC     A
+   \   000085   F5..         MOV     ?V0 + 0,A
+   \   000087   12....       LCALL   ?Subroutine27 & 0xFFFF
+   \                     ??CrossCallReturnLabel_66:
+   \   00008A   940D         SUBB    A,#0xd
+   \   00008C   12....       LCALL   ?Subroutine22 & 0xFFFF
+   \                     ??CrossCallReturnLabel_92:
+   \   00008F   40E1         JC      ??zb_HandleOsalEvent_2
+    254              if(IC_Test()==1)
+   \   000091                ; Setup parameters for call to function IC_Test
+   \   000091   12....       LCALL   ??IC_Test?relay
+   \   000094   E9           MOV     A,R1
+   \   000095   6401         XRL     A,#0x1
+   \   000097   6003         JZ      $+5
+   \   000099   02....       LJMP    ??zb_HandleOsalEvent_3 & 0xFFFF
+    255              {   
+    256          //      LCD_CLS(); 
+    257                OLED_Clear();
+   \   00009C                ; Setup parameters for call to function OLED_Clear
+   \   00009C   12....       LCALL   ??OLED_Clear?relay
+    258                //16进制转ASC码 串口打印IC卡号码
+    259                for(i=0;i<4;i++)
+   \   00009F   7C00         MOV     R4,#0x0
+    260                {
+    261                  Card_Id[i*2]=asc_16[qq[i]/16];
    \                     ??zb_HandleOsalEvent_4:
-   \   00019D   700B         JNZ     ??zb_HandleOsalEvent_5
-    225              {
-    226                HalLedSet(HAL_LED_1,HAL_LED_MODE_ON);
-   \   00019F                ; Setup parameters for call to function HalLedSet
-   \   00019F   7A01         MOV     R2,#0x1
-   \   0001A1   7901         MOV     R1,#0x1
-   \   0001A3   12....       LCALL   ??HalLedSet?relay
-    227                HalLedSet(HAL_LED_2,HAL_LED_MODE_ON);
-   \   0001A6                ; Setup parameters for call to function HalLedSet
-   \   0001A6   7A01         MOV     R2,#0x1
-   \   0001A8   8009         SJMP    ??zb_HandleOsalEvent_6
-    228              }
-    229              else
-    230              {
-    231                HalLedSet(HAL_LED_1,HAL_LED_MODE_OFF);
+   \   0000A1   8C82         MOV     DPL,R4
+   \   0000A3   AA82         MOV     R2,DPL
+   \   0000A5   EA           MOV     A,R2
+   \   0000A6   C3           CLR     C
+   \   0000A7   33           RLC     A
+   \   0000A8   F8           MOV     R0,A
+   \   0000A9   E4           CLR     A
+   \   0000AA   33           RLC     A
+   \   0000AB   F9           MOV     R1,A
+   \   0000AC   7404         MOV     A,#0x4
+   \   0000AE   12....       LCALL   ?XSTACK_DISP0_8
+   \   0000B1   E582         MOV     A,DPL
+   \   0000B3   28           ADD     A,R0
+   \   0000B4   F8           MOV     R0,A
+   \   0000B5   E583         MOV     A,DPH
+   \   0000B7   39           ADDC    A,R1
+   \   0000B8   F9           MOV     R1,A
+   \   0000B9   74..         MOV     A,#qq & 0xff
+   \   0000BB   2A           ADD     A,R2
+   \   0000BC   F582         MOV     DPL,A
+   \   0000BE   74..         MOV     A,#(qq >> 8) & 0xff
+   \   0000C0   3400         ADDC    A,#0x0
+   \   0000C2   F583         MOV     DPH,A
+   \   0000C4   E0           MOVX    A,@DPTR
+   \   0000C5   FD           MOV     R5,A
+   \   0000C6   C4           SWAP    A
+   \   0000C7   540F         ANL     A,#0xf
+   \   0000C9   FA           MOV     R2,A
+   \   0000CA   740C         MOV     A,#0xc
+   \   0000CC   12....       LCALL   ?XSTACK_DISP0_8
+   \   0000CF   12....       LCALL   ?Subroutine17 & 0xFFFF
+   \                     ??CrossCallReturnLabel_46:
+   \   0000D2   F0           MOVX    @DPTR,A
+    262                  Card_Id[i*2+1]=asc_16[qq[i]%16];        
+   \   0000D3   740F         MOV     A,#0xf
+   \   0000D5   5D           ANL     A,R5
+   \   0000D6   FA           MOV     R2,A
+   \   0000D7   740C         MOV     A,#0xc
+   \   0000D9   12....       LCALL   ?XSTACK_DISP0_8
+   \   0000DC   12....       LCALL   ?Subroutine17 & 0xFFFF
+    263                }
+   \                     ??CrossCallReturnLabel_47:
+   \   0000DF   A3           INC     DPTR
+   \   0000E0   F0           MOVX    @DPTR,A
+   \   0000E1   0C           INC     R4
+   \   0000E2   EC           MOV     A,R4
+   \   0000E3   C3           CLR     C
+   \   0000E4   9404         SUBB    A,#0x4
+   \   0000E6   40B9         JC      ??zb_HandleOsalEvent_4
+    264                sprintf((char *)buffer,"%c%c%c%c%c%c%c%c",Card_Id[0],Card_Id[1],Card_Id[2],Card_Id[3],Card_Id[4],Card_Id[5],Card_Id[6],Card_Id[7]); 
+   \   0000E8                ; Setup parameters for call to function sprintf
+   \   0000E8   740B         MOV     A,#0xb
+   \   0000EA   12....       LCALL   ?XSTACK_DISP0_8
+   \   0000ED   E0           MOVX    A,@DPTR
+   \   0000EE   F5..         MOV     ?V0 + 0,A
+   \   0000F0   75..00       MOV     ?V0 + 1,#0x0
+   \   0000F3   78..         MOV     R0,#?V0 + 0
+   \   0000F5   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   0000F8   740C         MOV     A,#0xc
+   \   0000FA   12....       LCALL   ?XSTACK_DISP0_8
+   \   0000FD   12....       LCALL   ?Subroutine16 & 0xFFFF
+   \                     ??CrossCallReturnLabel_39:
+   \   000100   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000103   740D         MOV     A,#0xd
+   \   000105   12....       LCALL   ?XSTACK_DISP0_8
+   \   000108   12....       LCALL   ?Subroutine16 & 0xFFFF
+   \                     ??CrossCallReturnLabel_40:
+   \   00010B   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00010E   740E         MOV     A,#0xe
+   \   000110   12....       LCALL   ?XSTACK_DISP0_8
+   \   000113   12....       LCALL   ?Subroutine16 & 0xFFFF
+   \                     ??CrossCallReturnLabel_41:
+   \   000116   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000119   740F         MOV     A,#0xf
+   \   00011B   12....       LCALL   ?XSTACK_DISP0_8
+   \   00011E   12....       LCALL   ?Subroutine16 & 0xFFFF
+   \                     ??CrossCallReturnLabel_42:
+   \   000121   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000124   7410         MOV     A,#0x10
+   \   000126   12....       LCALL   ?XSTACK_DISP0_8
+   \   000129   12....       LCALL   ?Subroutine16 & 0xFFFF
+   \                     ??CrossCallReturnLabel_43:
+   \   00012C   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00012F   7411         MOV     A,#0x11
+   \   000131   12....       LCALL   ?XSTACK_DISP0_8
+   \   000134   12....       LCALL   ?Subroutine16 & 0xFFFF
+   \                     ??CrossCallReturnLabel_44:
+   \   000137   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00013A   7412         MOV     A,#0x12
+   \   00013C   12....       LCALL   ?XSTACK_DISP0_8
+   \   00013F   12....       LCALL   ?Subroutine16 & 0xFFFF
+   \                     ??CrossCallReturnLabel_45:
+   \   000142   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   000145   7C..         MOV     R4,#`?<Constant "%c%c%c%c%c%c%c%c">` & 0xff
+   \   000147   7D..         MOV     R5,#(`?<Constant "%c%c%c%c%c%c%c%c">` >> 8) & 0xff
+   \   000149   7A..         MOV     R2,#buffer & 0xff
+   \   00014B   7B..         MOV     R3,#(buffer >> 8) & 0xff
+   \   00014D   12....       LCALL   ??sprintf?relay
+   \   000150   7410         MOV     A,#0x10
+   \   000152   12....       LCALL   ?DEALLOC_XSTACK8
+    265                zb_SendDataRequest(0X0,RC522VALUE_CMD_ID,8,Card_Id,0,FALSE,AF_DEFAULT_RADIUS);
+   \   000155                ; Setup parameters for call to function zb_SendDataRequest
+   \   000155   75..1E       MOV     ?V0 + 0,#0x1e
+   \   000158   78..         MOV     R0,#?V0 + 0
+   \   00015A   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   00015D   75..00       MOV     ?V0 + 0,#0x0
+   \   000160   78..         MOV     R0,#?V0 + 0
+   \   000162   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   000165   78..         MOV     R0,#?V0 + 0
+   \   000167   12....       LCALL   ?PUSH_XSTACK_I_ONE
+   \   00016A   7407         MOV     A,#0x7
+   \   00016C   12....       LCALL   ?XSTACK_DISP0_8
+   \   00016F   8582..       MOV     ?V0 + 0,DPL
+   \   000172   8583..       MOV     ?V0 + 1,DPH
+   \   000175   78..         MOV     R0,#?V0 + 0
+   \   000177   12....       LCALL   ?PUSH_XSTACK_I_TWO
+   \   00017A   7908         MOV     R1,#0x8
+   \   00017C   7C05         MOV     R4,#0x5
+   \   00017E   7D00         MOV     R5,#0x0
+   \   000180   7A00         MOV     R2,#0x0
+   \   000182   7B00         MOV     R3,#0x0
+   \   000184   12....       LCALL   ??zb_SendDataRequest?relay
+   \   000187   7405         MOV     A,#0x5
+   \   000189   12....       LCALL   ?DEALLOC_XSTACK8
+    266              }
+    267              
+    268              Get_ADCValue(&lightvalue);
+   \                     ??zb_HandleOsalEvent_3:
+   \   00018C                ; Setup parameters for call to function Get_ADCValue
+   \   00018C   7402         MOV     A,#0x2
+   \   00018E   12....       LCALL   ?XSTACK_DISP0_8
+   \   000191   AA82         MOV     R2,DPL
+   \   000193   AB83         MOV     R3,DPH
+   \   000195   12....       LCALL   ??Get_ADCValue?relay
+    269              value[0]=lightvalue&0xff;
+   \   000198   7402         MOV     A,#0x2
+   \   00019A   12....       LCALL   ?XSTACK_DISP0_8
+   \   00019D   E0           MOVX    A,@DPTR
+   \   00019E   85..82       MOV     DPL,?XSP + 0
+   \   0001A1   85..83       MOV     DPH,?XSP + 1
+   \   0001A4   F0           MOVX    @DPTR,A
+    270              value[1]=(lightvalue>>8)&0xff;
+   \   0001A5   7402         MOV     A,#0x2
+   \   0001A7   12....       LCALL   ?XSTACK_DISP0_8
+   \   0001AA   A3           INC     DPTR
+   \   0001AB   E0           MOVX    A,@DPTR
+   \   0001AC   F9           MOV     R1,A
+   \   0001AD   7401         MOV     A,#0x1
+   \   0001AF   12....       LCALL   ?XSTACK_DISP0_8
+   \   0001B2   E9           MOV     A,R1
+   \   0001B3   F0           MOVX    @DPTR,A
+    271              AvgValue = value[0] | ((unsigned int)value[1] << 8);
+    272              
+    273              if(AvgValue==32763)
+   \   0001B4   85..82       MOV     DPL,?XSP + 0
+   \   0001B7   85..83       MOV     DPH,?XSP + 1
+   \   0001BA   E0           MOVX    A,@DPTR
+   \   0001BB   F8           MOV     R0,A
+   \   0001BC   74FB         MOV     A,#-0x5
+   \   0001BE   68           XRL     A,R0
+   \   0001BF   7003         JNZ     ??zb_HandleOsalEvent_5
+   \   0001C1   747F         MOV     A,#0x7f
+   \   0001C3   69           XRL     A,R1
    \                     ??zb_HandleOsalEvent_5:
-   \   0001AA                ; Setup parameters for call to function HalLedSet
-   \   0001AA   7A00         MOV     R2,#0x0
-   \   0001AC   7901         MOV     R1,#0x1
-   \   0001AE   12....       LCALL   ??HalLedSet?relay
-    232                HalLedSet(HAL_LED_2,HAL_LED_MODE_OFF);
-   \   0001B1                ; Setup parameters for call to function HalLedSet
-   \   0001B1   7A00         MOV     R2,#0x0
+   \   0001C4   700B         JNZ     ??zb_HandleOsalEvent_6
+    274              {
+    275                HalLedSet(HAL_LED_1,HAL_LED_MODE_ON);
+   \   0001C6                ; Setup parameters for call to function HalLedSet
+   \   0001C6   7A01         MOV     R2,#0x1
+   \   0001C8   7901         MOV     R1,#0x1
+   \   0001CA   12....       LCALL   ??HalLedSet?relay
+    276                HalLedSet(HAL_LED_2,HAL_LED_MODE_ON);
+   \   0001CD                ; Setup parameters for call to function HalLedSet
+   \   0001CD   7A01         MOV     R2,#0x1
+   \   0001CF   8009         SJMP    ??zb_HandleOsalEvent_7
+    277              }
+    278              else
+    279              {
+    280                HalLedSet(HAL_LED_1,HAL_LED_MODE_OFF);
    \                     ??zb_HandleOsalEvent_6:
-   \   0001B3   7902         MOV     R1,#0x2
-   \   0001B5   12....       LCALL   ??HalLedSet?relay
-    233              }
-    234            }
-    235          }
+   \   0001D1                ; Setup parameters for call to function HalLedSet
+   \   0001D1   7A00         MOV     R2,#0x0
+   \   0001D3   7901         MOV     R1,#0x1
+   \   0001D5   12....       LCALL   ??HalLedSet?relay
+    281                HalLedSet(HAL_LED_2,HAL_LED_MODE_OFF);
+   \   0001D8                ; Setup parameters for call to function HalLedSet
+   \   0001D8   7A00         MOV     R2,#0x0
+   \                     ??zb_HandleOsalEvent_7:
+   \   0001DA   7902         MOV     R1,#0x2
+   \   0001DC   12....       LCALL   ??HalLedSet?relay
+    282              }
+    283            }
+    284          }
    \                     ??zb_HandleOsalEvent_1:
-   \   0001B8   741C         MOV     A,#0x1c
-   \   0001BA   12....       LCALL   ?DEALLOC_XSTACK8
-   \   0001BD   02....       LJMP    ?Subroutine2 & 0xFFFF
+   \   0001DF   741C         MOV     A,#0x1c
+   \   0001E1   12....       LCALL   ?DEALLOC_XSTACK8
+   \   0001E4   02....       LJMP    ?Subroutine2 & 0xFFFF
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine15:
-   \   000000   E0           MOVX    A,@DPTR
-   \   000001   F5..         MOV     ?V0 + 0,A
-   \   000003   78..         MOV     R0,#?V0 + 0
-   \   000005   22           RET
-
-   \                                 In  segment BANKED_CODE, align 1, keep-with-next
-   \                     ?Subroutine12:
+   \                     ?Subroutine17:
    \   000000   E582         MOV     A,DPL
    \   000002   2A           ADD     A,R2
    \   000003   F582         MOV     DPL,A
@@ -4005,17 +4554,24 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
    \   00000C   8882         MOV     DPL,R0
    \   00000E   8983         MOV     DPH,R1
    \   000010   22           RET
-    236          
 
    \                                 In  segment BANKED_CODE, align 1, keep-with-next
-    237          void zb_FindDeviceConfirm( uint8 searchType, 
+   \                     ?Subroutine16:
+   \   000000   E0           MOVX    A,@DPTR
+   \   000001   F5..         MOV     ?V0 + 0,A
+   \   000003   78..         MOV     R0,#?V0 + 0
+   \   000005   22           RET
+    285          
+
+   \                                 In  segment BANKED_CODE, align 1, keep-with-next
+    286          void zb_FindDeviceConfirm( uint8 searchType, 
    \                     zb_FindDeviceConfirm:
-    238                                    uint8 *searchKey, uint8 *result )
-    239          {
+    287                                    uint8 *searchKey, uint8 *result )
+    288          {
    \   000000                ; Saved register size: 0
    \   000000                ; Auto size: 0
-    240            
-    241          }
+    289            
+    290          }
    \   000000   02....       LJMP    ?BRET
 
    \                                 In  segment XDATA_ID, align 1, keep-with-next
@@ -5824,6 +6380,11 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
    \   000003   ......       DC24    OLED_ShowString
 
    \                                 In  segment BANK_RELAYS, align 1
+   \                     ??LCD_P16x16Ch?relay:
+   \   000000   12....       LCALL   ?BDISPATCH
+   \   000003   ......       DC24    LCD_P16x16Ch
+
+   \                                 In  segment BANK_RELAYS, align 1
    \                     ??OLED_DrawBMP?relay:
    \   000000   12....       LCALL   ?BDISPATCH
    \   000003   ......       DC24    OLED_DrawBMP
@@ -5874,6 +6435,22 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
    \   000003   ......       DC24    zb_FindDeviceConfirm
 
    \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "ID:">`:
+   \   000000   49443A00     DB "ID:"
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant ":">`:
+   \   000000   3A00         DB ":"
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "%d">`:
+   \   000000   256400       DB "%d"
+
+   \                                 In  segment XDATA_ROM_C, align 1
+   \                     `?<Constant "0">`:
+   \   000000   3000         DB "0"
+
+   \                                 In  segment XDATA_ROM_C, align 1
    \                     `?<Constant {48, 49, 50, 51, 52, 53, 54, 55, 56`:
    \   000000   30           DB 48
    \   000001   31           DB 49
@@ -5907,7 +6484,12 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
      Delay_1ms                    0      0      0
      Delay_1u                     0      0      9
      Delay_50ms                   0      0      0
-     OLED_Clear                   0      0     10
+     LCD_P16x16Ch                 0      0     51
+       -> OLED_Set_Pos            0      0     26
+       -> OLED_WR_Byte            0      0     26
+       -> OLED_Set_Pos            0      0     26
+       -> OLED_WR_Byte            0      0     26
+     OLED_Clear                   0      0     48
        -> OLED_WR_Byte            0      0     20
        -> OLED_WR_Byte            0      0     20
        -> OLED_WR_Byte            0      0     20
@@ -5920,10 +6502,10 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
        -> OLED_WR_Byte            4      0      0
        -> OLED_WR_Byte            4      0      0
        -> OLED_WR_Byte            4      0      0
-     OLED_DrawBMP                 0      0     18
+     OLED_DrawBMP                 0      0     32
        -> OLED_WR_Byte            0      0     32
        -> OLED_Set_Pos            0      0     32
-     OLED_Init                    2      0      0
+     OLED_Init                    2      0     10
        -> OLED_WR_Byte            4      0      0
        -> OLED_WR_Byte            4      0      0
        -> OLED_WR_Byte            4      0      0
@@ -5971,7 +6553,7 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
        -> OLED_ShowChar           0      0     36
        -> oled_pow                0      0     36
        -> OLED_ShowChar           0      0     36
-     OLED_ShowString              0      0     14
+     OLED_ShowString              0      0     28
        -> OLED_ShowChar           0      0     28
      OLED_WR_Byte                 2      0     16
        -> iic_write               4      0      0
@@ -6014,7 +6596,9 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
        -> osal_start_timerEx      0      0     76
        -> zb_SendDataRequest      0      0     86
        -> osal_start_timerEx      0      0     76
+       -> LCD_P16x16Ch            0      0     76
        -> IC_Test                 0      0     76
+       -> OLED_Clear              0      0     76
        -> sprintf                 0      0    108
        -> zb_SendDataRequest      0      0     86
        -> Get_ADCValue            0      0     76
@@ -6022,12 +6606,44 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
        -> HalLedSet               0      0     76
        -> HalLedSet               0      0     76
        -> HalLedSet               0      0     76
-     zb_ReceiveDataIndication     2      0      4
-       -> HalLedSet               4      0      0
-       -> HalLedSet               4      0      0
-       -> SG90start               4      0      0
-       -> HalLedSet               4      0      0
-       -> HalLedSet               4      0      0
+     zb_ReceiveDataIndication     0      0     20
+       -> HalLedSet               0      0     28
+       -> HalLedSet               0      0     28
+       -> OLED_ShowString         0      0     28
+       -> OLED_ShowString         0      0     28
+       -> memset                  0      0     32
+       -> LCD_P16x16Ch            0      0     28
+       -> OLED_ShowString         0      0     28
+       -> sprintf                 0      0     32
+       -> OLED_ShowString         0      0     28
+       -> OLED_ShowString         0      0     28
+       -> sprintf                 0      0     32
+       -> OLED_ShowString         0      0     28
+       -> OLED_ShowString         0      0     28
+       -> sprintf                 0      0     32
+       -> OLED_ShowString         0      0     28
+       -> OLED_ShowString         0      0     28
+       -> LCD_P16x16Ch            0      0     28
+       -> LCD_P16x16Ch            0      0     28
+       -> OLED_ShowString         0      0     28
+       -> sprintf                 0      0     32
+       -> OLED_ShowString         0      0     28
+       -> OLED_ShowString         0      0     28
+       -> sprintf                 0      0     32
+       -> OLED_ShowString         0      0     28
+       -> OLED_ShowString         0      0     28
+       -> LCD_P16x16Ch            0      0     28
+       -> SG90start               0      0     28
+       -> OLED_ShowString         0      0     28
+       -> OLED_ShowString         0      0     28
+       -> memset                  0      0     32
+       -> LCD_P16x16Ch            0      0     28
+       -> Onboard_wait            0      0     28
+       -> OLED_Clear              0      0     28
+       -> OLED_DrawBMP            0      0     32
+       -> Onboard_wait            0      0     28
+       -> HalLedSet               0      0     28
+       -> HalLedSet               0      0     28
      zb_SendDataConfirm           0      0      0
      zb_StartConfirm              0      0     15
        -> zb_SendDataRequest      0      0     30
@@ -6035,6 +6651,8 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
        -> osal_start_timerEx      0      0     20
        -> HalLedBlink             0      0     20
        -> IC_Init                 0      0     20
+       -> OLED_Init               0      0     20
+       -> OLED_Clear              0      0     20
 
 
    Segment part sizes:
@@ -6051,69 +6669,80 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
      BMP1                                            512
      BMP2                                           1024
      Delay_1u                                         42
-     ?Subroutine10                                    15
+     ?Subroutine12                                    15
      ack_sign                                          1
      iic_start                                        11
-     ?Subroutine4                                      9
-     ?Subroutine6                                     17
-     ??Subroutine26_0                                  7
+     ?Subroutine5                                      9
+     ??Subroutine35_0                                  7
+     ?Subroutine7                                     17
      iic_stop                                         13
      iic_ack                                          27
      iic_write_byte                                   48
      ?Subroutine1                                      5
      iic_write                                        30
-     ?Subroutine9                                      1
-     ??Subroutine27_0                                  7
+     ?Subroutine11                                     1
+     ??Subroutine36_0                                  7
      OLED_WR_Byte                                     20
      fill_picture                                     42
-     ?Subroutine5                                     24
-     ?Subroutine24                                     2
-     ??Subroutine29_0                                  8
-     ?Subroutine21                                     6
-     ?Subroutine20                                    11
+     ?Subroutine6                                     24
+     ?Subroutine33                                     2
+     ??Subroutine38_0                                  8
+     ?Subroutine29                                     6
+     ?Subroutine28                                    11
      Delay_50ms                                       17
      Delay_1ms                                         8
      OLED_Set_Pos                                     43
-     ?Subroutine13                                     5
+     ?Subroutine14                                     5
      ?Subroutine2                                      5
      ?Subroutine0                                     16
-     ??Subroutine25_0                                  5
+     ??Subroutine34_0                                  5
      OLED_Display_On                                   7
-     ?Subroutine14                                     4
+     ?Subroutine15                                     4
      OLED_Display_Off                                 18
-     ?Subroutine7                                      8
+     ?Subroutine8                                      8
      OLED_Clear                                       34
      OLED_On                                          32
      OLED_ShowChar                                   155
      ?Subroutine3                                      5
-     ?Subroutine18                                    14
-     ?Subroutine16                                     1
-     ??Subroutine28_0                                 10
-     ?Subroutine8                                     12
-     ?Subroutine19                                     4
-     ?Subroutine22                                    10
+     ?Subroutine20                                    14
+     ?Subroutine18                                     1
+     ??Subroutine37_0                                 10
+     ?Subroutine10                                    12
+     ?Subroutine21                                     4
+     ?Subroutine30                                    10
      oled_pow                                         33
      OLED_ShowNum                                    137
      OLED_ShowString                                  71
-     OLED_DrawBMP                                     95
+     LCD_P16x16Ch                                     54
+     ?Subroutine4                                      5
+     ?Subroutine9                                     28
+     OLED_DrawBMP                                     86
+     ?Subroutine25                                    13
      OLED_Init                                       136
-     ?Subroutine11                                     6
+     ?Subroutine13                                     6
      ledIdList                                         2
      buffer                                            8
      ledDeviceInputCommandList                         2
      ledDeviceOutputCommandList                        4
      zb_SimpleDesc                                    12
      zb_SendDataConfirm                                3
-     zb_ReceiveDataIndication                         91
+     zb_ReceiveDataIndication                        711
+     ?Subroutine26                                     6
+     ?Subroutine31                                    10
+     ?Subroutine24                                    10
+     ?Subroutine23                                    22
+     ?Subroutine27                                    11
+     ?Subroutine22                                     1
+     ??Subroutine39_0                                  8
      zb_AllowBindConfirm                               3
      zb_HandleKeys                                     3
      zb_BindConfirm                                    3
-     zb_StartConfirm                                  87
-     ?Subroutine17                                     8
-     ?Subroutine23                                    11
-     zb_HandleOsalEvent                              448
-     ?Subroutine15                                     6
-     ?Subroutine12                                    17
+     zb_StartConfirm                                  93
+     ?Subroutine19                                     8
+     ?Subroutine32                                    11
+     zb_HandleOsalEvent                              487
+     ?Subroutine17                                    17
+     ?Subroutine16                                     6
      zb_FindDeviceConfirm                              3
      ?<Initializer for F16x16>                       416
      ?<Initializer for BMP>                          256
@@ -6138,6 +6767,7 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
      ??oled_pow?relay                                  6
      ??OLED_ShowNum?relay                              6
      ??OLED_ShowString?relay                           6
+     ??LCD_P16x16Ch?relay                              6
      ??OLED_DrawBMP?relay                              6
      ??OLED_Init?relay                                 6
      ??zb_SendDataConfirm?relay                        6
@@ -6148,22 +6778,26 @@ Warning[Pe177]: variable "ten1" was declared but never referenced
      ??zb_StartConfirm?relay                           6
      ??zb_HandleOsalEvent?relay                        6
      ??zb_FindDeviceConfirm?relay                      6
+     ?<Constant "ID:">                                 4
+     ?<Constant ":">                                   2
+     ?<Constant "%d">                                  3
+     ?<Constant "0">                                   2
      ?<Constant {48, 49, 50, 51, 52, 53, 54, 55, 56   16
      ?<Constant "%c%c%c%c%c%c%c%c">                   17
 
  
- 1 919 bytes in segment BANKED_CODE
-   174 bytes in segment BANK_RELAYS
+ 2 743 bytes in segment BANKED_CODE
+   180 bytes in segment BANK_RELAYS
      3 bytes in segment SFR_AN
  1 698 bytes in segment XDATA_I
  1 698 bytes in segment XDATA_ID
- 2 123 bytes in segment XDATA_ROM_C
+ 2 134 bytes in segment XDATA_ROM_C
    521 bytes in segment XDATA_Z
  
- 3 791 bytes of CODE  memory
- 2 123 bytes of CONST memory
+ 4 621 bytes of CODE  memory
+ 2 134 bytes of CONST memory
      0 bytes of DATA  memory (+ 3 bytes shared)
  2 219 bytes of XDATA memory
 
 Errors: none
-Warnings: 5
+Warnings: none
